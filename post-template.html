@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>Post Title — FateDate Press</title>
+  <style>
+    /* ─────────────────────────────────────────
+       POST PAGE — scoped styles
+    ───────────────────────────────────────── */
+
+    /* ── Post hero ── */
+    .post-hero {
+      padding: 160px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(123,46,253,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .post-hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .post-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 2rem;
+      transition: color 0.2s ease;
+    }
+    .post-back:hover { color: rgba(255,255,255,0.7); }
+    .post-back svg { transition: transform 0.3s cubic-bezier(.22,1,.36,1); }
+    .post-back:hover svg { transform: translateX(-3px); }
+
+    .post-tag {
+      display: inline-block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c9b8ff;
+      margin-bottom: 1.2rem;
+    }
+
+    .post-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #ffffff 50%, rgba(201,184,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.4rem;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 3rem;
+    }
+    .post-meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+    .post-author-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7B2EFD, #02A0AE);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Grift', system-ui, sans-serif;
+    }
+
+    /* ── Hero image ── */
+    .post-hero-img {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+      margin-top: 48px;
+    }
+    .post-hero-img-inner {
+      width: 100%;
+      aspect-ratio: 16/8;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1030 0%, #0d1a20 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-bottom: none;
+      position: relative;
+    }
+    .post-hero-img-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,46,253,0.1) 0%, rgba(2,160,174,0.07) 100%);
+    }
+    .post-hero-img-inner.has-img::after { display: none; }
+    .post-hero-img-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Divider ── */
+    .post-divider {
+      height: 1px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .post-divider-inner {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.1) 40%, rgba(2,160,174,0.08) 60%, transparent);
+    }
+
+    /* ── Article body ── */
+    .post-body-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 64px 48px 120px;
+    }
+
+    .post-body {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* Typographic elements within post body */
+    .post-body p {
+      margin-bottom: 1.6em;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .post-body h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: #F4F6FB;
+      margin: 2.8em 0 0.9em;
+    }
+    .post-body h3 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin: 2.4em 0 0.8em;
+    }
+    .post-body strong {
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+    }
+    .post-body a {
+      color: #c9b8ff;
+      text-decoration: underline;
+      text-decoration-color: rgba(201,184,255,0.3);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease, color 0.2s ease;
+    }
+    .post-body a:hover {
+      color: #fff;
+      text-decoration-color: rgba(255,255,255,0.5);
+    }
+    .post-body ul, .post-body ol {
+      padding-left: 1.4em;
+      margin-bottom: 1.6em;
+      color: rgba(255,255,255,0.65);
+    }
+    .post-body ul { list-style: disc; }
+    .post-body ol { list-style: decimal; }
+    .post-body li {
+      margin-bottom: 0.5em;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      font-family: 'Grift', system-ui, sans-serif;
+    }
+
+    /* Pull quote */
+    .post-body blockquote {
+      margin: 2.4em 0;
+      padding: 2rem 2.4rem;
+      border-left: none;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(201,184,255,0.12);
+      border-radius: 16px;
+      position: relative;
+    }
+    .post-body blockquote::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,184,255,0.3), transparent 70%);
+      border-radius: 16px 16px 0 0;
+    }
+    .post-body blockquote p {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 0;
+    }
+    .post-body blockquote cite {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-style: normal;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    /* Inline image */
+    .post-body figure {
+      margin: 2.4em 0;
+    }
+    .post-body figure img {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      display: block;
+    }
+    .post-body figcaption {
+      margin-top: 0.75rem;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.28);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Post footer — tags + share ── */
+    .post-footer {
+      padding-top: 2.4rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .post-footer-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .post-footer-tag {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 50px;
+      padding: 5px 14px;
+    }
+    .post-footer-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .post-footer-share span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .share-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.45);
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .share-btn:hover {
+      background: rgba(201,184,255,0.08);
+      border-color: rgba(201,184,255,0.2);
+      color: #c9b8ff;
+    }
+
+    /* ── Related posts ── */
+    .related-section {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 80px 0 120px;
+    }
+    .related-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .related-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 2rem;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .related-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      gap: 0;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1),
+                  border-color 0.3s ease,
+                  box-shadow 0.4s ease;
+    }
+    .related-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,184,255,0.1);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+    }
+    .related-card-img {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: linear-gradient(135deg, #1a1030 0%, #0d1a20 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .related-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,46,253,0.1) 0%, rgba(2,160,174,0.06) 100%);
+    }
+    .related-card-img.has-img::after { display: none; }
+    .related-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+    }
+    .related-card:hover .related-card-img img { transform: scale(1.04); }
+    .related-card-body {
+      padding: 20px 22px 24px;
+    }
+    .related-card-body h4 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #F4F6FB;
+      margin: 0.4rem 0 0.6rem;
+    }
+    .related-card-body .post-meta {
+      margin-bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .post-hero-inner,
+      .post-hero-img,
+      .post-body-wrap,
+      .related-inner { padding-left: 24px; padding-right: 24px; }
+      .related-grid { grid-template-columns: 1fr; }
+      .post-hero { padding-top: 130px; }
+      .post-footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .post-hero-inner,
+      .post-body-wrap,
+      .related-inner { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="#"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="#"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="#"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="../blog.html"><span>Press</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="#" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     POST HERO
+     ↓ Edit: tag, title, meta, author initials
+══════════════════════════════════════ -->
+<section class="post-hero">
+  <div class="post-hero-inner">
+
+    <a href="../blog.html" class="post-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to Press
+    </a>
+
+    <span class="post-tag">Announcement</span>
+
+    <h1>FateDate announces early access ahead of summer launch</h1>
+
+    <div class="post-meta">
+      <div class="post-author-avatar">FD</div>
+      <span>FateDate Team</span>
+      <div class="post-meta-dot"></div>
+      <span>12 March 2026</span>
+      <div class="post-meta-dot"></div>
+      <span>3 min read</span>
+    </div>
+
+  </div>
+
+  <!-- Hero image — add src and class="has-img" when you have one -->
+  <div class="post-hero-img">
+    <div class="post-hero-img-inner">
+      <!-- <img src="../assets/blog/press-launch.jpg" alt="FateDate launch"> -->
+    </div>
+  </div>
+
+</section>
+
+<div class="post-divider"><div class="post-divider-inner"></div></div>
+
+<!-- ══════════════════════════════════════
+     POST BODY
+     ↓ Write your article content here
+══════════════════════════════════════ -->
+<main class="post-body-wrap">
+  <article class="post-body">
+
+    <p>We've been building FateDate quietly for the past two years. Today, we're opening the doors to early access — a limited group of members who'll be among the first to experience the app before we fully launch this summer.</p>
+
+    <p>This isn't a beta test. Early access members will have the full experience: verified profiles, the DateDiary, connection games, and our partner venues across London and Manchester. The only difference is you'll be getting in before everyone else.</p>
+
+    <h2>Why we built this</h2>
+
+    <p>Dating apps have a trust problem. You don't know who you're actually talking to, the incentives are all wrong, and the whole thing has been designed to keep you swiping rather than actually meeting people.</p>
+
+    <p>We wanted to build something that takes the process seriously — from the moment you sign up to the moment you walk into a venue for a first date. <strong>Every member on FateDate is ID-verified.</strong> Every venue is handpicked. Every interaction is designed to move things forward, not keep you stuck on your phone.</p>
+
+    <blockquote>
+      <p>Dating should feel like the beginning of something, not a second job.</p>
+      <cite>— FateDate founding team</cite>
+    </blockquote>
+
+    <h2>What early access looks like</h2>
+
+    <p>Early access opens in waves. The first wave is invite-only through our waitlist. If you're on it, you'll hear from us in the next few weeks with everything you need to get set up.</p>
+
+    <ul>
+      <li>Full ID verification and profile setup</li>
+      <li>Access to connection-based matching games</li>
+      <li>DateDiary — browse and book dates at partner venues</li>
+      <li>Priority support from the founding team</li>
+    </ul>
+
+    <p>If you're not on the waitlist yet, you can sign up now. We're working through it in order, and we're aiming to have everyone onboarded ahead of the public launch in July.</p>
+
+    <h2>A note on venues</h2>
+
+    <p>We'll be sharing more about our venue partners over the coming weeks. What we can say now is that we've been incredibly selective — these are places that have been chosen because they're genuinely great for a first date, not because they paid to be on the platform.</p>
+
+    <p>More soon. If you're press and want to speak to the team, get in touch at <a href="mailto:hello@fatedate.co.uk">hello@fatedate.co.uk</a>.</p>
+
+    <!-- ── Post footer: tags + share ── -->
+    <div class="post-footer">
+      <div class="post-footer-tags">
+        <span class="post-footer-tag">Announcement</span>
+        <span class="post-footer-tag">Early access</span>
+        <span class="post-footer-tag">Launch</span>
+      </div>
+      <div class="post-footer-share">
+        <span>Share</span>
+        <!-- X / Twitter -->
+        <a href="#" class="share-btn" aria-label="Share on X">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="#" class="share-btn" aria-label="Share on LinkedIn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- Copy link -->
+        <button class="share-btn" aria-label="Copy link" id="copy-link-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- ══════════════════════════════════════
+     RELATED POSTS
+══════════════════════════════════════ -->
+<section class="related-section">
+  <div class="related-inner">
+    <p class="related-label">More from FateDate</p>
+    <div class="related-grid">
+
+      <a href="#" class="related-card">
+        <div class="related-card-img">
+          <!-- <img src="../assets/blog/venues.jpg" alt="Venues"> -->
+        </div>
+        <div class="related-card-body">
+          <span class="post-tag">Venues</span>
+          <h4>Our first venue partners in London and Manchester</h4>
+          <div class="post-meta">
+            <span>4 March 2026</span>
+            <div class="post-meta-dot"></div>
+            <span>2 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="related-card">
+        <div class="related-card-img">
+          <!-- <img src="../assets/blog/safety.jpg" alt="Safety"> -->
+        </div>
+        <div class="related-card-body">
+          <span class="post-tag">Safety</span>
+          <h4>Why we built ID verification into the core of FateDate</h4>
+          <div class="post-meta">
+            <span>18 Feb 2026</span>
+            <div class="post-meta-dot"></div>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+   <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
+
+
+<script>
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+  
+/* ── Header scroll state ── */
+(function() {
+  var h = document.getElementById('site-header');
+  if (!h) return;
+  window.addEventListener('scroll', function() {
+    h.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+/* ── Mobile nav ── */
+(function() {
+  var btn     = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function() {
+    var open = document.body.classList.toggle('nav-open');
+    overlay.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+
+/* ── Copy link button ── */
+(function() {
+  var btn = document.getElementById('copy-link-btn');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      btn.style.color = '#c9b8ff';
+      btn.style.borderColor = 'rgba(201,184,255,0.4)';
+      setTimeout(function() {
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1800);
+    });
+  });
+})();
+
+/* ── Custom cursor ── */
+var cursorDot  = document.getElementById('cursor-dot');
+var cursorRing = document.getElementById('cursor-ring');
+var ringX = window.innerWidth/2, ringY = window.innerHeight/2;
+var dotX = ringX, dotY = ringY;
+document.addEventListener('mousemove', function(e) {
+  dotX = e.clientX; dotY = e.clientY;
+  if (cursorDot) { cursorDot.style.left = dotX+'px'; cursorDot.style.top = dotY+'px'; }
+}, { passive: true });
+(function animRing() {
+  ringX += (dotX - ringX) * 0.12;
+  ringY += (dotY - ringY) * 0.12;
+  if (cursorRing) { cursorRing.style.left = ringX.toFixed(1)+'px'; cursorRing.style.top = ringY.toFixed(1)+'px'; }
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a, button, .related-card').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+  el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+});
+</script>
+
+</body>
+</html>

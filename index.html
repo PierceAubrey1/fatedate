@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>FateDate</title>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<!-- ══════════════════════════════════════
+     LOADING SCREEN
+     Swap .loader-graphic contents for your logo/mark
+══════════════════════════════════════ -->
+<div id="loader">
+  <div class="loader-graphic">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="102" viewBox="0 0 27 29" fill="none">
+      <defs>
+        <linearGradient id="paint0_linear_825_5320" x1="13.3568" y1="0" x2="13.3568" y2="28.9476" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#7B2EFD"/>
+          <stop offset="0.485577" stop-color="#475FDB"/>
+          <stop offset="1" stop-color="#02A0AE"/>
+        </linearGradient>
+      </defs>
+      <!-- Fill: hidden at start, fades in after stroke finishes -->
+      <path class="icon-fill" fill-rule="evenodd" clip-rule="evenodd" d="M9.09219 26.1485C10.5908 20.643 17.4024 18.2078 20.7913 18.0923C22.2384 14.9706 24.7245 7.83492 23.0925 4.26596C22.6538 3.09445 19.8438 0.67582 17.1945 4.95415C16.6354 5.72736 15.3304 8.28153 14.8934 12.3125C14.8005 13.1691 14.6578 13.7996 13.5362 13.7996C12.4901 13.7996 12.2358 12.8199 12.1743 12.3952C12.1699 12.3645 12.1659 12.3368 12.162 12.3125C11.8622 10.4501 10.8374 7.64916 9.2662 5.95034C8.12233 4.71352 5.81931 4.79053 4.87179 5.56053C3.62452 6.57412 3.46499 9.44904 4.56721 11.3644C5.95628 11.1848 9.20335 11.9323 11.0791 16.3598C12.0105 18.5607 12.6551 22.8168 9.09219 21.8028C5.49058 20.7777 3.20877 14.4685 3.06857 14.0306C2.77529 14.2118 2.06883 14.7438 1.58926 15.4214C1.10969 16.099 0.580491 15.9796 0.375837 15.8353C0.0922215 15.662 -0.30484 15.0826 0.375837 14.1509C0.913299 13.4152 1.45352 13.0106 1.94917 12.6394L1.94921 12.6393C2.08127 12.5404 2.21016 12.4439 2.33499 12.3441C1.50832 10.7924 0.323625 6.91092 3.2281 3.99646C4.87179 2.58639 8.70542 1.21675 11.49 5.17071C12.0621 6.02253 13.3621 8.08999 13.5362 9.5453C13.35 7.98878 14.5182 3.20143 17.1945 1.15707C18.5772 0.0517978 22.0888 -1.24341 25.0745 2.41795C28.0602 6.07932 25.1615 14.6498 23.339 18.4773C24.1898 18.7436 26.0453 19.641 26.6602 21.1002C26.7343 21.3279 26.7888 21.8923 26.4136 22.3273C25.8297 22.9241 25.3034 22.576 25.1132 22.3273C24.1541 20.8297 22.6122 20.3687 21.9612 20.3253C18.6545 25.3352 15.4319 27.854 13.4093 28.5933C11.3866 29.3325 10.4555 28.7391 9.95754 28.3959C9.1531 27.8415 8.9114 26.8126 9.09219 26.1485ZM4.91045 13.7996C4.85889 13.5718 4.90515 13.1851 5.49058 13.1306C6.80677 13.0082 9.09219 15.4214 9.91401 17.356C10.5614 18.8801 10.5264 19.5544 10.506 19.9464C10.503 20.0056 10.5002 20.0584 10.5002 20.1067C10.5179 20.2992 10.1277 20.7026 9.66745 20.5371C9.09219 20.3302 6.29791 18.1934 4.91045 13.7996ZM11.2338 25.5758C14.2843 21.4274 18.3645 20.4938 19.8389 20.1762C16.8416 24.3111 13.7493 26.487 12.6551 27.0051C12.3489 27.2024 11.5849 27.5292 11.0791 27.1254C10.5667 26.7164 10.9631 25.9351 11.2338 25.5758Z" fill="url(#paint0_linear_825_5320)"/>
+      <!-- Stroke: draws on, then fades out as fill takes over -->
+      <path class="icon-stroke" fill-rule="evenodd" clip-rule="evenodd" d="M9.09219 26.1485C10.5908 20.643 17.4024 18.2078 20.7913 18.0923C22.2384 14.9706 24.7245 7.83492 23.0925 4.26596C22.6538 3.09445 19.8438 0.67582 17.1945 4.95415C16.6354 5.72736 15.3304 8.28153 14.8934 12.3125C14.8005 13.1691 14.6578 13.7996 13.5362 13.7996C12.4901 13.7996 12.2358 12.8199 12.1743 12.3952C12.1699 12.3645 12.1659 12.3368 12.162 12.3125C11.8622 10.4501 10.8374 7.64916 9.2662 5.95034C8.12233 4.71352 5.81931 4.79053 4.87179 5.56053C3.62452 6.57412 3.46499 9.44904 4.56721 11.3644C5.95628 11.1848 9.20335 11.9323 11.0791 16.3598C12.0105 18.5607 12.6551 22.8168 9.09219 21.8028C5.49058 20.7777 3.20877 14.4685 3.06857 14.0306C2.77529 14.2118 2.06883 14.7438 1.58926 15.4214C1.10969 16.099 0.580491 15.9796 0.375837 15.8353C0.0922215 15.662 -0.30484 15.0826 0.375837 14.1509C0.913299 13.4152 1.45352 13.0106 1.94917 12.6394L1.94921 12.6393C2.08127 12.5404 2.21016 12.4439 2.33499 12.3441C1.50832 10.7924 0.323625 6.91092 3.2281 3.99646C4.87179 2.58639 8.70542 1.21675 11.49 5.17071C12.0621 6.02253 13.3621 8.08999 13.5362 9.5453C13.35 7.98878 14.5182 3.20143 17.1945 1.15707C18.5772 0.0517978 22.0888 -1.24341 25.0745 2.41795C28.0602 6.07932 25.1615 14.6498 23.339 18.4773C24.1898 18.7436 26.0453 19.641 26.6602 21.1002C26.7343 21.3279 26.7888 21.8923 26.4136 22.3273C25.8297 22.9241 25.3034 22.576 25.1132 22.3273C24.1541 20.8297 22.6122 20.3687 21.9612 20.3253C18.6545 25.3352 15.4319 27.854 13.4093 28.5933C11.3866 29.3325 10.4555 28.7391 9.95754 28.3959C9.1531 27.8415 8.9114 26.8126 9.09219 26.1485ZM4.91045 13.7996C4.85889 13.5718 4.90515 13.1851 5.49058 13.1306C6.80677 13.0082 9.09219 15.4214 9.91401 17.356C10.5614 18.8801 10.5264 19.5544 10.506 19.9464C10.503 20.0056 10.5002 20.0584 10.5002 20.1067C10.5179 20.2992 10.1277 20.7026 9.66745 20.5371C9.09219 20.3302 6.29791 18.1934 4.91045 13.7996ZM11.2338 25.5758C14.2843 21.4274 18.3645 20.4938 19.8389 20.1762C16.8416 24.3111 13.7493 26.487 12.6551 27.0051C12.3489 27.2024 11.5849 27.5292 11.0791 27.1254C10.5667 26.7164 10.9631 25.9351 11.2338 25.5758Z" fill="none" stroke="url(#paint0_linear_825_5320)" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <p class="loader-wordmark">FateDate</p>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+
+
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<div id="hero">
+  <div class="hero-video-container" id="hero-container">
+
+    <div class="hero-video" id="hero-video-wrap">
+      <video autoplay muted loop playsinline id="hero-vid">
+        <source src="assets/test-vid.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Floating proof chips — anchored to hero viewport -->
+    <div class="hero-chips">
+      <div class="hero-chip chip-1">
+        <span class="chip-live"></span>
+        <span>2,400+ on the waitlist</span>
+      </div>
+      <div class="hero-chip chip-2">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>ID-verified members only</span>
+      </div>
+    </div>
+
+    <!-- Scroll hint — bottom right -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"><div class="hero-scroll-runner"></div></div>
+    </div>
+
+    <!-- Content inside max-width container -->
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span>Early access coming soon</span></div>
+        <h1><span class="hw"><span class="hwi">Connect online. Date in person. Match for real.</span></span>
+          <!-- <span class="hw"><span class="hwi">Connect</span></span><br>
+          <span class="hw"><span class="hwi">Date</span></span><br>
+          <span class="hw"><span class="hwi">Match</span></span> -->
+        </h1>
+        <p>FateDate is the dating app built around the date itself. Every member is ID-verified, every match is meaningful, and every first date happens at a venue we've personally vetted. No more swiping into the void. Just real people, ready to meet.</p>
+        <div class="cta-container">
+          <a href="/sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
+          <a href="/venues.html"><div class="cta cta-dark">Become a venue</div></a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Animated border line draws across bottom on load -->
+   <!--  <div class="hero-draw-line"></div> -->
+
+    <div id="fate-ribbon-full">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="113" viewBox="0 0 1240 113" fill="none">
+        <path d="M-119 109.617C-108.949 103.665 -103.536 96.7733 -63.3303 94.4184C-12.6078 91.4476 83.3559 76.2486 73.5243 6.07588C72.8161 1.02109 65.7924 0.436273 61.9264 2.94283C45.6894 8.26847 7.02995 50.4089 46.4626 68.5788C58.7004 74.2177 99.8127 101.159 153.936 90.1946C200.665 80.7281 225.224 19.9226 300.069 25.1856C365.275 33.4351 649.705 49.845 761.663 90.1946C901.611 140.632 1026.79 139.692 1141.99 109.617C1257.2 79.5433 1454.36 3.25646 1684 33.0174" stroke="white" stroke-width="3"/>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     3D SCROLL SECTION
+══════════════════════════════════════ -->
+<section id="scroll-section">
+
+  <!-- Glow wrap is a SIBLING of sticky-wrap, not ancestor — safe to overflow:hidden -->
+  <div class="glow-wrap">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <div class="sticky-wrap">
+    <div class="scroll-container">
+
+      <!-- Ambient colour glow around phone -->
+      <div class="phone-ambient" id="phone-ambient"></div>
+
+      <!-- Phone -->
+      <div class="phone-scene" id="phone-scene">
+        <div class="phone-rotor" id="phone-rotor">
+          <div class="phone-front">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <canvas id="screen-canvas" width="304" height="644"></canvas>
+            </div>
+            <div class="phone-glint" id="phone-glint"></div>
+          </div>
+          <div class="phone-back">
+            <div class="camera-bump">
+              <div class="lens"></div>
+              <div class="lens"></div>
+              <div class="lens lens-sm"></div>
+            </div>
+          </div>
+          <div class="phone-edge edge-left"></div>
+          <div class="phone-edge edge-right"></div>
+          <div class="btn btn-power"></div>
+          <div class="btn btn-vol1"></div>
+          <div class="btn btn-vol2"></div>
+        </div>
+      </div>
+
+      <!-- LEFT panel -->
+      <div class="panel panel-left">
+        <div class="step" data-step="1">
+          <span class="step-ghost">02</span>
+          <svg class="squiggle squiggle1" width="72" height="36" xmlns="http://www.w3.org/2000/svg" width="165" height="62" viewBox="0 0 165 62" fill="none">
+<path d="M163.261 21.8148C162.374 21.8934 160.387 21.8122 159.53 20.8587C158.46 19.6669 154.392 17.9364 147.322 22.8524C141.666 26.7853 133.222 31.9303 129.707 34.0112C126.569 36.1123 119.135 39.3448 114.501 35.4663C110.171 31.8413 112.613 26.773 114.698 24.2638C114.974 23.9308 115.3 23.6437 115.643 23.3799L117.424 22.0118C117.733 21.7742 118.058 21.5618 118.396 21.3664C124.445 17.8632 134.402 9.89136 129.436 3.74241C124.329 -2.58185 109.652 5.96089 102.952 11.0228L95.8613 16.3159L78.9598 28.2692C69.9299 34.467 51.7217 50.2555 58.8468 57.825C66.7191 66.1882 79.2634 43.7908 56.8733 45.2395C54.2168 45.4114 50.025 46.0074 45.8365 46.5396C40.741 47.1869 29.3589 50.5738 22.7794 39.2544L17.3918 26.8643C16.2694 24.283 11.5196 19.2889 1.49958 19.9627" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
+          <div class="step-eyebrow"><strong>02</strong><span class="sub">Make the right</span></div>
+          <h2 class="step-title">connection</h2>
+          <p class="step-body">Take part in connection based games to find the fate you were destined for.</p>
+        </div>
+        <div class="step" data-step="3">
+          <span class="step-ghost">04</span>
+          <svg class="squiggle squiggle2" width="72" height="36" xmlns="http://www.w3.org/2000/svg" width="163" height="60" viewBox="0 0 163 60" fill="none">
+<path d="M160.538 17.0987C135.683 4.26482 55.6148 15.4771 47.1541 32.0742M47.1541 32.0742C45.6303 35.0635 42.3957 38.9602 41.7128 42.9244C39.8353 49.2653 49.2828 54.4626 51.7579 45.8684C52.6242 42.8604 52.3905 35.4477 47.1541 32.0742ZM47.1541 32.0742C43.3784 28.8667 10.0518 31.9725 3.02477 48.0011" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+          <div class="step-eyebrow"><strong>04</strong><span class="sub">Hit it off?</span></div>
+          <h2 class="step-title">make a real match</h2>
+          <p class="step-body">Match when it matters. If things genuinely feel right then upgrade to a match and unlock extra features.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT panel -->
+      <div class="panel panel-right">
+        <div class="step active from-right" data-step="0">
+          <span class="step-ghost">01</span>
+          <svg class="squiggle squiggle3" width="72" height="36" xmlns="http://www.w3.org/2000/svg" width="116" height="76" viewBox="0 0 116 76" fill="none">
+<path d="M90.8828 1.50012C94.0262 3.5549 98.673 11.5275 92.1128 26.9794C90.0627 31.6369 87.6846 42.8423 94.5729 50.4039C101.461 57.9655 107.83 57.1162 110.153 55.7463C113.433 53.8285 118.026 47.6916 110.153 38.4862C102.281 29.2808 82.8192 39.3081 74.0722 45.4724L63.0019 55.7463C58.6284 59.5819 47.8314 66.1024 39.6312 61.4997C31.4309 56.897 29.3809 52.0477 32.2509 47.1163C37.5811 43.0067 49.0615 45.8012 37.5811 65.1983C34.301 69.5819 22.4926 77.3626 1.5 73.4175" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
+          <div class="step-eyebrow"><strong>01</strong><span class="sub">Before you begin</span></div>
+          <h2 class="step-title">verify your identity</h2>
+          <p class="step-body">Your safety comes first. Every member is ID-verified before joining, so you always know exactly who you're talking to.</p>
+        </div>
+        <div class="step from-right" data-step="2">
+          <span class="step-ghost">03</span>
+          <svg class="squiggle squiggle1" width="72" height="36" xmlns="http://www.w3.org/2000/svg" width="165" height="62" viewBox="0 0 165 62" fill="none">
+<path d="M163.261 21.8148C162.374 21.8934 160.387 21.8122 159.53 20.8587C158.46 19.6669 154.392 17.9364 147.322 22.8524C141.666 26.7853 133.222 31.9303 129.707 34.0112C126.569 36.1123 119.135 39.3448 114.501 35.4663C110.171 31.8413 112.613 26.773 114.698 24.2638C114.974 23.9308 115.3 23.6437 115.643 23.3799L117.424 22.0118C117.733 21.7742 118.058 21.5618 118.396 21.3664C124.445 17.8632 134.402 9.89136 129.436 3.74241C124.329 -2.58185 109.652 5.96089 102.952 11.0228L95.8613 16.3159L78.9598 28.2692C69.9299 34.467 51.7217 50.2555 58.8468 57.825C66.7191 66.1882 79.2634 43.7908 56.8733 45.2395C54.2168 45.4114 50.025 46.0074 45.8365 46.5396C40.741 47.1869 29.3589 50.5738 22.7794 39.2544L17.3918 26.8643C16.2694 24.283 11.5196 19.2889 1.49958 19.9627" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
+          <div class="step-eyebrow"><strong>03</strong><span class="sub">Have a chat and</span></div>
+          <h2 class="step-title">go on a date</h2>
+          <p class="step-body">Chat with each other and arrange a first date at exclusive venues through our DateDiary.</p>
+        </div>
+      </div>
+
+      <!-- Progress dots -->
+      <div class="progress-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+
+
+
+
+
+
+    </div><!-- /.scroll-container -->
+  </div><!-- /.sticky-wrap -->
+
+  <div id="fate-ribbon-full">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="113" viewBox="0 0 1240 113" fill="none">
+        <path d="M-119 109.617C-108.949 103.665 -103.536 96.7733 -63.3303 94.4184C-12.6078 91.4476 83.3559 76.2486 73.5243 6.07588C72.8161 1.02109 65.7924 0.436273 61.9264 2.94283C45.6894 8.26847 7.02995 50.4089 46.4626 68.5788C58.7004 74.2177 99.8127 101.159 153.936 90.1946C200.665 80.7281 225.224 19.9226 300.069 25.1856C365.275 33.4351 649.705 49.845 761.663 90.1946C901.611 140.632 1026.79 139.692 1141.99 109.617C1257.2 79.5433 1454.36 3.25646 1684 33.0174" stroke="white" stroke-width="3"/>
+      </svg>
+    </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════
+     SAFETY FIRST SECTION
+══════════════════════════════════════ -->
+<section id="safety-section">
+  <div class="safety-container">
+
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">our motto</div>
+      <h2 class="section-title">Safety first</h2>
+    </div>
+
+    <div class="safety-grid">
+
+      <!-- Left: app card with visible border -->
+      <div class="safety-app-card fd-reveal fd-slide-left fd-delay-1">
+        <div class="app-card-header">
+          <div class="app-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+            </svg>
+          </div>
+          <div>
+            <p class="app-card-label">Date Diaries</p>
+            <p class="app-card-sub">This is dummy text for you to replace it should fill this space.</p>
+          </div>
+        </div>
+        <div class="app-card-photos">
+          <div class="photo-slot"><img src="assets/person1.jpg" alt="" onerror="this.style.background='#2a1a3a';this.removeAttribute('src')"/></div>
+          <div class="photo-slot"><img src="assets/person2.png" alt="" onerror="this.style.background='#1a2030';this.removeAttribute('src')"/></div>
+          <div class="photo-slot photo-slot-fade"><img src="assets/person3.png" alt="" onerror="this.style.background='#101828';this.removeAttribute('src')"/></div>
+        </div>
+      </div>
+
+      <!-- Right: copy + video card -->
+      <div class="safety-copy fd-reveal fd-slide-right fd-delay-2">
+        <h3 class="safety-heading">The facts on safe dating?</h3>
+        <p class="safety-body">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour or randomised words which don't look even slightly believable.</p>
+
+        <div class="safety-video-card fd-reveal fd-fade-up fd-delay-3">
+          <div class="safety-video-thumb">
+            <img src="assets/safety-thumb.jpg" alt="" onerror="this.style.background='linear-gradient(135deg,#1a3a5c,#0d2035)';this.removeAttribute('src')"/>
+            <button class="play-btn" aria-label="Play video">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+          </div>
+          <div class="safety-video-copy">
+            <p class="safety-video-title">What makes us different?</p>
+            <p class="safety-video-body">Take a look inside some of the stories from our members. See how end to end dating is done successfully with Fate Date.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PERKS SECTION
+══════════════════════════════════════ -->
+<section id="perks-section">
+  <div class="safety-container">
+
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">FateDate perks</div>
+      <h2 class="section-title">What are you waiting for?</h2>
+    </div>
+
+    <div class="perks-grid">
+      <div class="thread thread-1"></div>
+      <div class="perk-card perk1 fd-reveal fd-scale-up fd-delay-1">
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="perk-title">Safer dating</p>
+          <p class="perk-body">This is dummy text replace it.</p>
+        </div>
+      </div>
+
+      <div class="thread thread-2"></div>
+      <div class="perk-card perk2 fd-reveal fd-scale-up fd-delay-2">
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          </svg>
+        </div>
+        <div>
+          <p class="perk-title">Verified users</p>
+          <p class="perk-body">This is dummy text replace it.</p>
+        </div>
+      </div>
+
+      <div class="thread thread-3"></div>
+      <div class="perk-card perk3 fd-reveal fd-scale-up fd-delay-3">
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="perk-title">True matches</p>
+          <p class="perk-body">This is dummy text replace it.</p>
+        </div>
+      </div>
+
+      <div class="thread thread-4"></div>
+      <div class="perk-card perk4 fd-reveal fd-scale-up fd-delay-4">
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="perk-title">Discounts</p>
+          <p class="perk-body">This is dummy text replace it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="thread thread-1"></div>
+
+  </div>
+</section>
+
+<section id="venues-section">
+  <div class="container venues-container">
+       <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">our venues</div>
+      <h2 class="section-title">Select from a list of venues</h2>
+      <p>There are many variations of passages of Lorem Ipsum available, but  the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+      <a href="/venues"><div class="cta cta-gradient gradient">Become a venue</div></a>
+    </div>
+
+    <div class="venues-grid">
+
+      <div class="venue-card">
+        <div class="venue-card-inner">
+          <p class="venue-eyebrow"><strong>01</strong> Activities</p>
+          <h2 class="venue-title">Visit the great outdoors.</h2>
+          <p class="venue-body">This is a placeholder text, use this entire space to explain the benefits of planning your Fate Date, and selecting from our long list of verified venues.</p>
+          <a href="/about.html" class="venue-btn">See our activities</a>
+        </div>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-card-inner">
+          <p class="venue-eyebrow"><strong>02</strong> Restaurants</p>
+          <h2 class="venue-title">A safe bite to eat.</h2>
+          <p class="venue-body">This is a placeholder text, use this entire space to explain the benefits of planning your Fate Date, and selecting from our long list of verified venues.</p>
+          <a href="/venues.html" class="venue-btn">See our activities</a>
+        </div>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-card-inner">
+          <p class="venue-eyebrow"><strong>03</strong> Bars</p>
+          <h2 class="venue-title">Good company and drinks</h2>
+          <p class="venue-body">This is a placeholder text, use this entire space to explain the benefits of planning your Fate Date, and selecting from our long list of verified venues.</p>
+           <a href="/sign-up.html" class="venue-btn">See our activities</a>
+        </div>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-card-inner">
+          <p class="venue-eyebrow"><strong>04</strong> More</p>
+          <h2 class="venue-title">Coming soon</h2>
+          <p class="venue-body">This is a placeholder text, use this entire space to explain the benefits of planning your Fate Date, and selecting from our long list of verified venues.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">true matches</div>
+      <h2 class="section-title">The perfect match</h2>
+      <p>There are many variations of passages of Lorem Ipsum available, but  the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+    </div>
+
+    <!-- Scroll-driven image carousel -->
+    <div class="img-carousel-wrap" id="img-carousel-wrap">
+      <div class="img-carousel-track" id="img-carousel-track">
+        <div class="img-carousel-item image1"></div>
+        <div class="img-carousel-item image2"></div>
+        <div class="img-carousel-item image3"></div>
+        <div class="img-carousel-item image4"></div>
+        <div class="img-carousel-item image5"></div>
+        <div class="img-carousel-item image1"></div>
+      </div>
+    </div>
+
+     
+
+  </div>
+</section>
+
+
+    <section id="lower-third">
+
+       <div class="glow-wrap">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+    <div class="section-header fd-reveal fd-fade-up section-crop">
+      <div class="section-eyebrow-pill">verified users</div>
+      <h2 class="section-title">Chat with verified users, no hidden surprises</h2>
+      <p>There are many variations of passages of Lorem Ipsum available, but  the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+    </div>
+
+  <div id="fate-ribbon-relative">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="132" viewBox="0 0 1280 132" fill="none">
+<path d="M1399 109.618C1388.95 103.665 1383.54 96.7735 1343.33 94.4186C1292.61 91.4478 1196.64 76.2488 1206.48 6.07606C1207.18 1.02127 1214.21 0.436456 1218.07 2.94301C1234.31 8.26865 1272.97 50.4091 1233.54 68.5789C1221.3 74.2178 1180.19 101.159 1126.06 90.1948C1079.34 80.7283 1054.78 19.9228 979.931 25.1858C914.725 33.4353 630.295 49.8452 518.337 90.1948C378.389 140.632 253.212 139.692 138.006 109.618C22.801 79.5435 -174.363 3.25664 -404 33.0176" stroke="white" stroke-width="3"/>
+</svg>
+    </div>
+
+<div class="section-header fd-reveal fd-fade-up section-crop">
+      <div class="section-eyebrow-pill">holistic dating</div>
+      <h2 class="section-title">The world’s first end to end dating experience</h2>
+      <p>There are many variations of passages of Lorem Ipsum available, but  the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+    </div>
+
+<div class="container">
+
+    <div class="process-grid">
+       <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+          <svg width="24" height="24" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.50156 37.0835C1.46644 32.9168 -1.38274 22.5835 3.50156 14.5835C9.60694 4.5835 18.1545 3.3335 24.2598 3.3335C42.1952 3.3335 46.1546 21.1815 33.1512 26.7166M33.1512 26.7166C30.7649 27.7324 27.8072 28.3335 24.2598 28.3335C18.1545 28.3335 13.0259 24.3335 16.9334 18.3335C17.7474 17.0835 20.3524 14.5835 24.2598 14.5835C30.9602 14.5835 33.719 20.6801 33.1512 26.7166ZM33.1512 26.7166C32.649 32.0569 29.5432 37.3501 24.2598 38.3335" stroke="white" stroke-width="1.61" stroke-linecap="round"/>
+</svg>
+        </div>
+        <div>
+          <p class="process-title">Pull your fate string</p>
+          <p class="process-body">Take part in fate driven connection games to find your perfect connection.</p>
+        </div>
+      </div>
+
+      <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_58031_99)">
+<path d="M7.77778 1.6665C8.38889 1.6665 8.88889 2.1665 8.88889 2.77762V6.11095H22.2222V2.77762C22.2222 2.1665 22.7222 1.6665 23.3333 1.6665C23.9444 1.6665 24.4444 2.1665 24.4444 2.77762V6.11095H26.6667C29.1181 6.11095 31.1111 8.104 31.1111 10.5554V15.0484C30.7431 15.0137 30.375 14.9998 30 14.9998C29.625 14.9998 29.2569 15.0137 28.8889 15.0484V14.9998H2.22222V32.7776C2.22222 34.0068 3.21528 34.9998 4.44444 34.9998H20.5694C21.2639 35.8401 22.0764 36.5901 22.9722 37.2221H4.44444C1.99306 37.2221 0 35.229 0 32.7776V10.5554C0 8.104 1.99306 6.11095 4.44444 6.11095H6.66667V2.77762C6.66667 2.1665 7.16667 1.6665 7.77778 1.6665ZM26.6667 8.33317H4.44444C3.21528 8.33317 2.22222 9.32623 2.22222 10.5554V12.7776H28.8889V10.5554C28.8889 9.32623 27.8958 8.33317 26.6667 8.33317ZM30 34.9998C32.0628 34.9998 34.0411 34.1804 35.4997 32.7218C36.9583 31.2632 37.7778 29.2849 37.7778 27.2221C37.7778 25.1593 36.9583 23.181 35.4997 21.7223C34.0411 20.2637 32.0628 19.4443 30 19.4443C27.9372 19.4443 25.9589 20.2637 24.5003 21.7223C23.0417 23.181 22.2222 25.1593 22.2222 27.2221C22.2222 29.2849 23.0417 31.2632 24.5003 32.7218C25.9589 34.1804 27.9372 34.9998 30 34.9998ZM30 17.2221C32.6522 17.2221 35.1957 18.2756 37.0711 20.151C38.9464 22.0264 40 24.5699 40 27.2221C40 29.8742 38.9464 32.4178 37.0711 34.2931C35.1957 36.1685 32.6522 37.2221 30 37.2221C27.3478 37.2221 24.8043 36.1685 22.9289 34.2931C21.0536 32.4178 20 30.211 20 27.2221C20 24.2331 21.0536 22.0264 22.9289 20.151C24.8043 18.2756 27.3478 17.2221 30 17.2221ZM30 21.6665C30.6111 21.6665 31.1111 22.1665 31.1111 22.7776V26.111H33.3333C33.9444 26.111 34.4444 26.611 34.4444 27.2221C34.4444 27.8332 33.9444 28.3332 33.3333 28.3332H30C29.3889 28.3332 28.8889 27.8332 28.8889 27.2221V22.7776C28.8889 22.1665 29.3889 21.6665 30 21.6665Z" fill="white"/>
+<path d="M16.7708 16.6665C17.0784 16.6665 17.348 16.8657 17.4417 17.1558L18.9241 21.8228H22.5416C22.8433 21.8228 23.1099 22.0132 23.2066 22.2974C23.3033 22.5815 23.2095 22.895 22.9722 23.0796L20.4157 24.5708L20.1663 26.062L21.6575 30.7524C21.7513 31.0454 21.6429 31.3677 21.3909 31.5435C21.139 31.7192 20.7991 31.7105 20.556 31.523L16.7708 28.5728L12.9827 31.5171C12.7396 31.7075 12.4027 31.7163 12.1478 31.5376C11.8929 31.3589 11.7874 31.0425 11.8812 30.7466L13.3724 26.0562L9.54328 23.0796C9.30598 22.895 9.21223 22.5815 9.30891 22.2974C9.40559 22.0132 9.67219 21.8228 9.97395 21.8228H14.6175L16.0999 17.1558C16.1937 16.8657 16.4632 16.6665 16.7708 16.6665ZM16.7708 19.6899L15.8011 22.7397C15.7073 23.0327 15.4378 23.229 15.1302 23.229H12.0218L14.6234 25.2534C14.8548 25.4351 14.9515 25.7397 14.8607 26.021L13.9085 29.0181L16.3372 27.1284C16.5921 26.9321 16.9466 26.9321 17.2015 27.1284L19.6302 29.0181L18.678 26.021C18.5902 25.7397 18.6839 25.4351 18.9154 25.2534L21.5198 23.229H18.4114C18.1038 23.229 17.8343 23.0298 17.7405 22.7397L16.7708 19.6899Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_58031_99">
+<rect width="40" height="35.5556" fill="white" transform="translate(0 1.6665)"/>
+</clipPath>
+</defs>
+</svg>
+        </div>
+        <div>
+          <p class="process-title">DateDiary</p>
+          <p class="process-body">Scheudle and arrange dates via our DateDiary features.</p>
+        </div>
+      </div>
+
+      <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="process-title">BlindDates</p>
+          <p class="process-body">Fully go with Fate by using our BlindDates feature and get connected with users who match your vibes.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="process-grid">
+       <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+         <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_58031_197)">
+<path d="M6.13081 14.9709C4.57456 17.9272 5.98081 21.5834 9.12456 22.7272C12.2683 23.8709 15.6933 21.9772 16.4058 18.7084L17.0871 15.5772L7.62456 12.1334L6.13081 14.9709ZM17.5121 13.6022L18.7121 8.06468L11.2058 5.33343L8.56206 10.3459L17.5121 13.6022ZM4.36206 14.0397L9.43081 4.40218C9.89956 3.51468 10.9433 3.11468 11.8871 3.45218L19.3996 6.18968C19.6246 6.27093 19.8246 6.38968 19.9996 6.53968C20.1746 6.38968 20.3746 6.27093 20.5996 6.18968L28.1121 3.45218C29.0496 3.10843 30.0996 3.51468 30.5683 4.40218L35.6433 14.0397C37.6058 17.7709 36.1058 22.3084 32.4808 24.2022L35.1058 31.4147L38.6621 30.1209C39.1808 29.9334 39.7558 30.2022 39.9433 30.7209C40.1308 31.2397 39.8621 31.8147 39.3433 32.0022L34.8496 33.6397L30.3496 35.2709C29.8308 35.4584 29.2558 35.1897 29.0683 34.6709C28.8808 34.1522 29.1496 33.5772 29.6683 33.3897L33.2246 32.0959L30.5996 24.8834C26.6058 25.7647 22.5371 23.2522 21.6433 19.1334L19.9996 11.5709L18.3621 19.1334C17.4683 23.2522 13.3996 25.7709 9.40581 24.8834L6.78081 32.0959L10.3371 33.3959C10.8558 33.5834 11.1246 34.1584 10.9371 34.6772C10.7496 35.1959 10.1746 35.4647 9.65581 35.2772L0.655812 32.0022C0.137062 31.8147 -0.131688 31.2397 0.0558119 30.7209C0.243312 30.2022 0.818312 29.9334 1.33706 30.1209L4.89331 31.4147L7.51831 24.2022C3.89331 22.3084 2.39331 17.7709 4.35581 14.0397H4.36206ZM33.8683 14.9709L32.3746 12.1334L22.9121 15.5772L23.5933 18.7084C24.2996 21.9772 27.7308 23.8647 30.8746 22.7272C34.0183 21.5897 35.4246 17.9334 33.8683 14.9709ZM22.4871 13.6022L31.4371 10.3459L28.7933 5.33343L21.2871 8.06468L22.4871 13.6022Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_58031_197">
+<rect width="40" height="32" fill="white" transform="translate(0 3.3335)"/>
+</clipPath>
+</defs>
+</svg>
+
+        </div>
+        <div>
+          <p class="process-title">Select your date venue</p>
+          <p class="process-body">Select venues based on your local location and that are fully vetted by us and include exclusive discount offers.</p>
+        </div>
+      </div>
+
+      <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M33.3333 8.33306C33.3333 10.7845 35.3264 12.7775 37.7778 12.7775V8.33306H33.3333ZM31.1111 8.33306H8.88889C8.88889 12.0136 5.90278 14.9997 2.22222 14.9997V23.8886C5.90278 23.8886 8.88889 26.8747 8.88889 30.5553H31.1111C31.1111 26.8747 34.0972 23.8886 37.7778 23.8886V14.9997C34.0972 14.9997 31.1111 12.0136 31.1111 8.33306ZM2.22222 30.5553H6.66667C6.66667 28.1039 4.67361 26.1108 2.22222 26.1108V30.5553ZM37.7778 26.1108C35.3264 26.1108 33.3333 28.1039 33.3333 30.5553H37.7778V26.1108ZM2.22222 8.33306V12.7775C4.67361 12.7775 6.66667 10.7845 6.66667 8.33306H2.22222ZM0 6.11084H40V32.7775H0V6.11084ZM24.4444 19.4442C24.4444 18.2654 23.9762 17.135 23.1427 16.3015C22.3092 15.468 21.1787 14.9997 20 14.9997C18.8213 14.9997 17.6908 15.468 16.8573 16.3015C16.0238 17.135 15.5556 18.2654 15.5556 19.4442C15.5556 20.6229 16.0238 21.7534 16.8573 22.5869C17.6908 23.4204 18.8213 23.8886 20 23.8886C21.1787 23.8886 22.3092 23.4204 23.1427 22.5869C23.9762 21.7534 24.4444 20.6229 24.4444 19.4442ZM13.3333 19.4442C13.3333 17.6761 14.0357 15.9804 15.286 14.7301C16.5362 13.4799 18.2319 12.7775 20 12.7775C21.7681 12.7775 23.4638 13.4799 24.714 14.7301C25.9643 15.9804 26.6667 17.6761 26.6667 19.4442C26.6667 21.2123 25.9643 22.908 24.714 24.1582C23.4638 25.4085 21.7681 26.1108 20 26.1108C18.2319 26.1108 16.5362 25.4085 15.286 24.1582C14.0357 22.908 13.3333 21.2123 13.3333 19.4442Z" fill="white"/>
+</svg>
+
+        </div>
+        <div>
+          <p class="process-title">Split the bill</p>
+          <p class="process-body">Avoid awkward first date discussions and set expectations early by splitting the bill within the app itself.</p>
+        </div>
+      </div>
+
+      <div class="process-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="process-icon">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_58031_135)">
+<path d="M31.7061 3.62705C32.0936 4.01455 32.0936 4.65205 31.7061 5.03955L28.2936 8.45205C27.7311 9.01455 26.9686 9.3333 26.1748 9.3333H18.9998C16.7936 9.3333 14.9998 11.127 14.9998 13.3333V19.3333C14.9998 20.4395 15.8936 21.3333 16.9998 21.3333C18.1061 21.3333 18.9998 20.4395 18.9998 19.3333V13.8333C18.9998 13.2833 19.4498 12.8333 19.9998 12.8333C20.5498 12.8333 20.9998 13.2833 20.9998 13.8333V15.3333H27.9998C30.2061 15.3333 31.9998 17.127 31.9998 19.3333C31.9998 20.8645 31.1436 22.1896 29.8811 22.8646C29.9561 23.1771 29.9998 23.5021 29.9998 23.8333C29.9998 25.7021 28.7186 27.2708 26.9811 27.7146C26.7936 29.7458 25.0811 31.3333 22.9998 31.3333H14.8311C14.5686 31.3333 14.3123 31.4396 14.1248 31.6271L10.7123 35.0395C10.3248 35.427 9.68731 35.427 9.2998 35.0395C8.91231 34.652 8.91231 34.0146 9.2998 33.6271L12.7123 30.2146C13.2748 29.6521 14.0373 29.3333 14.8311 29.3333H22.9998C24.1061 29.3333 24.9998 28.4396 24.9998 27.3333C24.9998 27.2208 24.9873 27.1083 24.9748 26.9958C24.9248 26.702 25.0061 26.4021 25.1998 26.1771C25.3936 25.9521 25.6748 25.8271 25.9748 25.8271H25.9998C27.1061 25.8271 27.9998 24.9333 27.9998 23.827C27.9998 23.4458 27.8936 23.0958 27.7123 22.7895C27.5436 22.5083 27.5186 22.1646 27.6561 21.8645C27.7936 21.5646 28.0623 21.3521 28.3811 21.2895C29.3061 21.1145 29.9998 20.302 29.9998 19.327C29.9998 18.2208 29.1061 17.327 27.9998 17.327H20.9998V19.327C20.9998 21.5333 19.2061 23.327 16.9998 23.327C14.7936 23.327 12.9998 21.5333 12.9998 19.327V13.3333C12.9998 10.0208 15.6873 7.3333 18.9998 7.3333H26.1686C26.4311 7.3333 26.6873 7.22705 26.8748 7.03955L30.2936 3.62705C30.6811 3.23955 31.3186 3.23955 31.7061 3.62705ZM7.84981 15.227C8.4248 13.6958 9.57481 12.5083 10.9998 11.8646V14.1833C10.4311 14.6271 9.98106 15.227 9.71856 15.927L8.08731 20.2771C7.9373 20.6771 7.6998 21.0396 7.39981 21.3458L1.70605 27.0395C1.31855 27.427 0.681055 27.427 0.293555 27.0395C-0.0939453 26.652 -0.0939453 26.0146 0.293555 25.6271L5.98731 19.9333C6.08731 19.8333 6.16855 19.7083 6.21855 19.577L7.84981 15.227ZM39.7123 11.627C40.0998 12.0145 40.0998 12.6521 39.7123 13.0395L33.9748 18.7708C33.8998 17.9895 33.6811 17.2458 33.3373 16.5833L38.2936 11.627C38.6811 11.2396 39.3186 11.2396 39.7061 11.627H39.7123Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_58031_135">
+<rect width="40" height="32" fill="white" transform="translate(0 3.3335)"/>
+</clipPath>
+</defs>
+</svg>
+        </div>
+        <div>
+          <p class="process-title">Match and improve</p>
+          <p class="process-body">Hit it off? Upgrade your connections to genuine matches and unlock exclusive venues.</p>
+        </div>
+      </div>
+    </div>
+
+</div>
+      
+    </section>
+
+
+
+<section id="coming-section">
+  <div class="container venues-container">
+       <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">coming soon</div>
+      <h2 class="section-title">We'll be in your city soon</h2>
+      <p>Don't miss out when FateDate becomes avaiable. Sign up for early access and as soon as we role out close to you we'll let you know. Early users will get thje opportunity to provide feedback and help build our community.</p>
+      <div class="download-icons">
+        <div class="dowload-icon appstore"><img src="assets/appstore.svg"/></div>
+        <div class="dowload-icon playstore"><img src="assets/playstore.svg"/></div>
+      </div>
+      <a href="sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<script>
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL — fd-reveal system
+═══════════════════════════════════════ */
+(function() {
+  var els = document.querySelectorAll('.fd-reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('fd-visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('fd-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+/* ═══════════════════════════════════════
+   LOADER
+═══════════════════════════════════════ */
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+
+/* ═══════════════════════════════════════
+   SCREEN CONFIG
+   Replace null with '/path/to/image.png' for real screens
+═══════════════════════════════════════ */
+var SCREENS = [
+  { img: 'assets/verif.PNG',  label: 'verify',        num: '01', bg1: '#0d0820', bg2: '#1a1040', accent: '#c9b8ff' },
+  { img: 'assets/connect.png', label: 'connection',    num: '02', bg1: '#0a0030', bg2: '#160055', accent: '#9b7dff' },
+  { img: 'assets/date.png',    label: 'go on a date',  num: '03', bg1: '#051a10', bg2: '#0a3020', accent: '#02A0AE' },
+  { img: 'assets/match.png',   label: 'make a match',  num: '04', bg1: '#120830', bg2: '#1e1050', accent: '#7B2EFD' },
+];
+
+
+
+
+var loadedImgs = SCREENS.map(function(s) {
+  if (!s.img) return null;
+  var im = new Image(); im.src = s.img; return im;
+});
+
+var canvas = document.getElementById('screen-canvas');
+var ctx    = canvas.getContext('2d');
+var CW     = canvas.width;
+var CH     = canvas.height;
+
+function drawScreen(idx) {
+  var s = SCREENS[idx], im = loadedImgs[idx];
+  if (im && im.complete && im.naturalWidth > 0) { ctx.drawImage(im, 0, 0, CW, CH); return; }
+
+  ctx.clearRect(0, 0, CW, CH);
+  var grad = ctx.createLinearGradient(0, 0, 0, CH);
+  grad.addColorStop(0, s.bg1); grad.addColorStop(1, s.bg2);
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, CW, CH);
+
+  var rg = ctx.createRadialGradient(CW/2, CH*0.45, 0, CW/2, CH*0.45, 280);
+  rg.addColorStop(0, s.accent + '60'); rg.addColorStop(1, 'transparent');
+  ctx.fillStyle = rg; ctx.fillRect(0, 0, CW, CH);
+
+  ctx.save(); ctx.globalAlpha = 0.1; ctx.fillStyle = s.accent;
+  ctx.font = 'bold 260px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(s.num, CW/2, CH/2); ctx.restore();
+
+  ctx.save(); ctx.fillStyle = s.accent + '30'; ctx.beginPath();
+  ctx.roundRect ? ctx.roundRect(CW/2-110, CH/2-32, 220, 64, 32) : ctx.rect(CW/2-110, CH/2-32, 220, 64);
+  ctx.fill(); ctx.restore();
+
+  ctx.fillStyle = s.accent; ctx.font = 'bold 26px serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(s.label, CW/2, CH/2 - 6);
+  ctx.fillStyle = 'rgba(255,255,255,0.3)'; ctx.font = '16px sans-serif';
+  ctx.fillText('add your screenshot', CW/2, CH/2 + 38);
+
+  [-1,0,1].forEach(function(o) {
+    ctx.beginPath(); ctx.arc(CW/2+o*18, CH-50, o===0?6:4, 0, Math.PI*2);
+    ctx.fillStyle = o===0 ? s.accent : 'rgba(255,255,255,0.2)'; ctx.fill();
+  });
+}
+
+var firstImg = loadedImgs[0];
+if (firstImg) {
+  firstImg.onload = function() { drawScreen(0); };
+  if (firstImg.complete) drawScreen(0);
+} else {
+  drawScreen(0);
+}
+
+/* ═══════════════════════════════════════
+   SPIN ENGINE + TILT + AMBIENT + GLINT
+═══════════════════════════════════════ */
+var rotor        = document.getElementById('phone-rotor');
+var phoneScene   = document.getElementById('phone-scene');
+var phoneAmbient = document.getElementById('phone-ambient');
+var phoneGlint   = document.getElementById('phone-glint');
+var scrollSec    = document.getElementById('scroll-section');
+var allSteps     = document.querySelectorAll('.step');
+var dots         = document.querySelectorAll('.dot');
+var NUM_STEPS    = 4;
+scrollSec.style.setProperty('--steps', NUM_STEPS);
+
+var activeStep   = 0, rotDeg = 0, spinFrom = 0, spinTo = 0;
+var spinFrame    = 0, spinning = false, pendingIdx = 0, didSwap = false;
+var sceneTopPx   = 0, currentTopPx = 0;
+var SPIN_FRAMES  = 52;
+
+var scrollProgress = 0;
+
+function easeInOut(t) { return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; }
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+// Hex to rgb helper
+function hexToRgb(hex) {
+  var r = parseInt(hex.slice(1,3),16);
+  var g = parseInt(hex.slice(3,5),16);
+  var b = parseInt(hex.slice(5,7),16);
+  return [r,g,b];
+}
+
+function updateAmbient(idx) {
+  var s = SCREENS[idx];
+  var rgb = hexToRgb(s.accent);
+  var col = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0.28)';
+  var col2 = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0.1)';
+  phoneAmbient.style.background =
+    'radial-gradient(ellipse at center, '+col+' 0%, '+col2+' 35%, transparent 70%)';
+}
+
+function triggerGlint() {
+  phoneGlint.classList.remove('glint-active');
+  void phoneGlint.offsetWidth; // reflow to restart animation
+  phoneGlint.classList.add('glint-active');
+}
+
+function startSpin(toIdx) {
+  if (spinning) {
+    rotDeg = spinTo;
+    rotor.style.transform = buildRotorTransform(rotDeg);
+    if (!didSwap) { drawScreen(pendingIdx); updateAmbient(pendingIdx); }
+    spinning = false;
+  }
+  pendingIdx=toIdx; didSwap=false; spinFrom=rotDeg; spinTo=rotDeg+360; spinFrame=0; spinning=true;
+}
+
+function buildRotorTransform(ry) {
+  return 'rotateY('+ry+'deg)';
+}
+
+function activateStep(idx) {
+  if (idx===activeStep) return;
+  activeStep=idx;
+  allSteps.forEach(function(s){ s.classList.toggle('active', parseInt(s.dataset.step)===idx); });
+  dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  startSpin(idx);
+}
+
+var tickPaused = false;
+var tickRafId = null;
+
+function startTick() {
+  if (!tickRafId) tickRafId = requestAnimationFrame(tick);
+}
+function stopTick() {
+  if (tickRafId) { cancelAnimationFrame(tickRafId); tickRafId = null; }
+}
+
+var tickObserver = new IntersectionObserver(function(entries) {
+  tickPaused = !entries[0].isIntersecting;
+  if (tickPaused) stopTick(); else startTick();
+}, { rootMargin: '200px 0px 200px 0px' });
+tickObserver.observe(scrollSec);
+
+function tick() {
+  tickRafId = requestAnimationFrame(tick);
+
+  // Lerp scene vertical parallax
+  var prevTopPx = currentTopPx;
+  currentTopPx += (sceneTopPx - currentTopPx) * 0.055;
+
+  if (Math.abs(currentTopPx - prevTopPx) > 0.01 || spinning) {
+    phoneScene.style.transform = 'translate(-50%, calc(-50% + '+currentTopPx.toFixed(2)+'px)) scale(var(--phone-scale))';
+  }
+
+  if (!spinning) return;
+  spinFrame++;
+  var prog = Math.min(1, spinFrame/SPIN_FRAMES);
+  var eased = easeInOut(prog);
+  rotDeg = spinFrom + (spinTo-spinFrom)*eased;
+  if (!didSwap && (rotDeg-spinFrom)>=180) {
+    drawScreen(pendingIdx);
+    updateAmbient(pendingIdx);
+    didSwap=true;
+  }
+  rotor.style.transform = buildRotorTransform(rotDeg);
+  if (prog>=1) {
+    spinning=false;
+    rotDeg=spinTo;
+    rotor.style.transform=buildRotorTransform(rotDeg);
+    triggerGlint();
+  }
+}
+
+tick();
+
+// Initial ambient
+updateAmbient(0);
+
+var scrollTicking = false;
+window.addEventListener('scroll', function() {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(function() { scrollTicking = false; });
+  var rect = scrollSec.getBoundingClientRect();
+  var sectionH = rect.height - window.innerHeight;
+  var p = Math.max(0, Math.min(1, -rect.top / sectionH));
+  // Show/hide particle canvas only while section is in view
+
+  var step = Math.min(NUM_STEPS-1, Math.floor(p*NUM_STEPS));
+  scrollProgress = p;
+
+  activateStep(step);
+
+  // Vertical parallax
+  sceneTopPx = (p - 0.5) * -80;
+
+
+
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   CUSTOM CURSOR
+   Uses transform (not left/top) to avoid layout recalculation.
+   RAF loop only runs while cursor is moving, then self-suspends.
+═══════════════════════════════════════ */
+var cursorDot  = document.getElementById('cursor-dot');
+var cursorRing = document.getElementById('cursor-ring');
+var ringX = window.innerWidth/2, ringY = window.innerHeight/2;
+var dotX  = ringX, dotY = ringY;
+var ringRafId = null;
+
+// Position dot immediately on move — no lerp needed for the dot itself
+document.addEventListener('mousemove', function(e) {
+  dotX = e.clientX; dotY = e.clientY;
+  cursorDot.style.transform = 'translate(calc(' + dotX + 'px - 50%), calc(' + dotY + 'px - 50%))';
+  if (!ringRafId) ringRafId = requestAnimationFrame(animateRing);
+}, { passive: true });
+
+function animateRing() {
+  ringX += (dotX - ringX) * 0.12;
+  ringY += (dotY - ringY) * 0.12;
+  cursorRing.style.transform = 'translate(calc(' + ringX.toFixed(1) + 'px - 50%), calc(' + ringY.toFixed(1) + 'px - 50%))';
+  // Stop looping once ring has caught up — restarts on next mousemove
+  if (Math.abs(dotX - ringX) > 0.3 || Math.abs(dotY - ringY) > 0.3) {
+    ringRafId = requestAnimationFrame(animateRing);
+  } else {
+    ringRafId = null;
+  }
+}
+
+// Hover state — triggers on all interactive elements
+document.querySelectorAll('a, button, .perk-card, .safety-video-card, .cta').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+  el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+});
+
+/* ═══════════════════════════════════════
+   HERO — MOUSE PARALLAX + SCROLL PARALLAX
+═══════════════════════════════════════ */
+var heroContainer = document.getElementById('hero-container');
+
+
+
+
+
+/* ═══════════════════════════════════════
+   SCROLL-DRIVEN IMAGE CAROUSEL
+═══════════════════════════════════════ */
+(function() {
+  var wrap  = document.getElementById('img-carousel-wrap');
+  var track = document.getElementById('img-carousel-track');
+  if (!wrap || !track) return;
+
+  var DRAG     = 0.55; // how far it travels — increase to scroll further
+  var currentX = 0;
+  var targetX  = 0;
+  var rafId    = null;
+
+  function getProgress() {
+    var rect  = wrap.getBoundingClientRect();
+    var total = window.innerHeight + wrap.offsetHeight;
+    var passed = window.innerHeight - rect.top;
+    return Math.max(0, Math.min(1, passed / total));
+  }
+
+  function maxTravel() {
+    return (track.scrollWidth - wrap.offsetWidth) * DRAG;
+  }
+
+  function onScroll() {
+    targetX = -(getProgress() * maxTravel());
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  }
+
+  function loop() {
+    rafId = null;
+    currentX += (targetX - currentX) * 0.08;
+    track.style.transform = 'translateX(' + currentX.toFixed(2) + 'px)';
+    if (Math.abs(targetX - currentX) > 0.1) {
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+      <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 825.412 14.1947 869.414 18.0705C907.749 24.1457 1074.97 36.2306 1140.79 65.9454C1223.06 103.089 1296.66 102.397 1364.39 80.2492C1432.12 58.1016 1548.03 1.9213 1683.03 23.8383" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>

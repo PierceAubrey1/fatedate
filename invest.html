@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>Invest — FateDate</title>
+  <style>
+    /* INVEST PAGE — scoped only */
+
+    .invest-hero {
+      position: relative;
+      padding: 160px 0 80px;
+      background: #0d0d12;
+    }
+    .invest-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 0%, rgba(123,46,253,0.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 80%, rgba(2,160,174,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .invest-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .invest-hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .invest-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: iFadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .invest-hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .invest-hero-eyebrow span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .invest-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: iFadeUp 0.9s 0.35s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .invest-hero-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      max-width: 46ch;
+      margin-bottom: 2.4rem;
+      opacity: 0;
+      animation: iFadeUp 0.9s 0.5s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .invest-hero-cta {
+      opacity: 0;
+      animation: iFadeUp 0.9s 0.65s cubic-bezier(.22,1,.36,1) forwards;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .invest-hero-cta .cta-ghost {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+    @keyframes iFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Raise card — right side of hero */
+    .raise-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: iFadeUp 0.9s 0.6s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .raise-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25) 40%, rgba(2,160,174,0.15) 60%, transparent);
+    }
+    .raise-card-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .raise-card-amount {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      display: block;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .raise-card-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 32px;
+    }
+    .raise-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 28px;
+    }
+    .raise-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+    .raise-row:last-child { margin-bottom: 0; }
+    .raise-row-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .raise-row-value {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Section scaffolding */
+    .invest-section { padding: 100px 0; position: relative; }
+    .invest-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .invest-section-dark { background: #09091a; }
+
+    /* Market section — big number grid */
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .market-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .market-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.15), transparent);
+    }
+    .market-card-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .market-card-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .market-card-body {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Problem/opportunity split */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .split-copy h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+    .split-copy p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2em;
+    }
+    .split-copy p:last-child { margin-bottom: 0; }
+
+    /* Business model pillars */
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .model-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
+    }
+    .model-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,184,255,0.1);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+    }
+    .model-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .model-card:hover::before { opacity: 1; }
+    .model-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .model-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 10px;
+    }
+    .model-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.4);
+    }
+    .model-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c9b8ff;
+      background: rgba(201,184,255,0.07);
+      border: 1px solid rgba(201,184,255,0.12);
+      border-radius: 50px;
+      padding: 4px 12px;
+    }
+    .model-tag.teal { color: #02A0AE; background: rgba(2,160,174,0.07); border-color: rgba(2,160,174,0.15); }
+
+    /* Use of funds timeline */
+    .funds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .funds-list { display: flex; flex-direction: column; gap: 0; }
+    .funds-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: start;
+    }
+    .funds-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .funds-item:first-child { padding-top: 0; }
+    .funds-pct {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.2);
+      padding-top: 2px;
+    }
+    .funds-body h4 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--light);
+      margin-bottom: 4px;
+    }
+    .funds-body p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.38);
+      margin: 0;
+    }
+
+    /* Milestone timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: start;
+    }
+    .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .timeline-item:first-child { padding-top: 0; }
+    .timeline-date {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      padding-top: 3px;
+    }
+    .timeline-body h4 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--light);
+      margin-bottom: 4px;
+    }
+    .timeline-body p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.38);
+      margin: 0;
+    }
+    .timeline-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 8px;
+      vertical-align: middle;
+      margin-bottom: 1px;
+    }
+    .timeline-dot.teal { background: #02A0AE; }
+    .timeline-dot.muted { background: rgba(255,255,255,0.15); }
+
+    /* CTA banner */
+    .cta-banner {
+      background: #080e14;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(123,46,253,0.13) 0%, rgba(2,160,174,0.06) 50%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.12) 40%, rgba(2,160,174,0.1) 60%, transparent);
+    }
+    .cta-banner-inner { position: relative; z-index: 1; }
+    .cta-banner h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+    .cta-banner p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+      max-width: 46ch;
+      margin: 0 auto 2.4rem;
+    }
+    .cta-small-note {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.04em;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .market-grid { grid-template-columns: repeat(2, 1fr); }
+      .model-grid  { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .invest-hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .split-grid  { grid-template-columns: 1fr; gap: 48px; }
+      .funds-grid  { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .invest-hero { padding: 140px 0 60px; }
+      .invest-section { padding: 72px 0; }
+      .market-grid { grid-template-columns: 1fr; }
+      .model-grid  { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .invest-hero { padding: 120px 0 48px; }
+      .invest-hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+      .invest-section { padding: 56px 0; }
+      .timeline-item { grid-template-columns: 80px 1fr; gap: 16px; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about.html"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues.html"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest.html"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="#"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="#book-a-call" class="nav-overlay-cta">Book a call</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="invest-hero">
+  <div class="container">
+    <div class="invest-hero-inner">
+
+      <div>
+        <div class="invest-hero-eyebrow"><span>Investor relations</span></div>
+        <h1>The future of dating is end-to-end.</h1>
+        <p class="invest-hero-sub">Dating apps have a trust problem. We built the fix — a fully verified, venue-based experience that gets people off their phones and into the world. We're raising now and we'd love to talk.</p>
+        <div class="invest-hero-cta">
+          <a href="#book-a-call" class="cta cta-gradient gradient">Book a call</a>
+          <span class="cta-ghost">No deck required to start</span>
+        </div>
+      </div>
+
+      <div class="raise-card">
+        <span class="raise-card-label">Current raise</span>
+        <span class="raise-card-amount">£500k</span>
+        <p class="raise-card-sub">Pre-seed round — open now</p>
+        <div class="raise-divider"></div>
+        <div class="raise-row">
+          <span class="raise-row-label">Round type</span>
+          <span class="raise-row-value">Pre-seed</span>
+        </div>
+        <div class="raise-row">
+          <span class="raise-row-label">Instrument</span>
+          <span class="raise-row-value">SAFE note</span>
+        </div>
+        <div class="raise-row">
+          <span class="raise-row-label">Min. ticket</span>
+          <span class="raise-row-value">£10,000</span>
+        </div>
+        <div class="raise-row">
+          <span class="raise-row-label">Use of funds</span>
+          <span class="raise-row-value">Product + launch</span>
+        </div>
+        <div class="raise-row">
+          <span class="raise-row-label">Launch</span>
+          <span class="raise-row-value">Summer 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ THE OPPORTUNITY ══ -->
+<section class="invest-section">
+  <div class="safety-container">
+
+    <div class="section-header">
+      <div class="section-eyebrow-pill">The opportunity</div>
+      <h2 class="section-title">A broken market, ready to be rebuilt</h2>
+    </div>
+
+    <div class="market-grid">
+      <div class="market-card">
+        <span class="market-card-num">£8.4bn</span>
+        <span class="market-card-label">UK dating market by 2028</span>
+        <p class="market-card-body">The online dating industry continues to grow year on year — but satisfaction with existing platforms is falling. The gap between what people want and what apps deliver has never been wider.</p>
+      </div>
+      <div class="market-card">
+        <span class="market-card-num">73%</span>
+        <span class="market-card-label">Of users feel burned out by apps</span>
+        <p class="market-card-body">Research consistently shows that dating app fatigue is at an all-time high. People are still looking for relationships — they've just stopped believing apps can help them find one.</p>
+      </div>
+      <div class="market-card">
+        <span class="market-card-num">0</span>
+        <span class="market-card-label">End-to-end verified dating platforms</span>
+        <p class="market-card-body">No platform currently combines full ID verification, structured connection, and real-world venue booking into a single experience. That's the gap FateDate was built to fill.</p>
+      </div>
+    </div>
+
+    <div class="split-grid">
+      <div class="split-copy">
+        <h3>The problem with every other dating app</h3>
+        <p>Tinder, Hinge, Bumble — they're all optimised for engagement, not outcomes. Their revenue depends on you staying single. The longer you swipe, the more you spend. That misalignment between user goals and business model is the root of everything people hate about modern dating.</p>
+        <p>Add in the safety problem — fake profiles, catfishing, no accountability — and you have an industry that has built enormous scale on a deeply broken foundation.</p>
+      </div>
+      <div class="split-copy">
+        <h3>What we're building instead</h3>
+        <p>FateDate charges a subscription to access the platform. Our revenue goes up when people find the app valuable enough to keep paying — not when they fail to find a relationship. We succeed when our users succeed.</p>
+        <p>Every member is ID-verified. Every date happens at a real venue we've vetted. Every interaction is designed to move toward an actual meeting, not another week of messaging. It's a fundamentally different model — and we believe it's the right one for what comes next.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BUSINESS MODEL ══ -->
+<section class="invest-section invest-section-dark">
+  <div class="safety-container">
+
+    <div class="section-header">
+      <div class="section-eyebrow-pill">Business model</div>
+      <h2 class="section-title">Three clean revenue streams</h2>
+    </div>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <span class="model-num">01</span>
+        <h3>Member subscriptions</h3>
+        <p>Monthly and annual plans give members full access to the platform — matching, the DateDiary, and venue booking. Our core recurring revenue, aligned with delivering genuine value.</p>
+        <span class="model-tag">Recurring</span>
+      </div>
+      <div class="model-card">
+        <span class="model-num">02</span>
+        <h3>Venue partnerships</h3>
+        <p>As we scale, venues pay a small commission on bookings made through the platform. At launch, onboarding is free — this revenue stream activates once we have meaningful volume.</p>
+        <span class="model-tag teal">Commission</span>
+      </div>
+      <div class="model-card">
+        <span class="model-num">03</span>
+        <h3>Premium features</h3>
+        <p>Boosted visibility, priority venue access, and curated date suggestions sit above the base subscription. Optional, never required — but a meaningful upsell for engaged members.</p>
+        <span class="model-tag">Upsell</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ USE OF FUNDS ══ -->
+<section class="invest-section">
+  <div class="safety-container">
+
+    <div class="section-header">
+      <div class="section-eyebrow-pill">Use of funds</div>
+      <h2 class="section-title">Where the £500k goes</h2>
+    </div>
+
+    <div class="funds-grid">
+      <div class="funds-list">
+
+        <div class="funds-item">
+          <span class="funds-pct">40%</span>
+          <div class="funds-body">
+            <h4>Product development</h4>
+            <p>Completing the core app — verification flow, DateDiary, matching engine, and venue booking. Getting to a polished, stable product ready for public launch.</p>
+          </div>
+        </div>
+
+        <div class="funds-item">
+          <span class="funds-pct">25%</span>
+          <div class="funds-body">
+            <h4>Launch and growth</h4>
+            <p>Member acquisition in London and Manchester. Early community building, PR, and the partnerships that seed the network effect we need to make the platform work.</p>
+          </div>
+        </div>
+
+        <div class="funds-item">
+          <span class="funds-pct">20%</span>
+          <div class="funds-body">
+            <h4>Venue operations</h4>
+            <p>Building the venue team, onboarding our first 40 partners, and creating the infrastructure to manage bookings, feedback, and venue relationships at scale.</p>
+          </div>
+        </div>
+
+        <div class="funds-item">
+          <span class="funds-pct">15%</span>
+          <div class="funds-body">
+            <h4>Team and operations</h4>
+            <p>Key hires in engineering and marketing, legal, compliance, and the operational runway to reach our Series A milestones.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="split-copy" style="margin-bottom: 40px;">
+          <h3>What success looks like at 12 months</h3>
+          <p>With this raise, we're targeting 5,000 verified members across London and Manchester, 40 active venue partners, and enough recurring revenue to demonstrate the unit economics for a Series A.</p>
+          <p>We're not chasing vanity metrics. Our north star is the number of dates successfully completed through the platform — because that's what proves the model works.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-date">Q2 2026</span>
+            <div class="timeline-body">
+              <h4><span class="timeline-dot teal"></span>App launch — London</h4>
+              <p>Early access members onboarded, first 20 venue partners live, verification flow fully operational.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">Q3 2026</span>
+            <div class="timeline-body">
+              <h4><span class="timeline-dot"></span>Manchester rollout</h4>
+              <p>Second city launch, 20 additional venues, subscription revenue begins.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">Q4 2026</span>
+            <div class="timeline-body">
+              <h4><span class="timeline-dot"></span>5,000 members</h4>
+              <p>Growth campaign, community features, first venue commission revenue.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-date">Q1 2027</span>
+            <div class="timeline-body">
+              <h4><span class="timeline-dot muted"></span>Series A preparation</h4>
+              <p>Unit economics proven, third city scoped, raise process begins.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BOOK A CALL ══ -->
+<section class="cta-banner" id="book-a-call">
+  <div class="safety-container cta-banner-inner">
+    <div class="section-header" style="margin-bottom:0;">
+      <div class="section-eyebrow-pill">Let's talk</div>
+      <h2 class="section-title" style="margin-bottom:1rem;">Interested? So are we.</h2>
+    </div>
+    <p>We're happy to share more — numbers, thinking, the full deck. Start with a conversation and we'll take it from there. No pressure, no hard sell.</p>
+    <a href="https://calendly.com" target="_blank" rel="noopener" class="cta cta-gradient gradient">Book a call with the founders</a>
+    <span class="cta-small-note">Or reach us directly at hello@fatedate.co.uk</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+        <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
+
+
+<script>
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+  
+(function() {
+  var h = document.getElementById('site-header');
+  if (h) window.addEventListener('scroll', function() {
+    h.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+(function() {
+  var btn = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function() {
+    var open = document.body.classList.toggle('nav-open');
+    overlay.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+(function() {
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  var rx = -100, ry = -100, dx = -100, dy = -100;
+  dot.style.left = '-100px'; dot.style.top = '-100px';
+  ring.style.left = '-100px'; ring.style.top = '-100px';
+  document.addEventListener('mousemove', function(e) {
+    dx = e.clientX; dy = e.clientY;
+    dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+  }, { passive: true });
+  (function loop() {
+    rx += (dx - rx) * 0.12; ry += (dy - ry) * 0.12;
+    ring.style.left = rx.toFixed(1) + 'px'; ring.style.top = ry.toFixed(1) + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .model-card, .market-card').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+})();
+</script>
+</body>
+</html>

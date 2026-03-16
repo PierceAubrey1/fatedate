@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>Press &amp; News — FateDate</title>
+  <style>
+    /* ─────────────────────────────────────────
+       BLOG PAGE — scoped styles
+    ───────────────────────────────────────── */
+
+    /* Hero banner */
+    .blog-hero {
+      padding: 180px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(123,46,253,0.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .blog-hero-eyebrow {
+      display: inline-block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 7px 18px;
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 1.6rem;
+    }
+    .blog-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      background: linear-gradient(140deg, #ffffff 50%, rgba(201,184,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.2rem;
+    }
+    .blog-hero p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      max-width: 46ch;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* Divider line */
+    .blog-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.1) 40%, rgba(2,160,174,0.08) 60%, transparent);
+      margin: 0;
+    }
+
+    /* Post grid */
+    .blog-section {
+      padding: 80px 0 140px;
+    }
+    .blog-container {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* Featured post — full width at top */
+    .post-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .post-featured-img {
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a1030 0%, #0d1a20 100%);
+      aspect-ratio: 16/10;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .post-featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .post-featured-img:hover img { transform: scale(1.03); }
+    /* Placeholder when no image */
+    .post-featured-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,46,253,0.12) 0%, rgba(2,160,174,0.08) 100%);
+      border-radius: 20px;
+    }
+    .post-featured-img.has-img::after { display: none; }
+
+    .post-featured-body {}
+    .post-tag {
+      display: inline-block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent, #c9b8ff);
+      margin-bottom: 1rem;
+    }
+    .post-featured-body h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: #F4F6FB;
+      margin-bottom: 1rem;
+    }
+    .post-excerpt {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.8rem;
+    }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.8rem;
+    }
+    .post-meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+    .post-read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 10px 22px;
+      transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+    .post-read-link:hover {
+      color: #fff;
+      border-color: rgba(201,184,255,0.3);
+      background: rgba(201,184,255,0.05);
+    }
+    .post-read-link svg {
+      transition: transform 0.3s cubic-bezier(.22,1,.36,1);
+    }
+    .post-read-link:hover svg { transform: translate(2px, -2px); }
+
+    /* Post grid — smaller cards */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .post-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.45s cubic-bezier(.22,1,.36,1),
+                  border-color 0.3s ease,
+                  box-shadow 0.45s ease;
+      position: relative;
+    }
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,184,255,0.12);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.45);
+    }
+    .post-card:hover::before { opacity: 1; }
+
+    .post-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1030 0%, #0d1a20 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .post-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .post-card:hover .post-card-img img { transform: scale(1.04); }
+    .post-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,46,253,0.1) 0%, rgba(2,160,174,0.06) 100%);
+    }
+    .post-card-img.has-img::after { display: none; }
+
+    .post-card-body {
+      padding: 24px 24px 28px;
+    }
+    .post-card-body h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #F4F6FB;
+      margin-bottom: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .post-card-excerpt {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 1.4rem;
+    }
+
+    /* Press contact strip */
+    .press-contact {
+      margin-top: 100px;
+      padding: 56px 64px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .press-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2) 40%, rgba(2,160,174,0.15) 60%, transparent);
+    }
+    .press-contact-copy h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      letter-spacing: -0.02em;
+      color: #F4F6FB;
+      margin-bottom: 0.5rem;
+    }
+    .press-contact-copy p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.7;
+    }
+    .press-contact-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #F4F6FB;
+      background: linear-gradient(135deg, #7B2EFD 0%, #475FDB 60%, #02A0AE 100%);
+      border-radius: 50px;
+      padding: 14px 32px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(123,46,253,0.4);
+      transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s ease;
+    }
+    .press-contact-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(123,46,253,0.55);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .post-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .blog-container { padding: 0 24px; }
+      .post-featured { grid-template-columns: 1fr; gap: 32px; }
+      .post-grid { grid-template-columns: 1fr; }
+      .press-contact { flex-direction: column; padding: 40px 32px; }
+      .blog-hero { padding: 140px 0 72px; }
+    }
+    @media (max-width: 480px) {
+      .blog-container { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="#"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="#"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="#"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="blog.html"><span>Press</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="#" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     BLOG HERO
+══════════════════════════════════════ -->
+<section class="blog-hero">
+  <div class="blog-container">
+    <span class="blog-hero-eyebrow">Press &amp; News</span>
+    <h1>Stories from FateDate</h1>
+    <p>Updates, press releases, and stories from the team building the UK's most considered dating experience.</p>
+  </div>
+</section>
+
+<div class="blog-divider"></div>
+
+<!-- ══════════════════════════════════════
+     POSTS
+══════════════════════════════════════ -->
+<section class="blog-section">
+  <div class="blog-container">
+
+    <!-- ── Featured post ── -->
+    <article class="post-featured reveal">
+
+      <div class="post-featured-img">
+        <!-- Swap src for a real image. Remove the div's class if no image. -->
+        <!-- <img src="assets/blog/press-launch.jpg" alt="FateDate launch"> -->
+      </div>
+
+      <div class="post-featured-body">
+        <span class="post-tag">Announcement</span>
+        <div class="post-meta">
+          <span>12 March 2026</span>
+          <div class="post-meta-dot"></div>
+          <span>3 min read</span>
+        </div>
+        <h2>FateDate announces early access ahead of summer launch</h2>
+        <p class="post-excerpt">We're opening the doors to early access members ahead of our full launch this summer. Here's what to expect, who we're building for, and why we think dating deserves better.</p>
+        <a href="#" class="post-read-link">
+          Read more
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </article>
+
+    <!-- ── Post grid ── -->
+    <div class="post-grid">
+
+      <article class="post-card reveal reveal-delay-1">
+        <div class="post-card-img">
+          <!-- <img src="assets/blog/venues.jpg" alt="Venues"> -->
+        </div>
+        <div class="post-card-body">
+          <span class="post-tag">Venues</span>
+          <h3>Our first venue partners in London and Manchester</h3>
+          <p class="post-card-excerpt">We've been quietly signing venue partnerships across the UK. These are the first places FateDate members will be going on dates this summer.</p>
+          <div class="post-meta">
+            <span>4 March 2026</span>
+            <div class="post-meta-dot"></div>
+            <span>2 min read</span>
+          </div>
+          <a href="#" class="post-read-link">Read more <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="post-card reveal reveal-delay-2">
+        <div class="post-card-img">
+          <!-- <img src="assets/blog/safety.jpg" alt="Safety"> -->
+        </div>
+        <div class="post-card-body">
+          <span class="post-tag">Safety</span>
+          <h3>Why we built ID verification into the core of FateDate</h3>
+          <p class="post-card-excerpt">Every member is verified before they can message anyone. Here's the thinking behind that decision and what it means for the people using the app.</p>
+          <div class="post-meta">
+            <span>18 Feb 2026</span>
+            <div class="post-meta-dot"></div>
+            <span>4 min read</span>
+          </div>
+          <a href="#" class="post-read-link">Read more <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="post-card reveal reveal-delay-3">
+        <div class="post-card-img">
+          <!-- <img src="assets/blog/team.jpg" alt="Team"> -->
+        </div>
+        <div class="post-card-body">
+          <span class="post-tag">Company</span>
+          <h3>The team behind FateDate and what we're trying to fix</h3>
+          <p class="post-card-excerpt">Dating apps have been broken for a long time. We're a small team that got tired of waiting for someone else to fix it. This is our story.</p>
+          <div class="post-meta">
+            <span>2 Feb 2026</span>
+            <div class="post-meta-dot"></div>
+            <span>5 min read</span>
+          </div>
+          <a href="#" class="post-read-link">Read more <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ── Press contact ── -->
+    <div class="press-contact reveal">
+      <div class="press-contact-copy">
+        <h3>Press enquiries</h3>
+        <p>Journalists and media — get in touch for interviews, assets, or more information.</p>
+      </div>
+      <a href="mailto:hello@fatedate.co.uk" class="press-contact-cta">
+        Contact press team
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+      <!-- Logo -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+         <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
+
+
+<script>
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+  
+/* ── Header scroll state ── */
+(function() {
+  var h = document.getElementById('site-header');
+  if (!h) return;
+  window.addEventListener('scroll', function() {
+    h.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+/* ── Mobile nav ── */
+(function() {
+  var btn     = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function() {
+    var open = document.body.classList.toggle('nav-open');
+    overlay.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+
+/* ── Scroll reveal ── */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+/* ── Custom cursor ── */
+var cursorDot  = document.getElementById('cursor-dot');
+var cursorRing = document.getElementById('cursor-ring');
+var ringX = window.innerWidth/2, ringY = window.innerHeight/2;
+var dotX = ringX, dotY = ringY;
+document.addEventListener('mousemove', function(e) {
+  dotX = e.clientX; dotY = e.clientY;
+  if (cursorDot) { cursorDot.style.left = dotX+'px'; cursorDot.style.top = dotY+'px'; }
+}, { passive: true });
+(function animRing() {
+  ringX += (dotX - ringX) * 0.12;
+  ringY += (dotY - ringY) * 0.12;
+  if (cursorRing) { cursorRing.style.left = ringX.toFixed(1)+'px'; cursorRing.style.top = ringY.toFixed(1)+'px'; }
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a, button, .post-card').forEach(function(el) {
+  el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+  el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+});
+</script>
+
+</body>
+</html>

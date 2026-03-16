@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>Terms &amp; Conditions — FateDate</title>
+  <style>
+    .legal-hero {
+      position: relative;
+      padding: 160px 0 60px;
+      background: #0d0d12;
+    }
+    .legal-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(123,46,253,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .legal-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .legal-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .legal-hero-meta {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+
+    /* Layout */
+    .legal-layout {
+      background: #0d0d12;
+      padding: 72px 0 120px;
+    }
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* Sticky sidebar nav */
+    .legal-nav {
+      position: sticky;
+      top: 100px;
+    }
+    .legal-nav-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .legal-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .legal-nav-list a {
+      display: block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      padding: 6px 0;
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+    }
+    .legal-nav-list a:hover {
+      color: rgba(255,255,255,0.65);
+      border-left-color: rgba(201,184,255,0.3);
+    }
+    .legal-nav-list a.active {
+      color: #c9b8ff;
+      border-left-color: #c9b8ff;
+    }
+
+    /* Content */
+    .legal-content {
+      max-width: 720px;
+    }
+    .legal-section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .legal-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .legal-section h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 20px;
+      scroll-margin-top: 100px;
+    }
+    .legal-section h3 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin: 28px 0 10px;
+    }
+    .legal-section p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1em;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      padding-left: 0;
+      margin: 0 0 1em;
+      list-style: none;
+    }
+    .legal-section ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .legal-section ul li:last-child { border-bottom: none; }
+    .legal-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(201,184,255,0.4);
+    }
+    .legal-section a {
+      color: #c9b8ff;
+      text-decoration: underline;
+      text-decoration-color: rgba(201,184,255,0.3);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .legal-section a:hover { text-decoration-color: rgba(201,184,255,0.7); }
+
+    /* Definition cards */
+    .def-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 8px 0;
+    }
+    .def-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      align-items: baseline;
+    }
+    .def-item:last-child { border-bottom: none; }
+    .def-term {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.02em;
+    }
+    .def-desc {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+    }
+
+    /* Contact strip */
+    .legal-contact {
+      margin-top: 56px;
+      padding: 32px 36px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .legal-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2) 40%, transparent);
+    }
+    .legal-contact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 8px;
+    }
+    .legal-contact a {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-contact a:hover { color: #c9b8ff; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .legal-grid { grid-template-columns: 1fr; gap: 48px; }
+      .legal-nav { position: static; display: none; }
+    }
+    @media (max-width: 768px) {
+      .legal-hero { padding: 140px 0 48px; }
+      .legal-layout { padding: 48px 0 80px; }
+    }
+    @media (max-width: 480px) {
+      .legal-hero { padding: 120px 0 40px; }
+      .def-item { grid-template-columns: 1fr; gap: 4px; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="container">
+    <div class="section-eyebrow-pill" style="margin-bottom:20px;">Legal</div>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="legal-hero-meta">Last updated: 4 February 2021</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="legal-layout">
+  <div class="safety-container">
+    <div class="legal-grid">
+
+      <!-- Sidebar nav -->
+      <nav class="legal-nav">
+        <span class="legal-nav-label">Contents</span>
+        <ul class="legal-nav-list">
+          <li><a href="#definitions">Definitions</a></li>
+          <li><a href="#acknowledgment">Acknowledgment</a></li>
+          <li><a href="#in-app-purchases">In-app purchases</a></li>
+          <li><a href="#user-accounts">User accounts</a></li>
+          <li><a href="#content">Content</a></li>
+          <li><a href="#copyright">Copyright policy</a></li>
+          <li><a href="#intellectual-property">Intellectual property</a></li>
+          <li><a href="#links">Links to other websites</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#liability">Limitation of liability</a></li>
+          <li><a href="#disclaimer">Disclaimer</a></li>
+          <li><a href="#governing-law">Governing law</a></li>
+          <li><a href="#disputes">Disputes</a></li>
+          <li><a href="#changes">Changes to these terms</a></li>
+          <li><a href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <div class="legal-content">
+
+        <div class="legal-section" id="definitions">
+          <h2>Definitions</h2>
+          <p>Words with capitalised initial letters have meanings defined below. These definitions apply whether they appear in singular or plural form.</p>
+          <div class="def-grid">
+            <div class="def-item"><span class="def-term">Application</span><span class="def-desc">The FateDate software program, downloadable on any electronic device.</span></div>
+            <div class="def-item"><span class="def-term">Application Store</span><span class="def-desc">The Apple App Store or Google Play Store from which the Application is downloaded.</span></div>
+            <div class="def-item"><span class="def-term">Affiliate</span><span class="def-desc">An entity that controls, is controlled by, or is under common control with a party — where "control" means ownership of 50% or more of voting securities.</span></div>
+            <div class="def-item"><span class="def-term">Account</span><span class="def-desc">A unique account created for you to access our Service or parts of it.</span></div>
+            <div class="def-item"><span class="def-term">Country</span><span class="def-desc">United Kingdom.</span></div>
+            <div class="def-item"><span class="def-term">Company</span><span class="def-desc">FateDate Ltd, 20 North Road, Loughborough, Leicestershire, LE11 1QJ. Referred to as "we", "us" or "our" throughout.</span></div>
+            <div class="def-item"><span class="def-term">Content</span><span class="def-desc">Text, images, or other information posted, uploaded, or made available by you through the Service.</span></div>
+            <div class="def-item"><span class="def-term">Device</span><span class="def-desc">Any device that can access the Service — computer, phone, or tablet.</span></div>
+            <div class="def-item"><span class="def-term">Feedback</span><span class="def-desc">Suggestions or innovations you send us about the Service.</span></div>
+            <div class="def-item"><span class="def-term">In-app Purchase</span><span class="def-desc">A purchase of a product, item, service, or subscription made through the Application.</span></div>
+            <div class="def-item"><span class="def-term">Service</span><span class="def-desc">The Application.</span></div>
+            <div class="def-item"><span class="def-term">You</span><span class="def-desc">The individual accessing or using the Service, or the entity on whose behalf they do so.</span></div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="acknowledgment">
+          <h2>Acknowledgment</h2>
+          <p>These Terms govern your use of the Service and form the entire agreement between you and FateDate. By accessing or using the Service, you agree to be bound by them. If you disagree with any part, you may not use the Service.</p>
+          <p>You confirm that you are over 18. We do not permit anyone under 18 to use the Service.</p>
+          <p>Your use of the Service is also subject to our Privacy Policy, which explains how we collect and handle your personal data. Please read it carefully before using the Service.</p>
+        </div>
+
+        <div class="legal-section" id="in-app-purchases">
+          <h2>In-app purchases</h2>
+          <p>The Application may include In-app Purchases allowing you to buy products, services, or subscriptions. All billing and transactions are handled by the Application Store from which you downloaded the app, and are governed by that store's own terms.</p>
+          <p>In-app Purchases can only be used within the Application and cannot be redeemed for cash or transferred. Once a download has been initiated, it cannot be cancelled.</p>
+          <p>If a purchase fails or doesn't work after download, we'll investigate and either provide a replacement, issue a patch, or authorise the Application Store to issue a refund up to the cost of the purchase. We will never charge you to replace or repair a faulty In-app Purchase.</p>
+          <p>For payment issues, please contact the Application Store directly.</p>
+        </div>
+
+        <div class="legal-section" id="user-accounts">
+          <h2>User accounts</h2>
+          <p>When creating an account, you must provide accurate, complete, and current information. Providing false information is a breach of these Terms and may result in your account being terminated.</p>
+          <p>You are responsible for keeping your password secure and for all activity under your account. Do not share your password with anyone. If you become aware of any unauthorised use, notify us immediately.</p>
+          <p>You may not use a username that impersonates another person, infringes any third party's rights, or is offensive, vulgar, or obscene.</p>
+        </div>
+
+        <div class="legal-section" id="content">
+          <h2>Content</h2>
+          <h3>Your right to post content</h3>
+          <p>The Service allows you to post Content. You are responsible for everything you post, including its legality and accuracy. By posting, you grant us a licence to use, display, and distribute that Content through the Service, while retaining your own rights to it.</p>
+          <p>You confirm that your Content is either owned by you or that you have the right to use it, and that posting it does not violate anyone else's rights.</p>
+          <h3>Content restrictions</h3>
+          <p>You may not post Content that is unlawful, offensive, threatening, defamatory, or otherwise objectionable. This includes, but is not limited to:</p>
+          <ul>
+            <li>Content that promotes unlawful activity</li>
+            <li>Discriminatory or mean-spirited content targeting individuals or groups</li>
+            <li>Spam, unsolicited advertising, or chain letters</li>
+            <li>Malware, viruses, or any code designed to damage systems or obtain unauthorised access</li>
+            <li>Content that infringes patents, trademarks, copyrights, or other proprietary rights</li>
+            <li>Impersonation of any person or entity, including FateDate staff</li>
+            <li>Content that violates anyone's privacy</li>
+            <li>False or misleading information</li>
+          </ul>
+          <p>We reserve the right to remove any Content that we determine, in our sole discretion, violates these Terms — or to limit or revoke access to the Service as a result.</p>
+          <h3>Content backups</h3>
+          <p>While we perform regular backups, we do not guarantee against data loss or corruption. We recommend keeping your own copies of any Content you post. We have no liability for the integrity or restoration of Content.</p>
+        </div>
+
+        <div class="legal-section" id="copyright">
+          <h2>Copyright policy</h2>
+          <p>We take intellectual property seriously. If you believe Content posted through the Service infringes your copyright, please email our copyright agent at <a href="mailto:hello@fatedate.co.uk">hello@fatedate.co.uk</a> with the following:</p>
+          <ul>
+            <li>Your electronic or physical signature (or that of an authorised representative)</li>
+            <li>A description of the copyrighted work and where it appears</li>
+            <li>The URL or location of the allegedly infringing material</li>
+            <li>Your contact details</li>
+            <li>A statement that you have a good faith belief the use is not authorised</li>
+            <li>A statement, under penalty of perjury, that the information is accurate and you are the rights holder or authorised to act on their behalf</li>
+          </ul>
+          <p>On receipt we will take whatever action we deem appropriate, including removal of the challenged content.</p>
+        </div>
+
+        <div class="legal-section" id="intellectual-property">
+          <h2>Intellectual property</h2>
+          <p>The Service and all original content, features, and functionality belong to FateDate and its licensors. The Service is protected by copyright, trademark, and other applicable laws.</p>
+          <p>Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+          <h3>Your feedback</h3>
+          <p>If you provide us with feedback or suggestions, you assign all rights in that feedback to us. If that assignment is for any reason ineffective, you grant us a perpetual, royalty-free, worldwide licence to use it without restriction.</p>
+        </div>
+
+        <div class="legal-section" id="links">
+          <h2>Links to other websites</h2>
+          <p>The Service may contain links to third-party websites. We have no control over the content or practices of those sites and are not responsible for any damage or loss arising from your use of them.</p>
+          <p>We strongly recommend reading the terms and privacy policies of any third-party sites you visit.</p>
+        </div>
+
+        <div class="legal-section" id="termination">
+          <h2>Termination</h2>
+          <p>We may terminate or suspend your account immediately, without notice, if you breach these Terms. Your right to use the Service ends immediately on termination. To close your account yourself, simply stop using the Service.</p>
+        </div>
+
+        <div class="legal-section" id="liability">
+          <h2>Limitation of liability</h2>
+          <p>To the maximum extent permitted by law, our total liability to you for any claim arising from these Terms or your use of the Service is limited to the amount you have paid through the Service, or £100 if you have made no purchases.</p>
+          <p>We are not liable for any indirect, incidental, or consequential damages — including loss of data, loss of profits, or business interruption — even if we have been advised of the possibility of such damages.</p>
+        </div>
+
+        <div class="legal-section" id="disclaimer">
+          <h2>"As is" disclaimer</h2>
+          <p>The Service is provided "as is" and "as available", without warranty of any kind. We do not warrant that the Service will be uninterrupted, error-free, or free from harmful components. We make no representations about the accuracy or reliability of any content delivered through the Service.</p>
+          <p>Some jurisdictions do not allow the exclusion of certain warranties, so some of the above may not apply to you.</p>
+        </div>
+
+        <div class="legal-section" id="governing-law">
+          <h2>Governing law</h2>
+          <p>These Terms are governed by the laws of the United Kingdom. If you are an EU consumer, you also benefit from the mandatory protections of the law of your country of residence.</p>
+        </div>
+
+        <div class="legal-section" id="disputes">
+          <h2>Disputes resolution</h2>
+          <p>If you have a concern or dispute about the Service, please try to resolve it informally first by contacting us directly. We're always willing to talk.</p>
+        </div>
+
+        <div class="legal-section" id="changes">
+          <h2>Changes to these terms</h2>
+          <p>We may update these Terms from time to time. Where a change is material, we'll make reasonable efforts to give at least 30 days' notice before it takes effect. Continuing to use the Service after changes become effective means you accept the new terms.</p>
+          <p>If you do not agree to revised terms, please stop using the Service.</p>
+        </div>
+
+        <div class="legal-section" id="contact">
+          <h2>Contact us</h2>
+          <p>If you have any questions about these Terms, please get in touch.</p>
+        </div>
+
+        <div class="legal-contact">
+          <p>Questions about our Terms?</p>
+          <a href="mailto:hello@fatedate.co.uk">hello@fatedate.co.uk</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+     <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
+
+<script>
+
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+(function() {
+  var h = document.getElementById('site-header');
+  if (h) window.addEventListener('scroll', function() {
+    h.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+(function() {
+  var btn = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function() {
+    var open = document.body.classList.toggle('nav-open');
+    overlay.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+/* Active nav highlight on scroll */
+(function() {
+  var links = document.querySelectorAll('.legal-nav-list a');
+  var sections = document.querySelectorAll('.legal-section');
+  if (!links.length) return;
+  window.addEventListener('scroll', function() {
+    var scrollY = window.pageYOffset;
+    sections.forEach(function(s) {
+      if (s.offsetTop - 120 <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        var active = document.querySelector('.legal-nav-list a[href="#' + s.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { passive: true });
+})();
+/* Cursor */
+(function() {
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  var rx = -100, ry = -100, dx = -100, dy = -100;
+  dot.style.left = '-100px'; dot.style.top = '-100px';
+  ring.style.left = '-100px'; ring.style.top = '-100px';
+  document.addEventListener('mousemove', function(e) {
+    dx = e.clientX; dy = e.clientY;
+    dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+  }, { passive: true });
+  (function loop() {
+    rx += (dx - rx) * 0.12; ry += (dy - ry) * 0.12;
+    ring.style.left = rx.toFixed(1) + 'px'; ring.style.top = ry.toFixed(1) + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+})();
+</script>
+</body>
+</html>

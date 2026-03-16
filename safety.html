@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>Safer Dating — FateDate</title>
+  <style>
+    .legal-hero {
+      position: relative;
+      padding: 160px 0 60px;
+      background: #0d0d12;
+    }
+    .legal-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(2,160,174,0.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .legal-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .legal-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .legal-hero-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+      max-width: 52ch;
+      margin-top: 16px;
+    }
+    .legal-layout {
+      background: #0d0d12;
+      padding: 72px 0 120px;
+    }
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .legal-nav {
+      position: sticky;
+      top: 100px;
+    }
+    .legal-nav-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .legal-nav-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .legal-nav-list a {
+      display: block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      padding: 6px 0 6px 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+    }
+    .legal-nav-list a:hover { color: rgba(255,255,255,0.65); border-left-color: rgba(2,160,174,0.3); }
+    .legal-nav-list a.active { color: #02A0AE; border-left-color: #02A0AE; }
+
+    .legal-content { max-width: 720px; }
+    .legal-section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .legal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .legal-section h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 20px;
+      scroll-margin-top: 100px;
+    }
+    .legal-section p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1em;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a {
+      color: #02A0AE;
+      text-decoration: underline;
+      text-decoration-color: rgba(2,160,174,0.3);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .legal-section a:hover { text-decoration-color: rgba(2,160,174,0.7); }
+
+    /* Tip cards */
+    .tip-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .tip-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 16px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .tip-card:hover { border-color: rgba(2,160,174,0.15); }
+    .tip-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(2,160,174,0.12), transparent);
+    }
+    .tip-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 1.6;
+    }
+    .tip-text {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+    }
+    .tip-text strong {
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Emergency banner */
+    .emergency-card {
+      background: rgba(255, 60, 60, 0.06);
+      border: 1px solid rgba(255, 80, 80, 0.18);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .emergency-icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,60,60,0.12);
+      border: 1px solid rgba(255,80,80,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #ff6060;
+    }
+    .emergency-text {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+    }
+    .emergency-text strong {
+      font-weight: 700;
+      color: #ff8080;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Angela box */
+    .angela-card {
+      background: rgba(123,46,253,0.06);
+      border: 1px solid rgba(123,46,253,0.18);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 16px;
+    }
+    .angela-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9b8ff;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .angela-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Match tips */
+    .match-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .match-pill {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+
+    /* Contact strip */
+    .legal-contact {
+      margin-top: 56px;
+      padding: 32px 36px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .legal-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(2,160,174,0.25) 40%, transparent);
+    }
+    .legal-contact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 8px;
+    }
+    .legal-contact a {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-contact a:hover { color: #02A0AE; }
+
+    @media (max-width: 900px) {
+      .legal-grid { grid-template-columns: 1fr; gap: 48px; }
+      .legal-nav { position: static; display: none; }
+    }
+    @media (max-width: 768px) {
+      .legal-hero { padding: 140px 0 48px; }
+      .legal-layout { padding: 48px 0 80px; }
+    }
+    @media (max-width: 480px) {
+      .legal-hero { padding: 120px 0 40px; }
+      .tip-card { grid-template-columns: 24px 1fr; gap: 12px; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+       
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="about">About</a></li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="invest">Invest</a></li>
+       <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li><a href="about.html"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="venues.html"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="invest.html"><span>Invest</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact.html"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="early-access.html" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="container">
+    <div class="section-eyebrow-pill" style="margin-bottom:20px;border-color:rgba(2,160,174,0.25);color:#02A0AE;">Safety</div>
+    <h1>Safer dating tips</h1>
+    <p class="legal-hero-sub">Getting to know someone online is part of the process — but that doesn't mean sharing everything. Here's what we recommend to keep you safe before, during, and after every date.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="legal-layout">
+  <div class="safety-container">
+    <div class="legal-grid">
+
+      <nav class="legal-nav">
+        <span class="legal-nav-label">Contents</span>
+        <ul class="legal-nav-list">
+          <li><a href="#personal-info">Personal information</a></li>
+          <li><a href="#stay-on-platform">Stay on platform</a></li>
+          <li><a href="#meeting-up">Meeting up</a></li>
+          <li><a href="#tell-someone">Tell someone</a></li>
+          <li><a href="#drinks">Watch your drink</a></li>
+          <li><a href="#ending-a-date">Ending a date</a></li>
+          <li><a href="#if-unsafe">If you feel unsafe</a></li>
+          <li><a href="#best-chance">Tips for a great date</a></li>
+        </ul>
+      </nav>
+
+      <div class="legal-content">
+
+        <div class="legal-section" id="personal-info">
+          <h2>Protect your personal information</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">01</span>
+              <div class="tip-text">
+                <strong>Keep private things private</strong>
+                Keep your workplace, home address, details about any children, and daily routines to yourself until you genuinely trust the person you're talking to. There's no rush.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="stay-on-platform">
+          <h2>Stay on the FateDate platform</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">02</span>
+              <div class="tip-text">
+                <strong>Be cautious about moving off-app early</strong>
+                Be wary of anyone who asks for your number or email address right away, before you've even met. Moving the conversation away from FateDate means we can't support your safety in the same way when it comes to meeting up.
+              </div>
+            </div>
+            <div class="tip-card">
+              <span class="tip-num">03</span>
+              <div class="tip-text">
+                <strong>Use the DateDiary™ to arrange dates</strong>
+                We always recommend using the DateDiary™ feature to confirm and book dates. It's a safer way to arrange things, and you'll also get access to discounted dates at our handpicked partner venues.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="meeting-up">
+          <h2>Meeting up safely</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">04</span>
+              <div class="tip-text">
+                <strong>Always meet in public — especially the first time</strong>
+                All dates, particularly first dates, should take place in a public venue. Arrange to meet your date there rather than being picked up — never give a stranger your home address.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="tell-someone">
+          <h2>Tell someone you trust</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">05</span>
+              <div class="tip-text">
+                <strong>Let a friend or family member know where you're going</strong>
+                Before any date — especially a first one — tell someone you trust where you're going, when, and who you're meeting. Keep their number saved on a fully charged phone before you leave.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="drinks">
+          <h2>Watch your drink</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">06</span>
+              <div class="tip-text">
+                <strong>Never leave your drink unattended</strong>
+                Alcohol can lower your guard — be mindful of how much you drink. Never leave your drink unattended, take it with you if you need to step away, and keep it in view even at the bar. Hold your glass where you can see it clearly.
+              </div>
+            </div>
+            <div class="tip-card">
+              <span class="tip-num">07</span>
+              <div class="tip-text">
+                <strong>If you suspect drink spiking, act immediately</strong>
+                If you believe you or someone nearby has been a victim of drink spiking, or you suspect someone is attempting it, tell a member of staff at the venue straight away.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="ending-a-date">
+          <h2>Ending a date early</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">08</span>
+              <div class="tip-text">
+                <strong>Use the app to end your date discreetly</strong>
+                If you need to leave early, step away from your date, open the DateDiary™ feature, and end the date. The other person will receive a notification that the date has ended — no awkward conversation needed.
+              </div>
+            </div>
+            <div class="tip-card">
+              <span class="tip-num">09</span>
+              <div class="tip-text">
+                <strong>Leave a venue review</strong>
+                If you feel comfortable ending the date face to face, that's great. Either way, please leave a review of the venue once you're home — it helps the whole community.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="if-unsafe">
+          <h2>If you feel unsafe</h2>
+          <div class="tip-list">
+            <div class="tip-card">
+              <span class="tip-num">10</span>
+              <div class="tip-text">
+                <strong>Let your safe contact know straight away</strong>
+                If something doesn't feel right, message your trusted friend or family member immediately.
+              </div>
+            </div>
+          </div>
+
+          <div class="angela-card">
+            <span class="angela-label">Ask for Angela</span>
+            <p>If you feel uncomfortable or threatened at a venue, ask a member of bar or till staff for "Angela". This is a nationwide scheme that signals to trained staff that you need help — discreetly and without drawing attention.</p>
+          </div>
+
+          <div class="emergency-card">
+            <div class="emergency-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="emergency-text">
+              <strong>In immediate danger — call 999</strong>
+              If you are in serious danger, call 999 immediately and seek help. Your safety is always the priority.
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-section" id="best-chance">
+          <h2>Tips for a great date</h2>
+          <p>Safety sorted — here's how to give yourself the best chance of a good time.</p>
+          <div class="match-pills">
+            <span class="match-pill">Dress to impress</span>
+            <span class="match-pill">First impressions matter</span>
+            <span class="match-pill">Smile</span>
+            <span class="match-pill">Arrive in a good mood</span>
+            <span class="match-pill">A small gift goes a long way</span>
+          </div>
+          <p style="margin-top:20px;">Whatever the occasion, dress appropriately and put thought into your appearance — it shows you care. A smile and a relaxed attitude will always make the evening easier. Personal gestures like flowers are a lovely touch, but never a requirement.</p>
+        </div>
+
+        <div class="legal-contact">
+          <p>Got a safety concern or question?</p>
+          <a href="mailto:hello@fatedate.co.uk">hello@fatedate.co.uk</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+
+      <!-- Logo -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+   <!-- Logo -->
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo">
+          <img src="assets/logo.svg" alt="FateDate" />
+        </a>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer-nav">
+
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">LinkedIn</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+          <!-- <a href="/help.html">Help centre</a> -->
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Ribbon + copyright bar -->
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+  <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+</svg>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
+
+
+<script>
+/* ═══════════════════════════════════════
+   MOBILE NAV OVERLAY
+═══════════════════════════════════════ */
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay   = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    overlay.classList.contains('open') ? closeNav() : openNav();
+  });
+
+  // Close on link click
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+/* ═══════════════════════════════════════
+   HEADER SCROLL STATE
+═══════════════════════════════════════ */
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() {
+    header.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+
+  
+(function() {
+  var h = document.getElementById('site-header');
+  if (h) window.addEventListener('scroll', function() {
+    h.classList.toggle('scrolled', window.pageYOffset > 40);
+  }, { passive: true });
+})();
+(function() {
+  var btn = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', function() {
+    var open = document.body.classList.toggle('nav-open');
+    overlay.setAttribute('aria-hidden', !open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+(function() {
+  var links = document.querySelectorAll('.legal-nav-list a');
+  var sections = document.querySelectorAll('.legal-section[id]');
+  if (!links.length) return;
+  window.addEventListener('scroll', function() {
+    var scrollY = window.pageYOffset;
+    sections.forEach(function(s) {
+      if (s.offsetTop - 120 <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        var active = document.querySelector('.legal-nav-list a[href="#' + s.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { passive: true });
+})();
+(function() {
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  var rx = -100, ry = -100, dx = -100, dy = -100;
+  dot.style.left = '-100px'; dot.style.top = '-100px';
+  ring.style.left = '-100px'; ring.style.top = '-100px';
+  document.addEventListener('mousemove', function(e) {
+    dx = e.clientX; dy = e.clientY;
+    dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+  }, { passive: true });
+  (function loop() {
+    rx += (dx - rx) * 0.12; ry += (dy - ry) * 0.12;
+    ring.style.left = rx.toFixed(1) + 'px'; ring.style.top = ry.toFixed(1) + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+})();
+</script>
+</body>
+</html>
