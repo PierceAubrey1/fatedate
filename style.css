@@ -943,7 +943,7 @@ body.nav-open #site-header {
 @media (max-width: 700px) {
   :root { --phone-scale: 1; }
   .phone-scene { opacity: 0.18; pointer-events: none; }
-
+.scroll-container {overflow:hidden;}
 .phone-ambient {width: 100%;}
 
   .panel {
