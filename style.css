@@ -137,6 +137,7 @@ p  { font-family: 'Grift', system-ui, sans-serif; font-weight: 500; font-size: v
   to { width: 100%; }
 }
 
+.margin-bottom {margin-bottom: 60px !important;}
 
 
 
@@ -1251,6 +1252,10 @@ body.nav-open #site-header {
   background: rgba(123,46,253,0.07);
   transform: translateY(-5px);
 }
+
+
+.safety-container .perk-card {flex-direction: column;}
+
 
 .perk-icon {
   width: 46px;
