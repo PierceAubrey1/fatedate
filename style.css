@@ -1257,6 +1257,7 @@ body.nav-open #site-header {
 .safety-container .perk-card {flex-direction: column;}
 
 
+
 .perk-icon {
   width: 46px;
   height: 46px;
@@ -1269,6 +1270,8 @@ body.nav-open #site-header {
   color: var(--accent);
   flex-shrink: 0;
 }
+
+.value-card .perk-icon {margin-bottom: 20px;}
 
 .perk-icon::before {
   content: '';
