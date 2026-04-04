@@ -538,6 +538,7 @@
 </html>
 
 
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════
    MOBILE NAV OVERLAY
@@ -630,4 +631,11 @@
     ring.style.left = rx.toFixed(1) + 'px'; ring.style.top = ry.toFixed(1) + 'px';
     requestAnimationFrame(loop);
   })();
-  document.querySelectorAll('a,button,.value-card,.team-card').forEach(function(e
+  document.querySelectorAll('a,button,.value-card,.team-card').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+})();
+</script>
+</body>
+</html>
