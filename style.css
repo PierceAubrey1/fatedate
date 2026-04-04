@@ -2768,7 +2768,7 @@ body::before {
   /* Hero — push content down from nav */
   .hero-video-container { min-height: 100svh; }
   .hero-inner { padding: 0 24px; }
-  .hero-content > p { font-size: 0.92rem; max-width: 36ch; }
+  .hero-content > p { font-size: 0.92rem; max-width: 400px; }
 
   /* Chips — hide on tablet too, they clutter at this size */
   .hero-chips { display: none; }
