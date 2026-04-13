@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <title>How FateDate Works — FateDate</title>
+  <style>
+    /* HOW IT WORKS PAGE — scoped only */
+
+    .hiw-hero {
+      position: relative;
+      padding: 160px 0 80px;
+      background: #0d0d12;
+    }
+    .hiw-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 0%, rgba(2,160,174,0.09) 0%, transparent 55%),
+                  radial-gradient(ellipse at 85% 70%, rgba(123,46,253,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hiw-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .hiw-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+    }
+    .hiw-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: hFadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .hiw-hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #02A0AE;
+      flex-shrink: 0;
+    }
+    .hiw-hero-eyebrow span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #02A0AE;
+    }
+    .hiw-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 0;
+      opacity: 0;
+      animation: hFadeUp 0.9s 0.35s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .hiw-hero-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      max-width: 44ch;
+      opacity: 0;
+      animation: hFadeUp 0.9s 0.5s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes hFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .about-section { padding: 100px 0; position: relative; }
+    .about-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .about-section-dark { background: #09091a; }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .split-copy {
+      padding-left: 24px;
+      border-left: 1px solid rgba(123,46,253,0.18);
+    }
+    .split-copy h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+    .split-copy h4 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin: 1.6rem 0 0.5rem;
+    }
+    .split-copy p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2em;
+    }
+    .split-copy p:last-child { margin-bottom: 0; }
+    .split-copy ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.2em;
+    }
+    .split-copy ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.6);
+      padding: 8px 0 8px 18px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .split-copy ul li:last-child { border-bottom: none; }
+    .split-copy ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 5px; height: 5px;
+      border-top: 1.5px solid rgba(123,46,253,0.65);
+      border-right: 1.5px solid rgba(123,46,253,0.65);
+      transform: rotate(45deg);
+    }
+
+    /* Connection type cards grid */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .connect-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
+    }
+    .connect-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(2,160,174,0.15);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.4);
+    }
+    .connect-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(2,160,174,0.35), transparent);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+    .connect-card:hover::before { opacity: 1; }
+    .connect-card-eyebrow {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #02A0AE;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .connect-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 6px;
+    }
+    .connect-card-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+      display: block;
+      font-style: italic;
+    }
+    .connect-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.42);
+      margin-bottom: 0.6em;
+    }
+    .connect-card p:last-child { margin-bottom: 0; }
+    .connect-card ul {
+      list-style: none;
+      padding: 0; margin: 0 0 0.8em;
+    }
+    .connect-card ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      padding: 5px 0 5px 16px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .connect-card ul li:last-child { border-bottom: none; }
+    .connect-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 11px;
+      width: 4px; height: 4px;
+      border-top: 1.5px solid rgba(2,160,174,0.55);
+      border-right: 1.5px solid rgba(2,160,174,0.55);
+      transform: rotate(45deg);
+    }
+    .connect-card-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin: 14px 0 6px;
+      display: block;
+    }
+
+    /* Summary flow steps */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 12px;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: -1px;
+      width: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(123,46,253,0.4), rgba(2,160,174,0.2));
+      z-index: 0;
+    }
+    .flow-step:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: -1px;
+      width: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(2,160,174,0.2), rgba(123,46,253,0.4));
+      z-index: 0;
+    }
+    .flow-step-num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(123,46,253,0.12);
+      border: 1px solid rgba(123,46,253,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #c9b8ff;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .flow-step-body {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.5);
+    }
+    .flow-step-body strong {
+      display: block;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2px;
+      font-size: 0.85rem;
+    }
+
+    /* Outcome cards */
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .outcome-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .outcome-icon {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .outcome-card h4 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+    .outcome-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+    }
+
+    /* Summary checklist */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .summary-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-left: 2px solid rgba(123,46,253,0.45);
+      border-radius: 12px;
+    }
+    .summary-item-icon {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(201,184,255,0.08);
+      border: 1px solid rgba(201,184,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: #c9b8ff;
+      margin-top: 1px;
+    }
+    .summary-item span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* CTA banner */
+    .hiw-cta-banner {
+      background: #080e14;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hiw-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(2,160,174,0.1) 0%, rgba(123,46,253,0.07) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .hiw-cta-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(2,160,174,0.2) 50%, transparent);
+    }
+    .hiw-cta-banner h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .hiw-cta-banner p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+      max-width: 48ch;
+      margin: 0 auto 2.4rem;
+      position: relative;
+    }
+    .hiw-cta-banner ul {
+      list-style: none;
+      padding: 0; margin: 0 0 2.4rem;
+    }
+    .hiw-cta-banner ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 2;
+      color: rgba(255,255,255,0.4);
+      position: relative;
+    }
+
+    .section-header p { color: rgba(255,255,255,0.5); }
+
+
+    /* Identity cards */
+    .identity-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+    .identity-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
+    }
+    .identity-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(123,46,253,0.2);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.4);
+    }
+    .identity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,46,253,0.45), transparent);
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    .identity-card:hover::before { opacity: 1; }
+    .identity-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(123,46,253,0.1);
+      border: 1px solid rgba(123,46,253,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: #c9b8ff;
+    }
+    .identity-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .identity-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.8em;
+    }
+    .identity-card p:last-child { margin-bottom: 0; }
+    .identity-card ul {
+      list-style: none; padding: 0; margin: 0 0 0.8em;
+    }
+    .identity-card ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      padding: 5px 0 5px 16px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .identity-card ul li:last-child { border-bottom: none; }
+    .identity-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 11px;
+      width: 4px; height: 4px;
+      border-top: 1.5px solid rgba(123,46,253,0.6);
+      border-right: 1.5px solid rgba(123,46,253,0.6);
+      transform: rotate(45deg);
+    }
+
+    /* CTA principle grid */
+    .cta-principles {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      max-width: 560px;
+      margin: 0 auto 2.4rem;
+    }
+    .cta-principle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      text-align: left;
+    }
+    .cta-principle-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(2,160,174,0.1);
+      border: 1px solid rgba(2,160,174,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: #02A0AE;
+    }
+    .cta-principle span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.55);
+    }
+
+    @media (max-width: 1024px) {
+      .identity-cards { grid-template-columns: repeat(2,1fr); }
+      .cta-principles { grid-template-columns: 1fr; }
+      .connect-grid { grid-template-columns: repeat(2,1fr); }
+      .outcome-grid { grid-template-columns: repeat(2,1fr); }
+      .summary-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: repeat(2,1fr); gap: 32px 0; }
+      .flow-step::after, .flow-step::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .hiw-hero { padding: 140px 0 60px; }
+      .hiw-hero-inner { grid-template-columns: 1fr; gap: 20px; }
+      .split-grid { grid-template-columns: 1fr; gap: 40px; }
+      .identity-cards { grid-template-columns: 1fr; }
+      .connect-grid { grid-template-columns: 1fr; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .about-section { padding: 72px 0; }
+    }
+    @media (max-width: 480px) {
+      .hiw-hero { padding: 120px 0 48px; }
+      .hiw-hero h1 { font-size: clamp(2.2rem,9vw,3rem); }
+      .about-section { padding: 56px 0; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<!-- Full-screen Desktop nav overlay -->
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+    </a>
+
+    <ul class="nav-links">
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="press">Press</a></li>
+      <li><a href="Contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hiw-hero">
+  <div class="container">
+    <div class="hiw-hero-inner">
+      <div>
+        <div class="hiw-hero-eyebrow"><span>How it works</span></div>
+        <h1>How FateDate works.</h1>
+      </div>
+      <div>
+        <p class="hiw-hero-sub">FateDate is a structured dating system designed to move people from discovery → connection → real-world meeting → outcome, with clarity, safety and intention.</p>
+        <p class="hiw-hero-sub">It is not based on endless messaging or passive swiping. Instead, it offers multiple guided ways to connect, followed by structured real-world progression.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TRUST, IDENTITY & PRIVACY ══ -->
+<section class="about-section">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Trust, identity &amp; privacy</div>
+      <h2 class="section-title">Identity verification.</h2>
+    </div>
+
+    <div class="identity-cards">
+
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+        </div>
+        <h3>ID verification</h3>
+        <p>Every member is ID-verified before they can interact with others.</p>
+        <p>To strengthen authenticity, users may also upload a recent timestamped photo to confirm they are a real, current identity.</p>
+        <p>A trust level system provides ongoing transparency based on consistency and behaviour across the platform.</p>
+      </div>
+
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Private profiles</h3>
+        <p>Users begin with private profiles shown to non-connections. This includes:</p>
+        <ul>
+          <li>Limited profile visibility to non-connected users</li>
+          <li>Ability to keep real name private until connection</li>
+          <li>Controlled profile discovery (photos, updates, interests)</li>
+        </ul>
+      </div>
+
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-3">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Once two users connect</h3>
+        <ul>
+          <li>Full profiles unlock</li>
+          <li>Real names become visible</li>
+          <li>Deeper interaction becomes available</li>
+        </ul>
+        <p>Users can also like photos, engage with profile updates, and interact with shared content before meeting.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW PEOPLE CONNECT ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">How people connect</div>
+      <h2 class="section-title">Multiple ways to connect, not standard matching.</h2>
+      <p>FateDate is built around multiple ways to connect, not standard matching. Users can discover and engage through a growing library of interaction styles, including:</p>
+    </div>
+    <div class="connect-grid">
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-1">
+        <span class="connect-card-eyebrow">Connection type 01</span>
+        <h3>FateThread</h3>
+        <span class="connect-card-sub">A progressive reveal connection experience.</span>
+        <ul>
+          <li>Users learn about each other gradually</li>
+          <li>Information is revealed step-by-step</li>
+          <li>A visual identity "builds" over time</li>
+          <li>The final stage reveals the profile photo</li>
+        </ul>
+        <p>This is designed to build curiosity, depth and emotional understanding before appearance-led judgement.</p>
+      </div>
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-2">
+        <span class="connect-card-eyebrow">Connection type 02</span>
+        <h3>FatePull</h3>
+        <span class="connect-card-sub">A preference-driven discovery system.</span>
+        <ul>
+          <li>Users "pull" traits, prompts, interests or signals they like</li>
+          <li>These pulls connect them with relevant users</li>
+          <li>Connection is based on interest attraction rather than passive swiping</li>
+        </ul>
+        <p>Users can pull anything they find interesting about a profile or prompt.</p>
+      </div>
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-3">
+        <span class="connect-card-eyebrow">Connection type 03</span>
+        <h3>Out &amp; About Mode</h3>
+        <span class="connect-card-sub">A real-world discovery layer for missed moments.</span>
+        <ul>
+          <li>See people you may have crossed paths with</li>
+          <li>Discover encounters that could have gone somewhere</li>
+          <li>Turn real-world proximity into meaningful connection</li>
+        </ul>
+        <p>Designed for the moments that felt like fate.</p>
+      </div>
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-1">
+        <span class="connect-card-eyebrow">Connection type 04</span>
+        <h3>HiddenFate</h3>
+        <span class="connect-card-sub">A time-pressured blind date experience.</span>
+        <span class="connect-card-label">Flow</span>
+        <ul>
+          <li>Two users are connected by FateDate for a private chat</li>
+          <li>They have 48 hours to plan a date using DateDiary</li>
+          <li>If no date is planned within 48 hours → the connection expires</li>
+          <li>If a date is planned → it becomes a real-world booking</li>
+        </ul>
+        <span class="connect-card-label">Purpose</span>
+        <ul>
+          <li>Removes endless chatting</li>
+          <li>Creates urgency and intention</li>
+          <li>Pushes fast progression into real-world meeting</li>
+        </ul>
+      </div>
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-2">
+        <span class="connect-card-eyebrow">Connection type 05</span>
+        <h3>BlindFate</h3>
+        <span class="connect-card-sub">A fully curated blind date experience.</span>
+        <span class="connect-card-label">Flow</span>
+        <p>FateDate selects both the two people and the venue. Users do not need to plan anything. They simply arrive at the assigned venue at the arranged time.</p>
+        <span class="connect-card-label">Purpose</span>
+        <ul>
+          <li>Maximum surprise</li>
+          <li>Zero planning friction</li>
+          <li>Fully curated real-world dating experience</li>
+        </ul>
+      </div>
+
+      <div class="connect-card fd-reveal fd-scale-up fd-delay-3">
+        <span class="connect-card-eyebrow">More</span>
+        <h3>More connection tools</h3>
+        <span class="connect-card-sub">Growing all the time.</span>
+        <p>FateDate is actively building additional connection formats to expand how people meet, engage and progress.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW CONNECTIONS WORK ══ -->
+<section class="about-section">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">How connections work</div>
+      <h2 class="section-title">Once two users connect.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <h3>What unlocks</h3>
+        <p>Once two users connect, they unlock:</p>
+        <ul>
+          <li>Full profiles</li>
+          <li>Real names</li>
+          <li>Private chat</li>
+          <li>Ability to plan real-world dates</li>
+          <li>Profile interaction (likes, updates, engagement)</li>
+        </ul>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>DateDiary — the real-world planning system</h3>
+        <p>DateDiary is where connections become real plans. Once two users are ready to meet, in DateDiary they can:</p>
+        <ul>
+          <li>Select or confirm a partnered venue</li>
+          <li>Choose date time and location</li>
+          <li>Set expectations for the date</li>
+          <li>Agree on payment style — split bill or pre-paid</li>
+          <li>Schedule an optional in-app call before meeting</li>
+          <li>Finalise all details in one place</li>
+        </ul>
+        <p>This removes awkward planning, removes uncertainty, and turns intention into confirmed real-world dates quickly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BEFORE THE DATE ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Before the date</div>
+      <h2 class="section-title">Before the date.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <h3>Once connected, users can:</h3>
+        <ul>
+          <li>Chat freely</li>
+          <li>Get to know each other</li>
+          <li>Plan a call inside the app (optional)</li>
+          <li>Move directly into DateDiary planning when ready</li>
+        </ul>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>This allows:</h3>
+        <ul>
+          <li>Either deeper connection first</li>
+          <li>Or fast progression to meeting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ REAL-WORLD MEETING ══ -->
+<section class="about-section">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Real-world meeting</div>
+      <h2 class="section-title">Real-world meeting.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <h3>All dates take place in:</h3>
+        <ul>
+          <li>Partnered, vetted venues</li>
+          <li>Safe, public environments designed for real conversation</li>
+        </ul>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>Users are encouraged to meet:</h3>
+        <ul>
+          <li>In safe public settings</li>
+          <li>With clear expectations</li>
+          <li>With in-app safety support available throughout</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ AFTER THE DATE ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">After the date</div>
+      <h2 class="section-title">After the date <br> outcome system.</h2>
+      <p>After meeting, both users independently choose an outcome. They can choose to:</p>
+    </div>
+    <div class="outcome-grid">
+      <div class="outcome-card fd-reveal fd-scale-up fd-delay-1">
+        <span class="outcome-icon">💙</span>
+        <h4>Match</h4>
+        <p>Continue seeing each other.</p>
+      </div>
+      <div class="outcome-card fd-reveal fd-scale-up fd-delay-2">
+        <span class="outcome-icon">🤝</span>
+        <h4>Stay friends</h4>
+        <p>Keep light connection.</p>
+      </div>
+      <div class="outcome-card fd-reveal fd-scale-up fd-delay-3">
+        <span class="outcome-icon">❌</span>
+        <h4>Remove connection</h4>
+        <p>End interaction.</p>
+      </div>
+    </div>
+    <p style="font-family:'Grift',system-ui,sans-serif;font-size:var(--font-p);color:rgba(255,255,255,0.4);margin-top:32px;">All outcomes are mutual in effect and intentional.</p>
+  </div>
+</section>
+
+
+<!-- ══ AFTER MATCH ══ -->
+<section class="about-section">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">After match</div>
+      <h2 class="section-title">After match <br> new experiences.</h2>
+      <p>If both users choose to match, they unlock:</p>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <ul>
+          <li>New curated date experiences</li>
+          <li>Access to additional venues</li>
+          <li>Longer-form connection journeys</li>
+          <li>More immersive date types</li>
+          <li>Progression into deeper relationship stages within the platform</li>
+        </ul>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>Beyond first meetings</h3>
+        <p>This is where dating moves beyond first meetings into ongoing connection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SUMMARY FLOW ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Summary flow</div>
+      <h2 class="section-title">Summary flow.</h2>
+    </div>
+    <div class="flow-steps fd-reveal fd-fade-up" style="margin-bottom:40px;">
+      <div class="flow-step">
+        <span class="flow-step-num">01</span>
+        <span class="flow-step-body"><strong>Discover</strong>FateThread / FatePull / Out &amp; About / BlindDate modes</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">02</span>
+        <span class="flow-step-body"><strong>View profiles</strong>Private until connected</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">03</span>
+        <span class="flow-step-body"><strong>Connect</strong>Real names unlock after connection</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">04</span>
+        <span class="flow-step-body"><strong>Chat or call</strong>Get to know each other</span>
+      </div>
+    </div>
+    <div class="flow-steps fd-reveal fd-fade-up fd-delay-1">
+      <div class="flow-step">
+        <span class="flow-step-num">05</span>
+        <span class="flow-step-body"><strong>Plan with DateDiary</strong>Venue, time, expectations</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">06</span>
+        <span class="flow-step-body"><strong>Meet in real life</strong>At a vetted partner venue</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">07</span>
+        <span class="flow-step-body"><strong>Choose outcome</strong>Match / Friends / Remove</span>
+      </div>
+      <div class="flow-step">
+        <span class="flow-step-num">08</span>
+        <span class="flow-step-body"><strong>If Match</strong>Unlock new experiences</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CORE PRINCIPLE / CTA ══ -->
+<section class="hiw-cta-banner">
+  <div class="safety-container">
+    <h2>FateDate is not about endless swiping or chatting.</h2>
+    <p>It is a structured system that:</p>
+    <div class="cta-principles">
+      <div class="cta-principle">
+        <div class="cta-principle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <span>Encourages real connection</span>
+      </div>
+      <div class="cta-principle">
+        <div class="cta-principle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <span>Moves people toward real-world meetings</span>
+      </div>
+      <div class="cta-principle">
+        <div class="cta-principle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span>Keeps control and safety at every step</span>
+      </div>
+      <div class="cta-principle">
+        <div class="cta-principle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span>Rewards intention, not attention</span>
+      </div>
+    </div>
+    <a href="sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
+  </div>
+</section>
+
+
+<!-- ══ COMING SOON ══ -->
+<section id="coming-section">
+  <div class="container venues-container">
+    <div class="section-header">
+      <div class="section-eyebrow-pill">coming soon</div>
+      <h2 class="section-title">We're coming to your city soon</h2>
+      <p>FateDate is launching in select cities in 2026.</p>
+      <p>Sign up for early access to be notified when we launch near you. Early users will help shape the experience as we expand.</p>
+      <div class="download-icons">
+        <div class="dowload-icon appstore"><img src="assets/appstore.svg"/></div>
+        <div class="dowload-icon playstore"><img src="assets/playstore.svg"/></div>
+      </div>
+      <a href="#"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo"><img src="assets/logo.svg" alt="FateDate" /></a>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">Facebook</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email">hello@fatedate.co.uk</a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+          <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
+  var hamburger = document.getElementById('nav-hamburger');
+  var overlay = document.getElementById('nav-overlay');
+  if (!hamburger || !overlay) return;
+  function openNav() { hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; document.body.classList.add('nav-open'); }
+  function closeNav() { hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; document.body.classList.remove('nav-open'); }
+  hamburger.addEventListener('click', function() { overlay.classList.contains('open') ? closeNav() : openNav(); });
+  overlay.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
+})();
+(function() {
+  var header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.pageYOffset > 40); }, { passive: true });
+})();
+(function() {
+  var els = document.querySelectorAll('.fd-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(el) { el.classList.add('fd-visible'); }); return; }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('fd-visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+(function() {
+  var dot = document.getElementById('cursor-dot');
+  var ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  var rx=-100, ry=-100, dx=-100, dy=-100;
+  dot.style.cssText='left:-100px;top:-100px'; ring.style.cssText='left:-100px;top:-100px';
+  document.addEventListener('mousemove', function(e) { dx=e.clientX; dy=e.clientY; dot.style.left=dx+'px'; dot.style.top=dy+'px'; }, { passive: true });
+  (function loop() { rx+=(dx-rx)*0.12; ry+=(dy-ry)*0.12; ring.style.left=rx.toFixed(1)+'px'; ring.style.top=ry.toFixed(1)+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button,.connect-card,.outcome-card,.cta').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+})();
+</script>
+
+<script>
+
+/* ── Desktop dropdown ── */
+document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
+  var trigger = item.querySelector('.nav-dropdown-trigger');
+  function open() {
+    item.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    item.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    item.classList.contains('open') ? close() : open();
+  });
+  document.addEventListener('click', close);
+  item.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
+});
+
+/* ── Mobile overlay dropdown ── */
+document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    var item = trigger.closest('.nav-overlay-item-dropdown');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', !isOpen);
+    var sub = item.querySelector('.nav-overlay-sub');
+    sub.setAttribute('aria-hidden', isOpen);
+  });
+});
+</script>
+
+</body>
+</html>

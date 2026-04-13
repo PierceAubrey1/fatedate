@@ -42,16 +42,33 @@
 
 <header id="site-header">
   <nav class="nav-inner">
-
     <a href="fatedate" class="nav-logo">
       <img src="assets/logo.svg"/>
-       
     </a>
 
     <ul class="nav-links">
-      <li><a href="about">About</a></li>
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
       <li><a href="venues">Venues</a></li>
-       <li><a href="press">Press</a></li>
+      <li><a href="press">Press</a></li>
       <li><a href="Contact">Contact</a></li>
     </ul>
 
@@ -60,7 +77,6 @@
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-
   </nav>
 </header>
 
@@ -70,7 +86,17 @@
   <div class="nav-overlay-bg"></div>
   <div class="nav-overlay-inner">
     <ul class="nav-overlay-links">
-      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
       <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
       <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
       <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
@@ -81,7 +107,6 @@
     </div>
   </div>
 </div>
-</header>
 
 <!-- ══════════════════════════════════════
      HERO
@@ -230,7 +255,7 @@
           <div class="step-eyebrow"><strong>03</strong><span class="sub">Chat & Plan</span></div>
           <h2 class="step-title">arrange</h2>
           <p class="step-body">Take time to get to know each other, then plan your first date at a partnered venue with all the details handled 
-in the Date Diary&reg;</p>
+in the Date Diary.(r)</p>
         </div>
       </div>
 
@@ -303,7 +328,7 @@ in the Date Diary&reg;</p>
           
           <div class="safety-video-copy">
             <p class="safety-video-title">What makes us different?</p>
-            <p class="safety-video-body">FateDate is built around real world dating with structure and intention moving people from connection to meeting not endless browsing</p>
+            <p class="safety-video-body">FateDate is built around structured real world dating, moving people from connection to meaningful first dates and beyond.</p>
           </div>
         </div>
       </div>
@@ -388,7 +413,7 @@ in the Date Diary&reg;</p>
       <h2 class="section-title">Select your setting</h2>
       <p>Choose from curated venues designed for real world dates with settings to suit every type of connection.</p>
 
-<p>As your connection develops more experiences become available from special date nights to weekend getaways and exclusive events.</p>
+<p>As connections develop, new options open up beyond first dates including ongoing venues for continued dates and curated experiences designed for people who have already matched.</p>
 
 
     </div>
@@ -442,9 +467,10 @@ in the Date Diary&reg;</p>
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">True Matches</div>
       <h2 class="section-title">The perfect match</h2>
-      <p>After your date you choose how you feel. If both people choose to continue it becomes a match.</p>
+      <p>After your date you choose how you feel. If both people choose to continue, it becomes a match.</p>
 
-<p>As your connection develops more experiences become available including hotel stays weekend getaways and exclusive venues</p>
+<p>From there, new venues and curated experiences become available for people who want to continue their connection.
+</p>
     </div>
 
     <!-- Scroll-driven image carousel -->
@@ -1067,6 +1093,43 @@ var heroContainer = document.getElementById('hero-container');
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
+</script>
+
+<script>
+
+/* ── Desktop dropdown ── */
+document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
+  var trigger = item.querySelector('.nav-dropdown-trigger');
+  function open() {
+    item.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    item.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    item.classList.contains('open') ? close() : open();
+  });
+  document.addEventListener('click', close);
+  item.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
+});
+
+/* ── Mobile overlay dropdown ── */
+document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    var item = trigger.closest('.nav-overlay-item-dropdown');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', !isOpen);
+    var sub = item.querySelector('.nav-overlay-sub');
+    sub.setAttribute('aria-hidden', isOpen);
+  });
+});
 </script>
 
 <!-- ══════════════════════════════════════

@@ -292,19 +292,36 @@
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
+<!-- Full-screen Desktop nav overlay -->
 <header id="site-header">
   <nav class="nav-inner">
-
     <a href="fatedate" class="nav-logo">
       <img src="assets/logo.svg"/>
-       
     </a>
 
     <ul class="nav-links">
-      <li><a href="about">About</a></li>
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
       <li><a href="venues">Venues</a></li>
-      <li><a href="invest">Invest</a></li>
-       <li><a href="press">Press</a></li>
+      <li><a href="press">Press</a></li>
       <li><a href="Contact">Contact</a></li>
     </ul>
 
@@ -313,45 +330,8 @@
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-
   </nav>
 </header>
-
-
-<!-- Full-screen mobile nav overlay -->
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <div class="nav-overlay-bg"></div>
-  <div class="nav-overlay-inner">
-    <ul class="nav-overlay-links">
-      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
-    </ul>
-    <div class="nav-overlay-footer">
-      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
-      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
-    </div>
-  </div>
-</div>
-</header>
-
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <div class="nav-overlay-bg"></div>
-  <div class="nav-overlay-inner">
-    <ul class="nav-overlay-links">
-      <li><a href="about.html"><span>About</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="venues.html"><span>Venues</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="invest.html"><span>Invest</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="contact.html"><span>Contact</span><span class="link-arrow">↗</span></a></li>
-    </ul>
-    <div class="nav-overlay-footer">
-      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
-      <a href="early-access.html" class="nav-overlay-cta">Get early access</a>
-    </div>
-  </div>
-</div>
 
 <!-- HERO -->
 <section class="legal-hero">
@@ -715,5 +695,43 @@
   });
 })();
 </script>
+
+<script>
+
+/* ── Desktop dropdown ── */
+document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
+  var trigger = item.querySelector('.nav-dropdown-trigger');
+  function open() {
+    item.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    item.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    item.classList.contains('open') ? close() : open();
+  });
+  document.addEventListener('click', close);
+  item.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
+});
+
+/* ── Mobile overlay dropdown ── */
+document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    var item = trigger.closest('.nav-overlay-item-dropdown');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', !isOpen);
+    var sub = item.querySelector('.nav-overlay-sub');
+    sub.setAttribute('aria-hidden', isOpen);
+  });
+});
+</script>
+
 </body>
 </html>

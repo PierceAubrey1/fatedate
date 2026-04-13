@@ -320,6 +320,55 @@
       letter-spacing: 0.04em;
     }
 
+
+    /* Partner type blocks */
+    .partner-types { display: flex; flex-direction: column; gap: 16px; margin-top: 1rem; }
+    .partner-type {
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 2px solid rgba(2,160,174,0.4);
+      border-radius: 12px;
+    }
+    .partner-type-title {
+      display: block;
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1rem;
+      color: var(--light);
+      margin-bottom: 6px;
+    }
+    .partner-type p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      margin: 0;
+    }
+    /* Partner criteria list */
+    .partner-criteria {
+      list-style: none;
+      padding: 0; margin: 0 0 1.2em;
+    }
+    .partner-criteria li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.6);
+      padding: 8px 0 8px 18px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .partner-criteria li:last-child { border-bottom: none; }
+    .partner-criteria li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 5px; height: 5px;
+      border-top: 1.5px solid rgba(2,160,174,0.65);
+      border-right: 1.5px solid rgba(2,160,174,0.65);
+      transform: rotate(45deg);
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .venues-hero-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -346,19 +395,36 @@
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
+<!-- Full-screen Desktop nav overlay -->
 <header id="site-header">
   <nav class="nav-inner">
-
     <a href="fatedate" class="nav-logo">
       <img src="assets/logo.svg"/>
-       
     </a>
 
     <ul class="nav-links">
-      <li><a href="about">About</a></li>
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
       <li><a href="venues">Venues</a></li>
-      <li><a href="invest">Invest</a></li>
-       <li><a href="press">Press</a></li>
+      <li><a href="press">Press</a></li>
       <li><a href="Contact">Contact</a></li>
     </ul>
 
@@ -367,45 +433,9 @@
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-
   </nav>
 </header>
 
-
-<!-- Full-screen mobile nav overlay -->
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <div class="nav-overlay-bg"></div>
-  <div class="nav-overlay-inner">
-    <ul class="nav-overlay-links">
-      <li><a href="about"><span>About</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="invest"><span>Invest</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
-    </ul>
-    <div class="nav-overlay-footer">
-      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
-      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
-    </div>
-  </div>
-</div>
-</header>
-
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <div class="nav-overlay-bg"></div>
-  <div class="nav-overlay-inner">
-    <ul class="nav-overlay-links">
-      <li><a href="about.html"><span>About</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="venues.html"><span>Venues</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="#"><span>Invest</span><span class="link-arrow">↗</span></a></li>
-      <li><a href="#"><span>Contact</span><span class="link-arrow">↗</span></a></li>
-    </ul>
-    <div class="nav-overlay-footer">
-      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
-      <a href="#book-a-call" class="nav-overlay-cta">Book a call</a>
-    </div>
-  </div>
-</div>
 
 <!-- ══ HERO ══ -->
 <section class="venues-hero">
@@ -414,10 +444,10 @@
 
       <div>
         <div class="venues-hero-eyebrow"><span>For venue partners</span></div>
-        <h1>Be where love begins.</h1>
-        <p class="venues-hero-sub">FateDate connects your venue with a new stream of verified, intentional daters. No algorithms, no fake profiles — just real people ready to show up and have a great time.</p>
+        <h1>Bring high quality dates to your venue.</h1>
+        <p class="venues-hero-sub">FateDate connects your venue with verified, intentional daters who are ready to show up and spend. No fake profiles, no wasted tables. Just real people proposing and booking dates at your venue.</p>
         <div class="venues-hero-cta">
-          <a href="#book-a-call" class="cta cta-gradient gradient">Book a call</a>
+          <a href="#apply" class="cta cta-gradient gradient">Apply to join</a>
           <span class="cta-ghost">No commitment required</span>
         </div>
       </div>
@@ -425,15 +455,15 @@
       <div class="venues-hero-stats">
         <div class="hero-stat-card">
           <span class="hero-stat-num">100%</span>
-          <span class="hero-stat-label">Verified members — every person who books through FateDate has confirmed their identity</span>
+          <span class="hero-stat-label">Verified members</span>
         </div>
         <div class="hero-stat-card">
           <span class="hero-stat-num">40+</span>
-          <span class="hero-stat-label">Venue spots available at launch across London and Manchester</span>
+          <span class="hero-stat-label">Partner venues at launch</span>
         </div>
         <div class="hero-stat-card">
-          <span class="hero-stat-num">0</span>
-          <span class="hero-stat-label">Pay-to-play. Every venue is chosen on merit, not money</span>
+          <span class="hero-stat-num">2</span>
+          <span class="hero-stat-label">Cities at launch</span>
         </div>
       </div>
 
@@ -447,24 +477,114 @@
 
     <div class="section-header">
       <div class="section-eyebrow-pill">Why partner with us</div>
-      <h2 class="section-title">Dates that are worth showing up for</h2>
+      <h2 class="section-title">Dates that actually show up</h2>
     </div>
 
     <div class="split-grid">
       <div class="split-copy">
         <h3>Your venue, not just a backdrop</h3>
-        <p>Most dating apps treat venues as an afterthought. We treat them as the foundation. When two people choose to meet through FateDate, the venue is part of the experience — not just somewhere to sit.</p>
-        <p>We work with independent bars, restaurants, coffee shops, and cultural spaces that have something special about them. Places where the atmosphere does half the work.</p>
-        <p>Partnering with us puts your venue in front of people who are genuinely excited to be there — not just killing time between swipes.</p>
+        <p>Most dating platforms treat venues as an afterthought. We build the experience around them.</p>
+        <p>When people use FateDate, they choose a venue as part of proposing a date. Your space becomes part of the experience, not something added later.</p>
+        <p>We work with venues that have character. Places people are genuinely excited to go to.</p>
       </div>
       <div class="split-copy">
-        <h3>A community that cares about your space</h3>
-        <p>Every FateDate member is ID-verified. That means every person walking through your door through our platform is who they say they are. No no-shows from throwaway accounts. No awkward situations.</p>
-        <p>We're building a dating platform that's also a community of people who believe in real experiences. Your venue becomes part of that story — somewhere people return to, recommend, and remember.</p>
-        <p>This isn't a directory listing. It's a genuine partnership with a team that's selective about who they work with.</p>
+        <h3>Better customers, not just more customers</h3>
+        <p>Every member is ID verified, so you know exactly who is walking through your door.</p>
+        <p>These are not casual drop ins. They are people who have chosen your venue for a real date.</p>
+        <p>No fake profiles. No uncertainty. Just real bookings from people who plan to show up.</p>
       </div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ══ FIRST DATES ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">First dates</div>
+      <h2 class="section-title">Designed for strong first impressions.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <h3>First dates are different and the environment matters.</h3>
+        <p>We partner with venues that feel natural for real connection, places where people can relax, talk, and enjoy the moment without pressure.</p>
+        <p>We prioritise venues that feel welcoming, well managed, and appropriate for people meeting for the first time.</p>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>Part of the first impression</h3>
+        <p>Whether it is a coffee shop, wine bar, or restaurant, these are spaces where people can relax, connect, and focus on getting to know each other.</p>
+        <p>Your venue becomes part of that first impression. A place people remember from the moment they met.</p>
+        <p>We only work with venues that meet a strong standard of atmosphere and experience, because our members trust our recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BEYOND THE FIRST DATE ══ -->
+<section class="about-section">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Beyond the first date</div>
+      <h2 class="section-title">Designed for what comes next.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <h3>FateDate does not stop at the first meeting.</h3>
+        <p>When two people decide to see each other again, they become a match. From there, they unlock access to a wider range of venues and experiences designed for ongoing connection.</p>
+        <p>This allows people to move naturally from a first date into something more, with new places and experiences to explore together.</p>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>Part of an ongoing journey</h3>
+        <p>For venues, this means being part of more than a single visit. You become part of an ongoing journey, not just one moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ EXPERIENCES & PARTNER NETWORK ══ -->
+<section class="about-section about-section-dark">
+  <div class="safety-container">
+    <div class="section-header fd-reveal fd-fade-up">
+      <div class="section-eyebrow-pill">Experiences &amp; partner network</div>
+      <h2 class="section-title">Built for more than first meetings.</h2>
+    </div>
+    <div class="split-grid">
+      <div class="split-copy fd-reveal fd-slide-left">
+        <p>FateDate is building a wider network of venues and experiences designed for people at different stages of connection.</p>
+        <p>This includes spaces for early dates, repeat dates, and more immersive experiences for people who have already met and chosen to continue seeing each other.</p>
+        <p>As relationships develop, people naturally look for new places to go and new things to do together. We are building the infrastructure to support that journey.</p>
+        <h3 style="margin-top: 1.6rem;">We work across three types of partner environments</h3>
+        <div class="partner-types">
+          <div class="partner-type">
+            <span class="partner-type-title">First date venues</span>
+            <p>Comfortable, considered spaces designed for first meetings and early connection.</p>
+          </div>
+          <div class="partner-type">
+            <span class="partner-type-title">Ongoing date venues</span>
+            <p>Places people return to after their first meeting as their connection develops.</p>
+          </div>
+          <div class="partner-type">
+            <span class="partner-type-title">Experiences</span>
+            <p>Experiences are designed for people who have already met and matched. These are more structured, curated environments that go beyond a standard first date. This includes things like immersive experiences, private spaces, and overnight or multi-stage dates.</p>
+          </div>
+        </div>
+      </div>
+      <div class="split-copy fd-reveal fd-slide-right">
+        <h3>What we look for in partners</h3>
+        <p>We are selective about who we work with because experience quality matters. We look for:</p>
+        <ul class="partner-criteria">
+          <li>Memorable experience</li>
+          <li>Consistency in delivery</li>
+          <li>Spaces that feel right for real connection</li>
+          <li>Partners who care about guest experience</li>
+        </ul>
+        <p>Every partner becomes part of a guided experience, not just a listing.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -486,7 +606,7 @@
         </div>
         <div>
           <p class="perk-title">New footfall</p>
-          <p class="perk-body">A consistent stream of booked dates from verified members who are showing up specifically to your venue — not just passing by.</p>
+          <p class="perk-body">A steady stream of bookings from people choosing your venue in-app for a date.</p>
         </div>
       </div>
 
@@ -497,8 +617,8 @@
           </svg>
         </div>
         <div>
-          <p class="perk-title">Safer evenings</p>
-          <p class="perk-body">Every dater is ID-verified. Your staff can feel confident about who's coming in, and your venue's reputation stays protected.</p>
+          <p class="perk-title">Reliable bookings</p>
+          <p class="perk-body">Every member is verified and committed, reducing no shows and last minute drop offs.</p>
         </div>
       </div>
 
@@ -510,7 +630,7 @@
         </div>
         <div>
           <p class="perk-title">Venue profile</p>
-          <p class="perk-body">A curated listing inside the FateDate app showcasing your space, atmosphere, and what makes it perfect for a first date.</p>
+          <p class="perk-body">A curated presence inside the app that showcases your space, atmosphere, and what makes it a great place to meet.</p>
         </div>
       </div>
 
@@ -521,8 +641,8 @@
           </svg>
         </div>
         <div>
-          <p class="perk-title">No listing fee</p>
-          <p class="perk-body">We don't charge venues to be listed. If we're recommending your space to our members, it's because it genuinely belongs there.</p>
+          <p class="perk-title">Venue dashboard</p>
+          <p class="perk-body">A dedicated dashboard where you create and manage your venue profile, update availability, and control how your space is presented.</p>
         </div>
       </div>
     </div>
@@ -536,7 +656,7 @@
 
     <div class="section-header">
       <div class="section-eyebrow-pill">How it works</div>
-      <h2 class="section-title">Simple from start to finish</h2>
+      <h2 class="section-title">Simple to join and manage</h2>
     </div>
 
     <div class="split-grid">
@@ -545,32 +665,32 @@
         <div class="step-item">
           <span class="step-num">01</span>
           <div class="step-body">
-            <h4>Book a call with our team</h4>
-            <p>A quick 20-minute conversation to learn about your venue and answer any questions. No pressure, no pitch deck — just a chat.</p>
+            <h4>Apply to join</h4>
+            <p>Tell us about your venue through a short application.</p>
           </div>
         </div>
 
         <div class="step-item">
           <span class="step-num">02</span>
           <div class="step-body">
-            <h4>We visit your space</h4>
-            <p>Someone from our venues team comes to see your space in person. We want to understand the vibe so we can represent you honestly to our members.</p>
+            <h4>Get approved</h4>
+            <p>We review your venue to make sure it is a good fit for the platform.</p>
           </div>
         </div>
 
         <div class="step-item">
           <span class="step-num">03</span>
           <div class="step-body">
-            <h4>Your profile goes live</h4>
-            <p>We put together your venue listing in the app — photos, atmosphere, what to order. Members start seeing you as an option when they're booking a date.</p>
+            <h4>Set up your profile</h4>
+            <p>Once approved, you create and manage your venue profile inside the FateDate venue dashboard.</p>
           </div>
         </div>
 
         <div class="step-item">
           <span class="step-num">04</span>
           <div class="step-body">
-            <h4>Dates start arriving</h4>
-            <p>Members book dates at your venue through the app. You get visibility, footfall, and a direct line to us if anything ever needs adjusting.</p>
+            <h4>Dates are proposed and booked</h4>
+            <p>Members choose your venue when proposing a date. Once accepted, the booking is confirmed and sent to your venue like a standard reservation.</p>
           </div>
         </div>
 
@@ -578,10 +698,16 @@
 
       <div class="split-copy" style="padding-top: 4px;">
         <h3>We stay involved after you're live</h3>
-        <p>This isn't a set-it-and-forget-it listing. Our venues team checks in regularly, gathers feedback from members, and works with you to make the partnership work long-term.</p>
-        <p>If something isn't working — your slot times, how you're being described, the types of dates being booked — we want to know and we'll fix it. You have a direct contact at FateDate from day one.</p>
-        <p>We're selective about who we work with because our members trust our recommendations. That means we're invested in every venue performing well.</p>
-        <a href="#book-a-call" class="cta cta-gradient gradient" style="margin-top: 1.6rem; display: inline-block;">Book a call</a>
+        <p>Our venues team stays actively involved after launch, checking in regularly, gathering feedback from members, and working with you to improve performance over time.</p>
+        <p>If something is not working, your availability, how your venue is being positioned, or the types of dates being booked, we do not ignore it. We work with you to adjust and improve it.</p>
+        <p>You have direct contact at FateDate from day one.</p>
+        <p>We are selective about the venues we work with because our members trust our recommendations. That means we are invested in every venue performing well.</p>
+        <h3 style="margin-top: 2rem;">Two ways your venue is used</h3>
+        <p>FateDate uses venues in two different ways depending on the experience:</p>
+        <p><strong style="color:rgba(255,255,255,0.7);">User selected dates</strong><br>In most cases, members choose your venue when proposing a date. Your space becomes part of the decision and is booked like a normal reservation once accepted.</p>
+        <p><strong style="color:rgba(255,255,255,0.7);">FateDate selected dates</strong><br>In some cases, such as blind dates or structured experiences, FateDate selects the venue on behalf of both members.</p>
+        <p>In both cases, your venue is part of a real, intentional date, not random footfall.</p>
+        <a href="#apply" class="cta cta-gradient gradient" style="margin-top: 1.6rem; display: inline-block;">Apply to join</a>
       </div>
     </div>
 
@@ -598,53 +724,89 @@
     </div>
 
     <div class="faq-list">
-
       <details class="faq-item">
         <summary class="faq-q">
           <span class="faq-q-text">Is there a cost to become a venue partner?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">No. We don't charge venues to be listed in the app and there's no ongoing fee. Our venues are chosen because they're genuinely great places for a date — not because they've paid to be there.</p>
+        <p class="faq-a">No. Being part of the core venue network is free. We also offer optional partnership packages for venues that want additional visibility, features, or enhanced placement in the app.</p>
       </details>
-
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How do venues get used on FateDate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Members either choose your venue when proposing a date, or in some cases FateDate assigns the venue to match the experience and ensure a curated, balanced date flow.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Do we need to change how we operate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">No. Bookings arrive like standard reservations. Your team does not need to change how service works.</p>
+      </details>
       <details class="faq-item">
         <summary class="faq-q">
           <span class="faq-q-text">What types of venues do you work with?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">We work with independent bars, restaurants, coffee shops, wine bars, rooftops, and cultural spaces. The common thread is atmosphere — we look for places that have something memorable about them, whether that's the décor, the menu, the music, or all three.</p>
+        <p class="faq-a">We work with a wide range of venues and spaces across the dating journey, from relaxed first date settings to more lively environments and experience-led venues for people continuing to see each other. The focus is on places that help people connect naturally, whatever stage they are at.</p>
       </details>
-
       <details class="faq-item">
         <summary class="faq-q">
-          <span class="faq-q-text">How do bookings actually work?</span>
+          <span class="faq-q-text">What makes a venue or experience a good fit?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">Members browse available venues in the app and choose where they'd like to go. We coordinate the booking on your behalf and you receive confirmation ahead of time. You don't need to change anything about how you operate — the dates show up like any other reservation.</p>
+        <p class="faq-a">We are selective about the venues and experiences we work with. Each one is chosen to deliver an enjoyable, unforgettable experience that fits the stage it is designed for.</p>
       </details>
-
       <details class="faq-item">
         <summary class="faq-q">
-          <span class="faq-q-text">How many dates can we expect?</span>
+          <span class="faq-q-text">Do you only work with first date venues?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">We're honest about this — at launch, volumes will be modest while we build the member base. We'd rather set realistic expectations and exceed them than promise numbers we can't deliver on. What we can say is that every booking comes from a verified, committed member who's chosen your venue specifically.</p>
+        <p class="faq-a">No. We work with venues across different stages of connection. This includes first date spaces, ongoing date venues for people continuing to see each other, and select venues and experiences for more structured or memorable dates.</p>
       </details>
-
       <details class="faq-item">
         <summary class="faq-q">
-          <span class="faq-q-text">Can we opt out or pause if needed?</span>
+          <span class="faq-q-text">What are experiences?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">Absolutely. You can pause your listing at any time — for a private event, a refurb, or just a quiet period. Just let us know and we'll handle it. There's no contract locking you in.</p>
+        <p class="faq-a">Experiences are curated activities or environments designed for people who have already met, decided to match and want to continue their connection. These are part of the wider FateDate ecosystem beyond first dates.</p>
       </details>
-
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How are venues chosen for a date?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">For standard dates, members select a venue when proposing a date. For structured or blind date experiences, FateDate may assign a venue to create a guided experience.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How do bookings work?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Once a date is accepted and pre-paid, the booking is confirmed and sent to your venue via the FateDate dashboard like a standard reservation. No changes are required to your existing system.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How many bookings can we expect?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">At launch, volumes will be modest while we grow the member base. Every booking comes from a verified, intentional member.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Can we pause our listing?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Yes. You can pause your listing at any time. Existing confirmed bookings will still go ahead, but no new bookings will be made while your venue is paused.</p>
+      </details>
       <details class="faq-item">
         <summary class="faq-q">
           <span class="faq-q-text">Where are you launching first?</span>
           <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
         </summary>
-        <p class="faq-a">London and Manchester in summer 2026, with more cities to follow. If you're based elsewhere, we'd still love to hear from you — we're building our waitlist for future cities now.</p>
+        <p class="faq-a">We're rolling out across selected cities in 2026, starting with London and Manchester, with more locations to follow. Venue partnerships are being built in advance of each launch.</p>
       </details>
 
     </div>
@@ -653,14 +815,13 @@
 
 <!-- ══ BOOK A CALL ══ -->
 <section class="cta-banner" id="book-a-call">
-  <div class="safety-container cta-banner-inner">
+  <div class="safety-container cta-banner-inner" id="apply">
     <div class="section-header" style="margin-bottom: 0;">
-      <div class="section-eyebrow-pill">Get in touch</div>
-      <h2 class="section-title" style="margin-bottom: 1rem;">Let's talk about your venue</h2>
+      <div class="section-eyebrow-pill">Join the network</div>
+      <h2 class="section-title" style="margin-bottom: 1rem;">Join FateDate as a venue partner</h2>
     </div>
-    <p>A 20-minute call is all it takes. We'll learn about your space, answer your questions, and let you know if we think you're a good fit. No obligation.</p>
-    <a href="https://calendly.com" target="_blank" rel="noopener" class="cta-teal">Book a call</a>
-    <span class="cta-small-note">Or email us at hello@fatedate.co.uk</span>
+    <p>Apply in a few minutes. Once approved, you can set up your venue profile and start receiving bookings.</p>
+    <a href="#" class="cta-teal">Apply to join</a>
   </div>
 </section>
 
@@ -698,7 +859,7 @@
         </div>
 
         <div class="footer-col">
-          <a href="mailto:hello@fatedate.co.uk" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba">hello@fatedate.co.uk</span></span></span></a>
+          <a href="/cdn-cgi/l/email-protection#026a676e6e6d4264637667666376672c616d2c7769" class="footer-email"><span class="__cf_email__" data-cfemail="a0c8c5cccccfe0c6c1d4c5c4c1d4c58ec3cf8ed5cb"><span class="__cf_email__" data-cfemail="2e464b4242416e484f5a4b4a4f5a4b004d4143"><span class="__cf_email__" data-cfemail="d1b9b4bdbdbe91b7b0a5b4b5b0a5b4ffb2beffa4ba"><span class="__cf_email__" data-cfemail="82eae7eeeeedc2e4e3f6e7e6e3f6e7ace1edacf7e9">[email&#160;protected]</span></span></span></span></a>
           <a href="terms">Terms &amp; conditions</a>
           <a href="privacy">Privacy policy</a>
           <a href="safety">Safety tips</a>
@@ -720,20 +881,13 @@
 </div>
 </div>
 </footer>
-</body>
-</html>
 
-
-
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
-/* ═══════════════════════════════════════
-   MOBILE NAV OVERLAY
-═══════════════════════════════════════ */
 (function() {
   var hamburger = document.getElementById('nav-hamburger');
   var overlay   = document.getElementById('nav-overlay');
   if (!hamburger || !overlay) return;
-
   function openNav() {
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
@@ -742,7 +896,6 @@
     document.body.style.overflow = 'hidden';
     document.body.classList.add('nav-open');
   }
-
   function closeNav() {
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
@@ -751,25 +904,13 @@
     document.body.style.overflow = '';
     document.body.classList.remove('nav-open');
   }
-
   hamburger.addEventListener('click', function() {
     overlay.classList.contains('open') ? closeNav() : openNav();
   });
-
-  // Close on link click
-  overlay.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', closeNav);
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeNav();
-  });
+  overlay.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
 })();
 
-/* ═══════════════════════════════════════
-   HEADER SCROLL STATE
-═══════════════════════════════════════ */
 (function() {
   var header = document.getElementById('site-header');
   if (!header) return;
@@ -777,39 +918,28 @@
     header.classList.toggle('scrolled', window.pageYOffset > 40);
   }, { passive: true });
 })();
-  
+
 (function() {
-  var h = document.getElementById('site-header');
-  if (h) window.addEventListener('scroll', function() {
-    h.classList.toggle('scrolled', window.pageYOffset > 40);
-  }, { passive: true });
+  var els = document.querySelectorAll('.fd-reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el) { el.classList.add('fd-visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('fd-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
 })();
+
 (function() {
-  var btn = document.getElementById('nav-hamburger');
-  var overlay = document.getElementById('nav-overlay');
-  if (!btn || !overlay) return;
-  btn.addEventListener('click', function() {
-    var open = document.body.classList.toggle('nav-open');
-    overlay.setAttribute('aria-hidden', !open);
-    btn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-      document.body.classList.remove('nav-open');
-      overlay.setAttribute('aria-hidden', 'true');
-      btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  });
-})();
-(function() {
-  var dot = document.getElementById('cursor-dot');
+  var dot  = document.getElementById('cursor-dot');
   var ring = document.getElementById('cursor-ring');
   if (!dot || !ring) return;
   var rx = -100, ry = -100, dx = -100, dy = -100;
-  dot.style.left = '-100px'; dot.style.top = '-100px';
-  ring.style.left = '-100px'; ring.style.top = '-100px';
+  dot.style.cssText  = 'left:-100px;top:-100px';
+  ring.style.cssText = 'left:-100px;top:-100px';
   document.addEventListener('mousemove', function(e) {
     dx = e.clientX; dy = e.clientY;
     dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
@@ -819,11 +949,50 @@
     ring.style.left = rx.toFixed(1) + 'px'; ring.style.top = ry.toFixed(1) + 'px';
     requestAnimationFrame(loop);
   })();
-  document.querySelectorAll('a, button, .perk-card, .value-card, .hero-stat-card').forEach(function(el) {
+  document.querySelectorAll('a, button, .perk-card, .hero-stat-card, .faq-item, .cta').forEach(function(el) {
     el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
     el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
   });
 })();
 </script>
+
+
+<script>
+
+/* ── Desktop dropdown ── */
+document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
+  var trigger = item.querySelector('.nav-dropdown-trigger');
+  function open() {
+    item.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+  function close() {
+    item.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    item.classList.contains('open') ? close() : open();
+  });
+  document.addEventListener('click', close);
+  item.addEventListener('click', function(e) { e.stopPropagation(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
+});
+
+/* ── Mobile overlay dropdown ── */
+document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    var item = trigger.closest('.nav-overlay-item-dropdown');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', !isOpen);
+    var sub = item.querySelector('.nav-overlay-sub');
+    sub.setAttribute('aria-hidden', isOpen);
+  });
+});
+</script>
+
 </body>
 </html>
