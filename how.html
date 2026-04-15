@@ -879,6 +879,9 @@
 
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
+
+
+
 <!-- Full-screen Desktop nav overlay -->
 <header id="site-header">
   <nav class="nav-inner">
@@ -920,6 +923,33 @@
   </nav>
 </header>
 
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
 
 <!-- ══ HERO ══ -->
 <section class="hiw-hero">
@@ -995,7 +1025,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">How people connect</div>
-      <h2 class="section-title">Multiple ways to connect, not standard matching.</h2>
+      <h2 class="section-title">Multiple ways to connect, not standard matching</h2>
       <p>FateDate is built around multiple ways to connect, not standard matching. Users can discover and engage through a growing library of interaction styles, including:</p>
     </div>
     <div class="connect-grid">
@@ -1089,7 +1119,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">How connections work</div>
-      <h2 class="section-title">Once two users connect.</h2>
+      <h2 class="section-title">Once two users connect</h2>
     </div>
     <div class="connections-layout">
 
@@ -1157,8 +1187,8 @@
 <section class="about-section about-section-dark">
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
-      <div class="section-eyebrow-pill">Before the date</div>
-      <h2 class="section-title">Before the date.</h2>
+      <div class="section-eyebrow-pill">Your pace, your call</div>
+      <h2 class="section-title">Before the date</h2>
     </div>
     <div class="before-grid">
       <div class="before-card fd-reveal fd-scale-up fd-delay-1">
@@ -1180,8 +1210,8 @@
 <section class="about-section">
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
-      <div class="section-eyebrow-pill">Real-world meeting</div>
-      <h2 class="section-title">Real-world meeting.</h2>
+      <div class="section-eyebrow-pill">Somewhere worth showing up to</div>
+      <h2 class="section-title">Real-world meeting</h2>
     </div>
     <div class="venue-showcase">
       <div class="venue-showcase-image fd-reveal fd-scale-up">
