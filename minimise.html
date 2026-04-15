@@ -79,7 +79,7 @@
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .about-section { padding: 100px 0; position: relative; }
+    .about-section { padding: 120px 0; position: relative; }
     .about-section::before {
       content: '';
       position: absolute;
@@ -90,26 +90,27 @@
     .split-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 100px;
       align-items: start;
     }
     .split-copy h3 {
       font-family: "dm-serif-display", Georgia, serif;
       font-weight: 400;
-      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
       letter-spacing: -0.02em;
-      line-height: 1.1;
+      line-height: 1.15;
       color: var(--light);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
     .split-copy p {
       font-family: 'Grift', system-ui, sans-serif;
       font-size: var(--font-p);
-      line-height: 1.85;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 1.2em;
+      line-height: 2;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 1.4em;
     }
     .split-copy p:last-child { margin-bottom: 0; }
+    .split-copy { padding-left: 0; border-left: none; }
     .split-copy {
       padding-left: 24px;
       border-left: 1px solid rgba(123,46,253,0.18);
@@ -124,15 +125,15 @@
       font-size: var(--font-p);
       line-height: 1.85;
       color: rgba(255,255,255,0.6);
-      padding: 8px 0 8px 18px;
+      padding: 10px 0 10px 18px;
       position: relative;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .split-copy ul li:last-child { border-bottom: none; }
     .split-copy ul li::before {
       content: '';
       position: absolute;
-      left: 0; top: 13px;
+      left: 0; top: 20px;
       width: 5px; height: 5px;
       border-top: 1.5px solid rgba(123,46,253,0.65);
       border-right: 1.5px solid rgba(123,46,253,0.65);
@@ -155,10 +156,10 @@
       gap: 16px;
     }
     .safety-feature-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 36px 32px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      padding: 44px 36px;
       position: relative;
       overflow: hidden;
       transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
@@ -180,10 +181,10 @@
     .safety-feature-card h3 {
       font-family: "dm-serif-display", Georgia, serif;
       font-weight: 400;
-      font-size: 1.25rem;
+      font-size: 1.45rem;
       letter-spacing: -0.02em;
       color: var(--light);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .safety-feature-card p {
       font-family: 'Grift', system-ui, sans-serif;
@@ -226,12 +227,12 @@
     .summary-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      padding: 16px 20px;
+      gap: 14px;
+      padding: 20px 24px;
       background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
       border-left: 2px solid rgba(123,46,253,0.45);
-      border-radius: 12px;
+      border-radius: 16px;
     }
     .summary-item-icon {
       flex-shrink: 0;
@@ -258,10 +259,10 @@
     .section-header p { color: rgba(255,255,255,0.5); }
 
     .resource-card {
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.025);
       border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 28px 28px 24px;
+      border-radius: 24px;
+      padding: 36px 32px 28px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
@@ -280,7 +281,7 @@
     .resource-card-title {
       font-family: "dm-serif-display", Georgia, serif;
       font-weight: 400;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       letter-spacing: -0.02em;
       color: var(--light);
       line-height: 1.2;
@@ -306,7 +307,7 @@
     .resource-card:hover .resource-card-arrow { color: #02A0AE; }
     .safety-cta-banner {
       background: #080e14;
-      padding: 100px 0;
+      padding: 140px 0;
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -504,7 +505,7 @@
       </div>
       <div class="split-copy fd-reveal fd-slide-right">
         <h3>Live timestamp photo (anti-catfishing system)</h3>
-        <p>To ensure profiles reflect real, current identity, users must upload a live in-app timestamped photo. This helps:</p>
+        <p>To ensure profiles reflect real, current identity, users are asked upload a live in-app timestamped photo. This helps:</p>
         <ul>
           <li>Confirm the user matches their profile</li>
           <li>Prevent outdated or misleading images</li>
@@ -629,7 +630,7 @@
       </div>
       <div class="split-copy fd-reveal fd-slide-right">
         <h3>Daily updates</h3>
-        <p>Encounter suggestions are updated once per day at midnight. This prevents live tracking or movement inference. Users only see past proximity, never current location.</p>
+        <p>Encounter suggestions are updated once per day at midnight. This prevents live tracking or movement inference.</p>
         <p>This ensures:</p>
         <ul>
           <li>No stalking risk</li>
@@ -739,7 +740,7 @@
           <li>Clear community guidelines</li>
           <li>Active moderation systems</li>
           <li>Behaviour-based enforcement</li>
-          <li>Removal of harmful users where necessary</li>
+          <li>Removal of un-trusted users where necessary</li>
         </ul>
         <p>Safety is actively enforced, not assumed.</p>
       </div>
@@ -791,6 +792,10 @@
       <div class="summary-item">
         <div class="summary-item-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <span>Moderation → enforces behaviour safety</span>
+      </div>
+       <div class="summary-item">
+        <div class="summary-item-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span>Trust Levels → signal legitimacy through commitment to the app</span>
       </div>
     </div>
   </div>
