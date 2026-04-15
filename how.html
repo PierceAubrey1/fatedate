@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <script src="js/scripts2.js" defer></script>
   <title>How FateDate Works — FateDate</title>
   <style>
     /* HOW IT WORKS PAGE — scoped only */
@@ -445,6 +446,8 @@
       grid-template-columns: repeat(3,1fr);
       gap: 16px;
     }
+
+    .identity-card .perk-icon {margin-bottom: 20px;}
     .identity-card {
       background: rgba(255,255,255,0.025);
       border: 1px solid rgba(255,255,255,0.07);
@@ -550,7 +553,297 @@
       color: rgba(255,255,255,0.55);
     }
 
+
+
+    /* ── Venue showcase — image left, facts right ── */
+    .venue-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .venue-showcase-image {
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 340px;
+      position: relative;
+    }
+    .venue-showcase-image .image-fill {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-showcase-image:hover .image-fill { transform: scale(1.04); }
+    .venue-showcase-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .venue-fact {
+      flex: 1;
+      padding: 32px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-fact:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-3px);
+    }
+    .venue-fact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2), transparent);
+      opacity: 0.6;
+    }
+    .venue-fact-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #02A0AE;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .venue-fact h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .venue-fact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    /* ── Before/meeting two-card layout ── */
+    .before-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .before-card {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .before-card:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-4px);
+    }
+    .before-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .before-card-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+    }
+    .before-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .before-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+
+    /* ── Connections unlock grid ── */
+    .connections-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .connections-unlock {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .unlock-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      min-height: 160px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease;
+    }
+    .unlock-card:hover { transform: translateY(-4px); border-color: rgba(201,184,255,0.2); }
+    .unlock-card-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .unlock-card:hover .unlock-card-img { opacity: 0.5; transform: scale(1.05); }
+    .unlock-card-body {
+      position: relative;
+      z-index: 1;
+      padding: 16px 18px;
+      background: linear-gradient(to top, rgba(9,9,26,0.95) 0%, transparent 100%);
+    }
+    .unlock-card-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .unlock-card-title {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--light);
+      line-height: 1.2;
+    }
+    /* wide card spans both columns */
+    .unlock-card-wide {
+      grid-column: span 2;
+      min-height: 120px;
+    }
+    .connections-datediary {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .connections-datediary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .connections-datediary h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .connections-datediary p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2em;
+    }
+    .connections-datediary p:last-child { margin-bottom: 0; }
+
+
+    /* ── After match experience cards ── */
+    .after-match-intro {
+      max-width: 64ch;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .after-match-intro h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+    .after-match-intro p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+    }
+    .after-match-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .after-match-card {
+      padding: 32px 24px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .after-match-card:hover {
+      border-color: rgba(201,184,255,0.2);
+      transform: translateY(-5px);
+    }
+    .after-match-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.3), transparent);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+    .after-match-card:hover::before { opacity: 1; }
+    .after-match-card-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .after-match-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+      font-weight: 500;
+    }
+
     @media (max-width: 1024px) {
+      .after-match-grid { grid-template-columns: repeat(3, 1fr); }
+      .connections-layout { grid-template-columns: 1fr; }
       .identity-cards { grid-template-columns: repeat(2,1fr); }
       .cta-principles { grid-template-columns: 1fr; }
       .connect-grid { grid-template-columns: repeat(2,1fr); }
@@ -560,11 +853,17 @@
       .flow-step::after, .flow-step::before { display: none; }
     }
     @media (max-width: 768px) {
+      .before-grid { grid-template-columns: 1fr; }
+      .venue-showcase { grid-template-columns: 1fr; }
+      .venue-showcase-image { min-height: 260px; }
       .hiw-hero { padding: 140px 0 60px; }
       .hiw-hero-inner { grid-template-columns: 1fr; gap: 20px; }
       .split-grid { grid-template-columns: 1fr; gap: 40px; }
       .identity-cards { grid-template-columns: 1fr; }
+      .after-match-grid { grid-template-columns: repeat(2, 1fr); }
       .connect-grid { grid-template-columns: 1fr; }
+      .connections-unlock { grid-template-columns: 1fr 1fr; }
+      .unlock-card-wide { grid-column: span 2; }
       .outcome-grid { grid-template-columns: 1fr; }
       .about-section { padding: 72px 0; }
     }
@@ -650,9 +949,10 @@
     <div class="identity-cards">
 
       <div class="identity-card fd-reveal fd-scale-up fd-delay-1">
-        <div class="identity-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
         </div>
+
         <h3>ID verification</h3>
         <p>Every member is ID-verified before they can interact with others.</p>
         <p>To strengthen authenticity, users may also upload a recent timestamped photo to confirm they are a real, current identity.</p>
@@ -660,8 +960,8 @@
       </div>
 
       <div class="identity-card fd-reveal fd-scale-up fd-delay-2">
-        <div class="identity-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>Private profiles</h3>
         <p>Users begin with private profiles shown to non-connections. This includes:</p>
@@ -673,8 +973,8 @@
       </div>
 
       <div class="identity-card fd-reveal fd-scale-up fd-delay-3">
-        <div class="identity-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+       <div class="perk-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
         <h3>Once two users connect</h3>
         <ul>
@@ -782,6 +1082,8 @@
 </section>
 
 
+
+
 <!-- ══ HOW CONNECTIONS WORK ══ -->
 <section class="about-section">
   <div class="safety-container">
@@ -789,18 +1091,49 @@
       <div class="section-eyebrow-pill">How connections work</div>
       <h2 class="section-title">Once two users connect.</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <h3>What unlocks</h3>
-        <p>Once two users connect, they unlock:</p>
-        <ul>
-          <li>Full profiles</li>
-          <li>Real names</li>
-          <li>Private chat</li>
-          <li>Ability to plan real-world dates</li>
-          <li>Profile interaction (likes, updates, engagement)</li>
-        </ul>
+    <div class="connections-layout">
+
+      <div class="fd-reveal fd-fade-up">
+        <h3 style="font-family:'dm-serif-display',Georgia,serif;font-weight:400;font-size:clamp(1.5rem,2.2vw,2.1rem);letter-spacing:-0.02em;line-height:1.15;color:var(--light);margin-bottom:20px;">What unlocks</h3>
+      <div class="connections-unlock">
+        <div class="unlock-card">
+          <div class="unlock-card-img image1"></div>
+          <div class="unlock-card-body">
+            <span class="unlock-card-label">Profiles</span>
+            <span class="unlock-card-title">Full profiles</span>
+          </div>
+        </div>
+        <div class="unlock-card">
+          <div class="unlock-card-img image2"></div>
+          <div class="unlock-card-body">
+            <span class="unlock-card-label">Identity</span>
+            <span class="unlock-card-title">Real names</span>
+          </div>
+        </div>
+        <div class="unlock-card">
+          <div class="unlock-card-img image3"></div>
+          <div class="unlock-card-body">
+            <span class="unlock-card-label">Messaging</span>
+            <span class="unlock-card-title">Private chat</span>
+          </div>
+        </div>
+        <div class="unlock-card">
+          <div class="unlock-card-img image4"></div>
+          <div class="unlock-card-body">
+            <span class="unlock-card-label">Planning</span>
+            <span class="unlock-card-title">Ability to plan real-world dates</span>
+          </div>
+        </div>
+        <div class="unlock-card unlock-card-wide">
+          <div class="unlock-card-img image5"></div>
+          <div class="unlock-card-body">
+            <span class="unlock-card-label">Engagement</span>
+            <span class="unlock-card-title">Profile interaction (likes, updates, engagement)</span>
+          </div>
+        </div>
       </div>
+      </div>
+
       <div class="split-copy fd-reveal fd-slide-right">
         <h3>DateDiary — the real-world planning system</h3>
         <p>DateDiary is where connections become real plans. Once two users are ready to meet, in DateDiary they can:</p>
@@ -814,6 +1147,7 @@
         </ul>
         <p>This removes awkward planning, removes uncertainty, and turns intention into confirmed real-world dates quickly.</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -826,22 +1160,16 @@
       <div class="section-eyebrow-pill">Before the date</div>
       <h2 class="section-title">Before the date.</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
+    <div class="before-grid">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="before-card-num">01</div>
         <h3>Once connected, users can:</h3>
-        <ul>
-          <li>Chat freely</li>
-          <li>Get to know each other</li>
-          <li>Plan a call inside the app (optional)</li>
-          <li>Move directly into DateDiary planning when ready</li>
-        </ul>
+        <p>Chat freely &nbsp;·&nbsp; Get to know each other &nbsp;·&nbsp; Plan a call inside the app (optional) &nbsp;·&nbsp; Move directly into DateDiary planning when ready</p>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="before-card-num">02</div>
         <h3>This allows:</h3>
-        <ul>
-          <li>Either deeper connection first</li>
-          <li>Or fast progression to meeting</li>
-        </ul>
+        <p>Either deeper connection first &nbsp;·&nbsp; Or fast progression to meeting</p>
       </div>
     </div>
   </div>
@@ -855,21 +1183,21 @@
       <div class="section-eyebrow-pill">Real-world meeting</div>
       <h2 class="section-title">Real-world meeting.</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <h3>All dates take place in:</h3>
-        <ul>
-          <li>Partnered, vetted venues</li>
-          <li>Safe, public environments designed for real conversation</li>
-        </ul>
+    <div class="venue-showcase">
+      <div class="venue-showcase-image fd-reveal fd-scale-up">
+        <div class="image-fill image1"></div>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>Users are encouraged to meet:</h3>
-        <ul>
-          <li>In safe public settings</li>
-          <li>With clear expectations</li>
-          <li>With in-app safety support available throughout</li>
-        </ul>
+      <div class="venue-showcase-copy fd-reveal fd-slide-right">
+        <div class="venue-fact">
+          <span class="venue-fact-label">Where it happens</span>
+          <h3>All dates take place in:</h3>
+          <p>Partnered, vetted venues &nbsp;·&nbsp; Safe, public environments designed for real conversation</p>
+        </div>
+        <div class="venue-fact">
+          <span class="venue-fact-label">How people show up</span>
+          <h3>Users are encouraged to meet:</h3>
+          <p>In safe public settings &nbsp;·&nbsp; With clear expectations &nbsp;·&nbsp; With in-app safety support available throughout</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1074,82 +1402,6 @@
   </div>
 </footer>
 
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function() {
-  var hamburger = document.getElementById('nav-hamburger');
-  var overlay = document.getElementById('nav-overlay');
-  if (!hamburger || !overlay) return;
-  function openNav() { hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; document.body.classList.add('nav-open'); }
-  function closeNav() { hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; document.body.classList.remove('nav-open'); }
-  hamburger.addEventListener('click', function() { overlay.classList.contains('open') ? closeNav() : openNav(); });
-  overlay.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
-})();
-(function() {
-  var header = document.getElementById('site-header');
-  if (!header) return;
-  window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.pageYOffset > 40); }, { passive: true });
-})();
-(function() {
-  var els = document.querySelectorAll('.fd-reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el) { el.classList.add('fd-visible'); }); return; }
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('fd-visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-  els.forEach(function(el) { obs.observe(el); });
-})();
-(function() {
-  var dot = document.getElementById('cursor-dot');
-  var ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-  var rx=-100, ry=-100, dx=-100, dy=-100;
-  dot.style.cssText='left:-100px;top:-100px'; ring.style.cssText='left:-100px;top:-100px';
-  document.addEventListener('mousemove', function(e) { dx=e.clientX; dy=e.clientY; dot.style.left=dx+'px'; dot.style.top=dy+'px'; }, { passive: true });
-  (function loop() { rx+=(dx-rx)*0.12; ry+=(dy-ry)*0.12; ring.style.left=rx.toFixed(1)+'px'; ring.style.top=ry.toFixed(1)+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button,.connect-card,.outcome-card,.cta').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
-    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
-  });
-})();
-</script>
-
-<script>
-
-/* ── Desktop dropdown ── */
-document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
-  var trigger = item.querySelector('.nav-dropdown-trigger');
-  function open() {
-    item.classList.add('open');
-    trigger.setAttribute('aria-expanded', 'true');
-  }
-  function close() {
-    item.classList.remove('open');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-  trigger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    item.classList.contains('open') ? close() : open();
-  });
-  document.addEventListener('click', close);
-  item.addEventListener('click', function(e) { e.stopPropagation(); });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') close();
-  });
-});
-
-/* ── Mobile overlay dropdown ── */
-document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
-  trigger.addEventListener('click', function() {
-    var item = trigger.closest('.nav-overlay-item-dropdown');
-    var isOpen = item.classList.contains('open');
-    item.classList.toggle('open', !isOpen);
-    trigger.setAttribute('aria-expanded', !isOpen);
-    var sub = item.querySelector('.nav-overlay-sub');
-    sub.setAttribute('aria-hidden', isOpen);
-  });
-});
-</script>
 
 </body>
 </html>
