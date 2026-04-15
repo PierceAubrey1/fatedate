@@ -107,7 +107,7 @@ p  { font-family: 'Grift', system-ui, sans-serif; font-weight: 500; font-size: v
   font-family: var(--serif);
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   color: var(--light);
-  letter-spacing: 0.06em;
+    letter-spacing: -0.03em;
   opacity: 0;
   transform: translateY(10px);
   animation: loaderFadeUp 0.6s 0.3s cubic-bezier(.22,1,.36,1) forwards;
@@ -2702,7 +2702,6 @@ body::before {
   height: 82px;
 }
 .loader-wordmark {
-  letter-spacing: 0.12em;
   font-size: clamp(1.4rem, 3vw, 2rem);
   opacity: 0;
   background: linear-gradient(135deg, #ffffff 40%, rgba(201,184,255,0.8) 100%);
@@ -2745,11 +2744,11 @@ body::before {
 /*images*/
 
 
-.image1 {background-image:url(assets/date1.jpg) !important; background-size: cover !important; background-position: center !important;}
-.image2 {background-image:url(assets/date2.jpg); background-size: cover; background-position: center;}
-.image3 {background-image:url(assets/date3.jpg); background-size: cover; background-position: center;}
-.image4 {background-image:url(assets/date4.jpg); background-size: cover; background-position: center;}
-.image5 {background-image:url(assets/date5.jpg); background-size: cover; background-position: center;}
+.image1 {background-image:url(assets/date5.jpg) !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat;}
+.image2 {background-image:url(assets/date4.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image3 {background-image:url(assets/date2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image4 {background-image:url(assets/date1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image5 {background-image:url(assets/date1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
 
 .person-image1 {background-image:url(assets/person-image1.png); background-size: cover; background-position: center;}
 .person-image2 {background-image:url(assets/person-image2.png); background-size: cover; background-position: center;}
