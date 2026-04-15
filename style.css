@@ -467,7 +467,7 @@ body.nav-open #site-header {
 
 .hero-content {
   color: var(--light);
-  max-width: 800px;
+  max-width: 840px;
   margin:auto;
   text-align: center;
 }
@@ -501,7 +501,7 @@ body.nav-open #site-header {
 
 .hero-content > p {
   
-  max-width: 800px;
+  max-width:100%;
   opacity: 0;
   line-height: 1.8;
   color: rgba(255,255,255,0.65);
@@ -2745,11 +2745,11 @@ body::before {
 /*images*/
 
 
-.image1 {background-image:url(assets/date1.png) !important; background-size: cover !important; background-position: center !important;}
-.image2 {background-image:url(assets/date2.png); background-size: cover; background-position: center;}
-.image3 {background-image:url(assets/date3.png); background-size: cover; background-position: center;}
-.image4 {background-image:url(assets/date4.png); background-size: cover; background-position: center;}
-.image5 {background-image:url(assets/date5.png); background-size: cover; background-position: center;}
+.image1 {background-image:url(assets/date1.jpg) !important; background-size: cover !important; background-position: center !important;}
+.image2 {background-image:url(assets/date2.jpg); background-size: cover; background-position: center;}
+.image3 {background-image:url(assets/date3.jpg); background-size: cover; background-position: center;}
+.image4 {background-image:url(assets/date4.jpg); background-size: cover; background-position: center;}
+.image5 {background-image:url(assets/date5.jpg); background-size: cover; background-position: center;}
 
 .person-image1 {background-image:url(assets/person-image1.png); background-size: cover; background-position: center;}
 .person-image2 {background-image:url(assets/person-image2.png); background-size: cover; background-position: center;}
