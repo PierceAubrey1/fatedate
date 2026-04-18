@@ -369,8 +369,238 @@
       transform: rotate(45deg);
     }
 
+
+.identity-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .identity-card .perk-icon {margin-bottom: 20px;}
+    .identity-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
+    }
+    .identity-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(123,46,253,0.2);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.4);
+    }
+    .identity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,46,253,0.45), transparent);
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    .identity-card:hover::before { opacity: 1; }
+    .identity-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(123,46,253,0.1);
+      border: 1px solid rgba(123,46,253,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: #c9b8ff;
+    }
+    .identity-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .identity-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.8em;
+    }
+    .identity-card p:last-child { margin-bottom: 0; }
+    .identity-card ul {
+      list-style: none; padding: 0; margin: 0 0 0.8em;
+    }
+    .identity-card ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      padding: 5px 0 5px 16px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .identity-card ul li:last-child { border-bottom: none; }
+    .identity-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 11px;
+      width: 4px; height: 4px;
+      border-top: 1.5px solid rgba(123,46,253,0.6);
+      border-right: 1.5px solid rgba(123,46,253,0.6);
+      transform: rotate(45deg);
+    }
+
+
+    /* ── Venue showcase — image left, facts right ── */
+    .venue-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .venue-showcase-image {
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 340px;
+      position: relative;
+    }
+    .venue-showcase-image .image-fill {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-showcase-image:hover .image-fill { transform: scale(1.04); }
+    .venue-showcase-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .venue-fact {
+      flex: 1;
+      padding: 32px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-fact:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-3px);
+    }
+    .venue-fact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2), transparent);
+      opacity: 0.6;
+    }
+    .venue-fact-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #02A0AE;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .venue-fact h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .venue-fact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    /* ── Before/meeting two-card layout ── */
+    .before-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .before-card {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .before-card:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-4px);
+    }
+    .before-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .before-card-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+    }
+    .before-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .before-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+
+
+    /* ── Tag pills ── */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 1rem 0 1.4em;
+    }
+    .tag-list span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.62);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 8px 18px;
+      white-space: nowrap;
+    }
     /* Responsive */
     @media (max-width: 900px) {
+      .identity-cards { grid-template-columns: repeat(2,1fr); }
+      .venue-showcase { grid-template-columns: 1fr; }
+      .venue-showcase-image { min-height: 260px; }
+      .before-grid { grid-template-columns: 1fr; }
       .venues-hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .split-grid { grid-template-columns: 1fr; gap: 48px; }
       .venues-hero-stats { grid-template-columns: 1fr 1fr; }
@@ -480,18 +710,16 @@
       <h2 class="section-title">Dates that actually show up</h2>
     </div>
 
-    <div class="split-grid">
-      <div class="split-copy">
+    <div class="before-grid">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="before-card-num">01</div>
         <h3>Your venue, not just a backdrop</h3>
-        <p>Most dating platforms treat venues as an afterthought. We build the experience around them.</p>
-        <p>When people use FateDate, they choose a venue as part of proposing a date. Your space becomes part of the experience, not something added later.</p>
-        <p>We work with venues that have character. Places people are genuinely excited to go to.</p>
+        <p>Most dating platforms treat venues as an afterthought. We build the experience around them. When people use FateDate, they choose a venue as part of proposing a date. Your space becomes part of the experience, not something added later. We work with venues that have character. Places people are genuinely excited to go to.</p>
       </div>
-      <div class="split-copy">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="before-card-num">02</div>
         <h3>Better customers, not just more customers</h3>
-        <p>Every member is ID verified, so you know exactly who is walking through your door.</p>
-        <p>These are not casual drop ins. They are people who have chosen your venue for a real date.</p>
-        <p>No fake profiles. No uncertainty. Just real bookings from people who plan to show up.</p>
+        <p>Every member is ID verified, so you know exactly who is walking through your door. These are not casual drop ins. They are people who have chosen your venue for a real date. No fake profiles. No uncertainty. Just real bookings from people who plan to show up.</p>
       </div>
     </div>
 
@@ -504,19 +732,23 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">First dates</div>
-      <h2 class="section-title">Designed for strong first impressions.</h2>
+      <h2 class="section-title">Designed for strong first impressions</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <h3>First dates are different and the environment matters.</h3>
-        <p>We partner with venues that feel natural for real connection, places where people can relax, talk, and enjoy the moment without pressure.</p>
-        <p>We prioritise venues that feel welcoming, well managed, and appropriate for people meeting for the first time.</p>
+    <div class="venue-showcase">
+      <div class="venue-showcase-image fd-reveal fd-scale-up">
+        <div class="image-fill image1"></div>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>Part of the first impression</h3>
-        <p>Whether it is a coffee shop, wine bar, or restaurant, these are spaces where people can relax, connect, and focus on getting to know each other.</p>
-        <p>Your venue becomes part of that first impression. A place people remember from the moment they met.</p>
-        <p>We only work with venues that meet a strong standard of atmosphere and experience, because our members trust our recommendations.</p>
+      <div class="venue-showcase-copy fd-reveal fd-slide-right">
+        <div class="venue-fact">
+          <span class="venue-fact-label">The environment matters</span>
+          <h3>First dates are different</h3>
+          <p>We partner with venues that feel natural for real connection, places where people can relax, talk, and enjoy the moment without pressure. We prioritise venues that feel welcoming, well managed, and appropriate for people meeting for the first time.</p>
+        </div>
+        <div class="venue-fact">
+          <span class="venue-fact-label">Part of the first impression</span>
+          <h3>A place people remember</h3>
+          <p>Whether it is a coffee shop, wine bar, or restaurant, these are spaces where people can relax, connect, and focus on getting to know each other. Your venue becomes part of that first impression — a place people remember from the moment they met.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -530,15 +762,21 @@
       <div class="section-eyebrow-pill">Beyond the first date</div>
       <h2 class="section-title">Designed for what comes next.</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <h3>FateDate does not stop at the first meeting.</h3>
-        <p>When two people decide to see each other again, they become a match. From there, they unlock access to a wider range of venues and experiences designed for ongoing connection.</p>
-        <p>This allows people to move naturally from a first date into something more, with new places and experiences to explore together.</p>
+    <div class="venue-showcase">
+      <div class="venue-showcase-copy fd-reveal fd-slide-left">
+        <div class="venue-fact">
+          <span class="venue-fact-label">What happens next</span>
+          <h3>FateDate does not stop at the first meeting</h3>
+          <p>When two people decide to see each other again, they become a match. From there, they unlock access to a wider range of venues and experiences designed for ongoing connection. This allows people to move naturally from a first date into something more.</p>
+        </div>
+        <div class="venue-fact">
+          <span class="venue-fact-label">For venues</span>
+          <h3>Part of an ongoing journey</h3>
+          <p>For venues, this means being part of more than a single visit. You become part of an ongoing journey, not just one moment.</p>
+        </div>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>Part of an ongoing journey</h3>
-        <p>For venues, this means being part of more than a single visit. You become part of an ongoing journey, not just one moment.</p>
+      <div class="venue-showcase-image fd-reveal fd-scale-up">
+        <div class="image-fill image2"></div>
       </div>
     </div>
   </div>
@@ -550,40 +788,37 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Experiences &amp; partner network</div>
-      <h2 class="section-title">Built for more than first meetings.</h2>
+      <h2 class="section-title">Built for more than first meetings</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <p>FateDate is building a wider network of venues and experiences designed for people at different stages of connection.</p>
-        <p>This includes spaces for early dates, repeat dates, and more immersive experiences for people who have already met and chosen to continue seeing each other.</p>
-        <p>As relationships develop, people naturally look for new places to go and new things to do together. We are building the infrastructure to support that journey.</p>
-        <h3 style="margin-top: 1.6rem;">We work across three types of partner environments</h3>
-        <div class="partner-types">
-          <div class="partner-type">
-            <span class="partner-type-title">First date venues</span>
-            <p>Comfortable, considered spaces designed for first meetings and early connection.</p>
-          </div>
-          <div class="partner-type">
-            <span class="partner-type-title">Ongoing date venues</span>
-            <p>Places people return to after their first meeting as their connection develops.</p>
-          </div>
-          <div class="partner-type">
-            <span class="partner-type-title">Experiences</span>
-            <p>Experiences are designed for people who have already met and matched. These are more structured, curated environments that go beyond a standard first date. This includes things like immersive experiences, private spaces, and overnight or multi-stage dates.</p>
-          </div>
+    <div style="max-width:72ch;margin:0 auto 56px;text-align:center;" class="fd-reveal fd-fade-up">
+      <p style="font-family:'Grift',system-ui,sans-serif;font-size:var(--font-p);line-height:2;color:rgba(255,255,255,0.52);">FateDate is building a wider network of venues and experiences designed for people at different stages of connection. As relationships develop, people naturally look for new places to go and new things to do together. We are building the infrastructure to support that journey.</p>
+    </div>
+    <div class="identity-cards">
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
+        <h3>First date venues</h3>
+        <p>Comfortable, considered spaces designed for first meetings and early connection.</p>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>What we look for in partners</h3>
-        <p>We are selective about who we work with because experience quality matters. We look for:</p>
-        <ul class="partner-criteria">
-          <li>Memorable experience</li>
-          <li>Consistency in delivery</li>
-          <li>Spaces that feel right for real connection</li>
-          <li>Partners who care about guest experience</li>
-        </ul>
-        <p>Every partner becomes part of a guided experience, not just a listing.</p>
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Ongoing date venues</h3>
+        <p>Places people return to after their first meeting as their connection develops.</p>
       </div>
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-3">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Experiences</h3>
+        <p>Designed for people who have already met and matched. More structured, curated environments beyond a standard first date — immersive experiences, private spaces, and overnight or multi-stage dates.</p>
+      </div>
+    </div>
+    <div style="max-width:72ch;margin:48px auto 0;text-align:center;" class="fd-reveal fd-fade-up">
+      <h3 style="font-family:'dm-serif-display',Georgia,serif;font-weight:400;font-size:clamp(1.5rem,2.2vw,2.1rem);letter-spacing:-0.02em;line-height:1.15;color:var(--light);margin-bottom:1rem;">What we look for in partners</h3>
+      <p style="font-family:'Grift',system-ui,sans-serif;font-size:var(--font-p);line-height:2;color:rgba(255,255,255,0.52);">We are selective about who we work with because experience quality matters. We look for memorable experience &nbsp;·&nbsp; consistency in delivery &nbsp;·&nbsp; spaces that feel right for real connection &nbsp;·&nbsp; partners who care about guest experience. Every partner becomes part of a guided experience, not just a listing.</p>
     </div>
   </div>
 </section>
