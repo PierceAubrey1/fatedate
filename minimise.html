@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <script src="js/scripts2.js" defer></script>
   <title>How We Minimise the Risks — FateDate</title>
   <style>
     .safety-hero {
@@ -345,11 +346,16 @@
     }
     .about-section .perk-icon { margin-bottom: 20px; }
     @media (max-width: 1024px) {
+      .identity-cards { grid-template-columns: repeat(2,1fr); }
       .safety-features-grid { grid-template-columns: repeat(2,1fr); }
       .resource-grid { grid-template-columns: repeat(2,1fr); }
       .summary-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
+      .identity-cards { grid-template-columns: 1fr; }
+      .venue-showcase { grid-template-columns: 1fr; }
+      .venue-showcase-image { min-height: 260px; }
+      .before-grid { grid-template-columns: 1fr; }
       .safety-hero { padding: 140px 0 60px; }
       .safety-hero-inner { grid-template-columns: 1fr; gap: 20px; }
       .split-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -363,6 +369,393 @@
       .about-section { padding: 56px 0; }
       #site-header { top: 8px; width: calc(100% - 16px); }
     }
+
+.identity-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .identity-card .perk-icon {margin-bottom: 20px;}
+    .identity-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, box-shadow 0.4s ease;
+    }
+    .identity-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(123,46,253,0.2);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.4);
+    }
+    .identity-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,46,253,0.45), transparent);
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+    .identity-card:hover::before { opacity: 1; }
+    .identity-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(123,46,253,0.1);
+      border: 1px solid rgba(123,46,253,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: #c9b8ff;
+    }
+    .identity-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .identity-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.8em;
+    }
+    .identity-card p:last-child { margin-bottom: 0; }
+    .identity-card ul {
+      list-style: none; padding: 0; margin: 0 0 0.8em;
+    }
+    .identity-card ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+      padding: 5px 0 5px 16px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .identity-card ul li:last-child { border-bottom: none; }
+    .identity-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 11px;
+      width: 4px; height: 4px;
+      border-top: 1.5px solid rgba(123,46,253,0.6);
+      border-right: 1.5px solid rgba(123,46,253,0.6);
+      transform: rotate(45deg);
+    }
+
+
+.venue-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .venue-showcase-image {
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 340px;
+      position: relative;
+    }
+    .venue-showcase-image .image-fill {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-showcase-image:hover .image-fill { transform: scale(1.04); }
+    .venue-showcase-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .venue-fact {
+      flex: 1;
+      padding: 32px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .venue-fact:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-3px);
+    }
+    .venue-fact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2), transparent);
+      opacity: 0.6;
+    }
+    .venue-fact-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #02A0AE;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .venue-fact h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .venue-fact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    /* ── Before/meeting two-card layout ── */
+    .before-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .before-card {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .before-card:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-4px);
+    }
+    .before-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .before-card-num {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+    }
+    .before-card h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .before-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+
+    /* ── Connections unlock grid ── */
+    .connections-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .connections-unlock {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .unlock-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      min-height: 160px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), border-color 0.3s ease;
+    }
+    .unlock-card:hover { transform: translateY(-4px); border-color: rgba(201,184,255,0.2); }
+    .unlock-card-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .unlock-card:hover .unlock-card-img { opacity: 0.5; transform: scale(1.05); }
+    .unlock-card-body {
+      position: relative;
+      z-index: 1;
+      padding: 16px 18px;
+      background: linear-gradient(to top, rgba(9,9,26,0.95) 0%, transparent 100%);
+    }
+    .unlock-card-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .unlock-card-title {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--light);
+      line-height: 1.2;
+    }
+    /* wide card spans both columns */
+    .unlock-card-wide {
+      grid-column: span 2;
+      min-height: 120px;
+    }
+    .connections-datediary {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .connections-datediary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .connections-datediary h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .connections-datediary p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2em;
+    }
+    .connections-datediary p:last-child { margin-bottom: 0; }
+
+
+    /* ── After match experience cards ── */
+    .after-match-intro {
+      max-width: 64ch;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .after-match-intro h3 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--light);
+      margin-bottom: 1rem;
+    }
+    .after-match-intro p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+    }
+    .after-match-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .after-match-card {
+      padding: 32px 24px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .after-match-card:hover {
+      border-color: rgba(201,184,255,0.2);
+      transform: translateY(-5px);
+    }
+    .after-match-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.3), transparent);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+    .after-match-card:hover::before { opacity: 1; }
+    .after-match-card-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .after-match-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+      font-weight: 500;
+    }
+
+
+
+
+    /* ── Tag pills ── */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 1rem 0 1.4em;
+    }
+    .tag-list span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.62);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 8px 18px;
+      white-space: nowrap;
+    }
+
   </style>
 </head>
 <body>
@@ -462,18 +855,18 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Structured dating by design</div>
-      <h2 class="section-title">Safety is not an add-on <br>it is built into the structure itself.</h2>
+      <h2 class="section-title">Safety is not an add-on <br>it is built into the structure itself</h2>
     </div>
     <div class="split-grid">
       <div class="split-copy fd-reveal fd-slide-left">
         <h3>A system with direction</h3>
         <p>This structure is intentional. It exists to:</p>
-        <ul>
-          <li>Reduce uncertainty and ambiguity</li>
-          <li>Prevent endless messaging</li>
-          <li>Improve real-world safety</li>
-          <li>Ensure every connection has direction</li>
-        </ul>
+        <div class="tag-list">
+          <span>Reduce uncertainty and ambiguity</span>
+          <span>Prevent endless messaging</span>
+          <span>Improve real-world safety</span>
+          <span>Ensure every connection has direction</span>
+        </div>
       </div>
       <div class="split-copy fd-reveal fd-slide-right">
         <h3>Built differently</h3>
@@ -490,37 +883,30 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Identity &amp; real users</div>
-      <h2 class="section-title">Verified identity for every member.</h2>
+      <h2 class="section-title">Verified identity for every member</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
+    <div class="identity-cards">
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+        </div>
         <h3>ID verification</h3>
-        <p>All users must complete identity verification before interacting on FateDate. This includes:</p>
-        <ul>
-          <li>Government ID verification</li>
-          <li>Liveness / authenticity checks</li>
-          <li>Account approval before access</li>
-        </ul>
+        <p>All users must complete identity verification before interacting on FateDate. This includes government ID verification, liveness and authenticity checks, and account approval before access.</p>
         <p>This ensures there are real, verified people behind every profile.</p>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>Live timestamp photo (anti-catfishing system)</h3>
-        <p>To ensure profiles reflect real, current identity, users are asked upload a live in-app timestamped photo. This helps:</p>
-        <ul>
-          <li>Confirm the user matches their profile</li>
-          <li>Prevent outdated or misleading images</li>
-          <li>Reduce catfishing and impersonation</li>
-          <li>Support informed decision-making before meeting</li>
-        </ul>
-        <p>Unlike static profile images, this ensures identity is current and verified in real time.</p>
-        <h4>Trust levels</h4>
-        <p>FateDate uses a behavioural trust system based on:</p>
-        <ul>
-          <li>Verification status</li>
-          <li>Consistent platform behaviour</li>
-          <li>Interaction history</li>
-          <li>Report activity (if any)</li>
-        </ul>
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg>
+        </div>
+        <h3>Live timestamp photo</h3>
+        <p>To ensure profiles reflect real, current identity, users upload a live in-app timestamped photo. This confirms they match their profile, prevents outdated images, reduces catfishing and impersonation, and supports informed decision-making before meeting.</p>
+      </div>
+      <div class="identity-card fd-reveal fd-scale-up fd-delay-3">
+        <div class="identity-card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Trust levels</h3>
+        <p>FateDate uses a behavioural trust system based on verification status, consistent platform behaviour, interaction history, and report activity.</p>
         <p>Trust levels help users assess reliability without exposing personal information.</p>
       </div>
     </div>
@@ -533,26 +919,22 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Controlled connections &amp; privacy</div>
-      <h2 class="section-title">Your personal details stay yours.</h2>
+      <h2 class="section-title">Your personal details stay yours</h2>
     </div>
     <div class="split-grid">
       <div class="split-copy fd-reveal fd-slide-left">
         <h3>Privacy by design</h3>
         <p>Users control how much of their identity is revealed at every stage.</p>
-        <ul>
-          <li>Real names can remain hidden until chosen</li>
-          <li>No requirement to share phone numbers or social media</li>
-          <li>Messaging happens through FateDate ID</li>
-        </ul>
+        <div class="tag-list">
+          <span>Real names hidden until chosen</span>
+          <span>No phone numbers required</span>
+          <span>No social media required</span>
+          <span>Messaging via FateDate ID</span>
+        </div>
       </div>
       <div class="split-copy fd-reveal fd-slide-right">
         <h3>FateDate ID</h3>
-        <p>FateDate ID allows users to:</p>
-        <ul>
-          <li>Connect and chat without personal contact details</li>
-          <li>Maintain privacy until trust is established</li>
-          <li>Transition safely into real-world meetings</li>
-        </ul>
+        <p>FateDate ID allows users to connect and chat without personal contact details, maintain privacy until trust is established, and transition safely into real-world meetings.</p>
         <p>When meeting in person, users may choose to share their FateDate ID instead of phone numbers or social accounts.</p>
       </div>
     </div>
@@ -565,7 +947,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Structured real-world dating flow</div>
-      <h2 class="section-title">DateDiary <br>the core planning system.</h2>
+      <h2 class="section-title">DateDiary <br>the core planning system</h2>
     </div>
     <div class="split-grid">
       <div class="split-copy fd-reveal fd-slide-left">
@@ -615,29 +997,23 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Out &amp; About mode (real-world discovery)</div>
-      <h2 class="section-title">Real-world discovery, without the tracking risk.</h2>
+      <h2 class="section-title">Real-world discovery, without the tracking risk</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
-        <h3>How it works</h3>
-        <p>Out &amp; About allows users to reconnect with people they may have crossed paths with in real life.</p>
-        <ul>
-          <li>Users may appear as a potential encounter after being in the same general area</li>
-          <li>Exact locations are never shared</li>
-          <li>No real-time tracking is ever exposed</li>
-          <li>Encounters are anonymised and privacy-protected</li>
-        </ul>
+    <div class="venue-showcase">
+      <div class="venue-showcase-image fd-reveal fd-scale-up">
+        <div class="image-fill image3"></div>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
-        <h3>Daily updates</h3>
-        <p>Encounter suggestions are updated once per day at midnight. This prevents live tracking or movement inference.</p>
-        <p>This ensures:</p>
-        <ul>
-          <li>No stalking risk</li>
-          <li>No live tracking</li>
-          <li>No location exposure</li>
-          <li>No behavioural surveillance</li>
-        </ul>
+      <div class="venue-showcase-copy fd-reveal fd-slide-right">
+        <div class="venue-fact">
+          <span class="venue-fact-label">How it works</span>
+          <h3>Real-world discovery</h3>
+          <p>Out &amp; About allows users to reconnect with people they may have crossed paths with in real life. Users may appear as a potential encounter after being in the same general area. Exact locations are never shared, no real-time tracking is ever exposed, and encounters are anonymised and privacy-protected.</p>
+        </div>
+        <div class="venue-fact">
+          <span class="venue-fact-label">Daily updates — no live tracking</span>
+          <h3>No stalking risk. No surveillance.</h3>
+          <p>Encounter suggestions are updated once per day at midnight. This prevents live tracking or movement inference. No stalking risk &nbsp;·&nbsp; No live tracking &nbsp;·&nbsp; No location exposure &nbsp;·&nbsp; No behavioural surveillance.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -649,7 +1025,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">In-app safety tools</div>
-      <h2 class="section-title">Tools that work when you need them.</h2>
+      <h2 class="section-title">Tools that work when you need them</h2>
     </div>
     <div class="safety-features-grid">
 
@@ -714,35 +1090,18 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Reporting &amp; accountability</div>
-      <h2 class="section-title">Safety is actively enforced, not assumed.</h2>
+      <h2 class="section-title">Safety is actively enforced, not assumed</h2>
     </div>
-    <div class="split-grid">
-      <div class="split-copy fd-reveal fd-slide-left">
+    <div class="before-grid">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-1">
+        <div class="before-card-num">01</div>
         <h3>Reporting &amp; moderation</h3>
-        <p>Users can report:</p>
-        <ul>
-          <li>Unsafe behaviour</li>
-          <li>Inappropriate conduct</li>
-          <li>Suspicious activity</li>
-          <li>Policy violations</li>
-        </ul>
-        <p>All reports are:</p>
-        <ul>
-          <li>Reviewed by moderation systems</li>
-          <li>Prioritised by severity</li>
-          <li>Actively enforced under clear community guidelines</li>
-        </ul>
+        <p>Users can report unsafe behaviour, inappropriate conduct, suspicious activity, and policy violations. All reports are reviewed by moderation systems, prioritised by severity, and actively enforced under clear community guidelines.</p>
       </div>
-      <div class="split-copy fd-reveal fd-slide-right">
+      <div class="before-card fd-reveal fd-scale-up fd-delay-2">
+        <div class="before-card-num">02</div>
         <h3>Accountability &amp; platform integrity</h3>
-        <p>FateDate maintains:</p>
-        <ul>
-          <li>Clear community guidelines</li>
-          <li>Active moderation systems</li>
-          <li>Behaviour-based enforcement</li>
-          <li>Removal of un-trusted users where necessary</li>
-        </ul>
-        <p>Safety is actively enforced, not assumed.</p>
+        <p>FateDate maintains clear community guidelines, active moderation systems, behaviour-based enforcement, and removal of un-trusted users where necessary. Safety is actively enforced, not assumed.</p>
       </div>
     </div>
   </div>
@@ -754,7 +1113,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">A system built for safer connection</div>
-      <h2 class="section-title">Every part of FateDate reduces risk through structure.</h2>
+      <h2 class="section-title">Every part of FateDate reduces risk through structure</h2>
     </div>
     <div class="summary-grid fd-reveal fd-fade-up">
       <div class="summary-item">
@@ -807,7 +1166,7 @@
   <div class="safety-container">
     <div class="section-header fd-reveal fd-fade-up">
       <div class="section-eyebrow-pill">Safety education &amp; support</div>
-      <h2 class="section-title">Trusted resources we stand behind.</h2>
+      <h2 class="section-title">Trusted resources we stand behind</h2>
       <p>FateDate promotes responsible dating and signposts trusted UK safeguarding resources. These resources are included to support informed, safe decision-making.</p>
     </div>
     <div class="resource-grid">
@@ -837,7 +1196,7 @@
 <!-- ══ FINAL PRINCIPLE / CTA ══ -->
 <section class="safety-cta-banner">
   <div class="safety-container">
-    <h2>A system built for safer connection.</h2>
+    <h2>A system built for safer connection</h2>
     <p>FateDate is a structured dating system where safety, intention, and real-world outcomes are built into every stage of connection.</p>
     <a href="sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
   </div>
@@ -903,81 +1262,7 @@
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function() {
-  var hamburger = document.getElementById('nav-hamburger');
-  var overlay = document.getElementById('nav-overlay');
-  if (!hamburger || !overlay) return;
-  function openNav() { hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; document.body.classList.add('nav-open'); }
-  function closeNav() { hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; document.body.classList.remove('nav-open'); }
-  hamburger.addEventListener('click', function() { overlay.classList.contains('open') ? closeNav() : openNav(); });
-  overlay.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
-})();
-(function() {
-  var header = document.getElementById('site-header');
-  if (!header) return;
-  window.addEventListener('scroll', function() { header.classList.toggle('scrolled', window.pageYOffset > 40); }, { passive: true });
-})();
-(function() {
-  var els = document.querySelectorAll('.fd-reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(el) { el.classList.add('fd-visible'); }); return; }
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('fd-visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-  els.forEach(function(el) { obs.observe(el); });
-})();
-(function() {
-  var dot = document.getElementById('cursor-dot');
-  var ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-  var rx=-100, ry=-100, dx=-100, dy=-100;
-  dot.style.cssText='left:-100px;top:-100px'; ring.style.cssText='left:-100px;top:-100px';
-  document.addEventListener('mousemove', function(e) { dx=e.clientX; dy=e.clientY; dot.style.left=dx+'px'; dot.style.top=dy+'px'; }, { passive: true });
-  (function loop() { rx+=(dx-rx)*0.12; ry+=(dy-ry)*0.12; ring.style.left=rx.toFixed(1)+'px'; ring.style.top=ry.toFixed(1)+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button,.safety-feature-card,.resource-card,.cta').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
-    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
-  });
-})();
-</script>
 
-<script>
-
-/* ── Desktop dropdown ── */
-document.querySelectorAll('.nav-item-dropdown').forEach(function(item) {
-  var trigger = item.querySelector('.nav-dropdown-trigger');
-  function open() {
-    item.classList.add('open');
-    trigger.setAttribute('aria-expanded', 'true');
-  }
-  function close() {
-    item.classList.remove('open');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-  trigger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    item.classList.contains('open') ? close() : open();
-  });
-  document.addEventListener('click', close);
-  item.addEventListener('click', function(e) { e.stopPropagation(); });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') close();
-  });
-});
-
-/* ── Mobile overlay dropdown ── */
-document.querySelectorAll('.nav-overlay-dropdown-trigger').forEach(function(trigger) {
-  trigger.addEventListener('click', function() {
-    var item = trigger.closest('.nav-overlay-item-dropdown');
-    var isOpen = item.classList.contains('open');
-    item.classList.toggle('open', !isOpen);
-    trigger.setAttribute('aria-expanded', !isOpen);
-    var sub = item.querySelector('.nav-overlay-sub');
-    sub.setAttribute('aria-hidden', isOpen);
-  });
-});
-</script>
 
 </body>
 </html>
