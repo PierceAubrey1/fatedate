@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <script src="js/scripts2.js" defer></script>
+  <title>Community Guidelines — FateDate</title>
+  <style>
+    .legal-hero {
+      position: relative;
+      padding: 160px 0 60px;
+      background: #0d0d12;
+    }
+    .legal-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(123,46,253,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .legal-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .legal-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .legal-hero-meta {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+    .legal-layout {
+      background: #0d0d12;
+      padding: 72px 0 120px;
+    }
+    .legal-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .legal-nav {
+      position: sticky;
+      top: 100px;
+    }
+    .legal-nav-label {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .legal-nav-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .legal-nav-list a {
+      display: block;
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      padding: 6px 0 6px 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+    }
+    .legal-nav-list a:hover { color: rgba(255,255,255,0.65); border-left-color: rgba(201,184,255,0.3); }
+    .legal-nav-list a.active { color: #c9b8ff; border-left-color: #c9b8ff; }
+    .legal-content { max-width: 720px; }
+    .legal-section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .legal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .legal-section h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 20px;
+      scroll-margin-top: 100px;
+    }
+    .legal-section h3 {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin: 28px 0 10px;
+    }
+    .legal-section p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1em;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      padding-left: 0; margin: 0 0 1em;
+      list-style: none;
+    }
+    .legal-section ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .legal-section ul li:last-child { border-bottom: none; }
+    .legal-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(201,184,255,0.4);
+    }
+    .legal-section a {
+      color: #c9b8ff;
+      text-decoration: underline;
+      text-decoration-color: rgba(201,184,255,0.3);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .legal-section a:hover { text-decoration-color: rgba(201,184,255,0.7); }
+    .legal-contact {
+      margin-top: 56px;
+      padding: 32px 36px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .legal-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.2) 40%, transparent);
+    }
+    .legal-contact p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 8px;
+    }
+    .legal-contact a {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .legal-contact a:hover { color: #c9b8ff; }
+    @media (max-width: 900px) {
+      .legal-grid { grid-template-columns: 1fr; gap: 48px; }
+      .legal-nav { position: static; display: none; }
+    }
+    @media (max-width: 768px) {
+      .legal-hero { padding: 140px 0 48px; }
+      .legal-layout { padding: 48px 0 80px; }
+    }
+    @media (max-width: 480px) {
+      .legal-hero { padding: 120px 0 40px; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="fatedate" class="nav-logo"><img src="assets/logo.svg"/></a>
+    <ul class="nav-links">
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="press">Press</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="legal-hero">
+  <div class="container">
+    <div class="about-hero-eyebrow"><span>Our Rules</span></div>
+    <h1>Community Guidelines</h1>
+    <p class="legal-hero-meta">Last updated: 18 January 2026</p>
+  </div>
+</section>
+
+
+<!-- ══ CONTENT ══ -->
+<div class="legal-layout">
+  <div class="safety-container">
+    <div class="legal-grid">
+
+      <!-- Sticky sidebar nav -->
+      <nav class="legal-nav">
+        <span class="legal-nav-label">Contents</span>
+        <ul class="legal-nav-list">
+          <li><a href="#our-purpose">Our Purpose</a></li>
+          <li><a href="#s1">1. Eligibility &amp; Age</a></li>
+          <li><a href="#s2">2. Account Integrity</a></li>
+          <li><a href="#s3">3. Trust Levels</a></li>
+          <li><a href="#s4">4. Eligibility to Use</a></li>
+          <li><a href="#s5">5. Respect &amp; Consent</a></li>
+          <li><a href="#s6">6. Sexual Content</a></li>
+          <li><a href="#s7">7. Voice &amp; Video</a></li>
+          <li><a href="#s8">8. BlindFate Dates</a></li>
+          <li><a href="#s9">9. Date Commitment</a></li>
+          <li><a href="#s10">10. In-Person Conduct</a></li>
+          <li><a href="#s11">11. Date Costs</a></li>
+          <li><a href="#s12">12. Personal Information</a></li>
+          <li><a href="#s13">13. Out &amp; About Safety</a></li>
+          <li><a href="#s14">14. Prohibited Activity</a></li>
+          <li><a href="#s15">15. Reporting</a></li>
+          <li><a href="#s16">16. Enforcement</a></li>
+          <li><a href="#s17">17. Updates</a></li>
+          <li><a href="#our-standard">Our Standard</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main content -->
+      <div class="legal-content">
+
+        <div class="legal-section" id="our-purpose">
+          <h2>Our Purpose</h2>
+          <p>FateDate is a structured dating platform designed to move people from connection to real-world meetings with clarity, safety, and intention.</p>
+          <p>These Community Guidelines exist to protect users, set clear expectations, and ensure all interactions are respectful, accountable, and genuine, both online and in real life.</p>
+          <p>By creating an account or using FateDate, you agree to follow these guidelines.</p>
+        </div>
+
+        <div class="legal-section" id="s1">
+          <h2>1. Eligibility &amp; Age Requirement</h2>
+          <p>FateDate is strictly for users aged 18 or over.</p>
+          <p>All users must complete government-issued ID verification before accessing the platform.</p>
+          <p>Any attempt to access FateDate under the age of 18 will result in immediate and permanent removal.</p>
+          <p>Providing false or misleading information during verification or onboarding may result in account removal.</p>
+        </div>
+
+        <div class="legal-section" id="s2">
+          <h2>2. Account Integrity &amp; Authenticity</h2>
+          <p>Users must use their real identity. Only one account per person is permitted.</p>
+          <ul>
+            <li>Account sharing, impersonation, or multiple accounts are prohibited</li>
+            <li>Profiles must remain accurate and up to date</li>
+            <li>Users may keep certain details private on public profiles, but must provide accurate information during verification</li>
+          </ul>
+        </div>
+
+        <div class="legal-section" id="s3">
+          <h2>3. Trust Levels &amp; Behaviour</h2>
+          <p>FateDate uses a trust level system to reflect consistent, genuine behaviour across the platform.</p>
+          <h3>Trust levels may be influenced by</h3>
+          <ul>
+            <li>Attending planned dates</li>
+            <li>Respectful interactions with other users</li>
+            <li>Profile consistency and accuracy</li>
+            <li>Reports or violations</li>
+          </ul>
+          <p>Higher trust levels help other users make informed decisions.</p>
+          <p>Repeated negative behaviour may result in reduced trust levels, feature restrictions, or account removal. Low trust levels may also limit access to certain features, reduce visibility, or impact the ability to connect with other users.</p>
+        </div>
+
+        <div class="legal-section" id="s4">
+          <h2>4. Eligibility to Use FateDate</h2>
+          <p>FateDate is intended for users who engage respectfully and safely.</p>
+          <p>Individuals who have engaged in violent, sexual, exploitative, or abusive behaviour are not permitted to use the platform.</p>
+          <p>Any user who violates these standards may have their account suspended or permanently removed.</p>
+        </div>
+
+        <div class="legal-section" id="s5">
+          <h2>5. Respect, Boundaries &amp; Consent</h2>
+          <p>All interactions must be respectful and consensual.</p>
+          <h3>Users must not</h3>
+          <ul>
+            <li>Harass, threaten, intimidate, or demean others</li>
+            <li>Use hate speech or discriminatory language</li>
+            <li>Pressure or coerce others into conversation, calls, or dates</li>
+            <li>Ignore clearly stated boundaries</li>
+          </ul>
+          <p>Consent can be withdrawn at any time and must always be respected.</p>
+        </div>
+
+        <div class="legal-section" id="s6">
+          <h2>6. Sexual Content &amp; Conduct</h2>
+          <p>Consensual flirting between adults is allowed. However, the following is not permitted:</p>
+          <ul>
+            <li>Explicit or pornographic content</li>
+            <li>Unsolicited sexual messages or images</li>
+            <li>Sexual content involving coercion, exploitation, or violence</li>
+            <li>Any sexual content involving or referencing minors</li>
+          </ul>
+          <p>Violations may result in immediate account removal.</p>
+        </div>
+
+        <div class="legal-section" id="s7">
+          <h2>7. Voice &amp; Video Interactions</h2>
+          <p>Voice and video interactions must remain respectful and appropriate.</p>
+          <p>Recording or sharing calls without consent is prohibited.</p>
+          <p>Any abusive or inappropriate behaviour during calls violates these guidelines.</p>
+        </div>
+
+        <div class="legal-section" id="s8">
+          <h2>8. BlindFate Dates</h2>
+          <p>BlindFate is a structured blind date experience where FateDate selects both participants and the venue. As there is no prior connection or communication before the date:</p>
+          <ul>
+            <li>Users must personally attend the date they are assigned</li>
+            <li>Substitutes or sending another person in your place are strictly prohibited</li>
+            <li>Failure to attend without proper cancellation may result in account restrictions or removal</li>
+          </ul>
+          <p>BlindFate relies on trust, accountability, and showing up as agreed.</p>
+        </div>
+
+        <div class="legal-section" id="s9">
+          <h2>9. Date Planning, Attendance &amp; Commitment</h2>
+          <p>As part of FateDate's structured dating system, dates arranged through the platform — including those planned via DateDiary — represent a mutual commitment between both users.</p>
+          <p>Users are expected to attend dates as agreed. If unable to attend, users must cancel within the allowed timeframe. Repeated no-shows or late cancellations may result in reduced trust levels, feature restrictions, or account action.</p>
+          <h3>Ending a date early — End Date Now</h3>
+          <p>Any user may end a date at any time, including by using the End Date Now feature.</p>
+          <ul>
+            <li>No explanation is required</li>
+            <li>The decision must be respected immediately</li>
+            <li>Pressuring someone to continue is a violation</li>
+            <li>Respectful behaviour is expected even if a date ends early</li>
+          </ul>
+        </div>
+
+        <div class="legal-section" id="s10">
+          <h2>10. In-Person Date Conduct &amp; Venue Safety</h2>
+          <p>During in-person dates:</p>
+          <ul>
+            <li>Users must respect personal space and boundaries at all times</li>
+            <li>Users must not follow another person after a date</li>
+            <li>Users must not attempt to move a date to a private location without clear mutual agreement</li>
+            <li>No one should feel pressured to leave the venue or continue a date</li>
+            <li>Users must not misrepresent themselves when attending a date (including appearance or identity)</li>
+            <li>Any behaviour that causes another user to feel unsafe may result in account action</li>
+          </ul>
+          <p>Users are expected to meet directly at the agreed venue for first dates.</p>
+        </div>
+
+        <div class="legal-section" id="s11">
+          <h2>11. Date Costs &amp; Financial Responsibility</h2>
+          <p>Users should agree in advance how date costs will be handled.</p>
+          <p>If a user agrees to pay, they are expected to honour that agreement. Repeated failure to do so may be considered misuse of the platform.</p>
+          <p>FateDate does not mediate financial disputes but may take action where behaviour indicates bad faith.</p>
+        </div>
+
+        <div class="legal-section" id="s12">
+          <h2>12. Safety &amp; Personal Information</h2>
+          <h3>For your safety, users must not</h3>
+          <ul>
+            <li>Share home addresses, workplace locations, or financial details publicly</li>
+            <li>Post phone numbers, emails, or social media handles on profiles</li>
+            <li>Pressure others to share personal details too early</li>
+          </ul>
+          <h3>Users are encouraged to</h3>
+          <ul>
+            <li>Use in-app messaging, voice, and video features</li>
+            <li>Use FateDate ID when meeting in real life instead of sharing personal contact details</li>
+            <li>Report any behaviour that feels unsafe or concerning</li>
+          </ul>
+          <p>Behaviour that occurs off the platform but is connected to a FateDate interaction may still be considered when reviewing account safety and enforcement.</p>
+          <p>All communication on FateDate must remain within the platform until both users mutually agree to move to another form of contact.</p>
+        </div>
+
+        <div class="legal-section" id="s13">
+          <h2>13. Out &amp; About Mode Safety</h2>
+          <p>Out &amp; About Mode is designed to enable real-world discovery while protecting user privacy.</p>
+          <ul>
+            <li>Exact locations are never shared</li>
+            <li>Encounters are delayed and updated periodically (not in real time)</li>
+            <li>Users cannot track or identify precise movements</li>
+          </ul>
+          <p>This ensures the feature remains safe, private, and non-intrusive.</p>
+        </div>
+
+        <div class="legal-section" id="s14">
+          <h2>14. Prohibited Activity</h2>
+          <p>The following are strictly prohibited:</p>
+          <ul>
+            <li>Soliciting money, gifts, or financial assistance</li>
+            <li>Commercial activity or advertising</li>
+            <li>Scams, fraud, extortion, or blackmail</li>
+            <li>Drug-related activity or illegal substances</li>
+            <li>Violence or threats of violence</li>
+            <li>Any activity involving the exploitation of minors</li>
+            <li>Misuse of platform features in a way that disrupts, manipulates, or undermines the intended user experience</li>
+          </ul>
+          <p>FateDate will cooperate with law enforcement where required.</p>
+        </div>
+
+        <div class="legal-section" id="s15">
+          <h2>15. Reporting &amp; Enforcement</h2>
+          <p>Users can report profiles, messages, calls, or behaviour that violates these guidelines.</p>
+          <p>FateDate may take action including:</p>
+          <ul>
+            <li>Content removal</li>
+            <li>Feature restrictions</li>
+            <li>Temporary suspension</li>
+            <li>Permanent account removal</li>
+          </ul>
+          <p>Serious safety concerns may result in immediate account restriction while investigations are carried out.</p>
+        </div>
+
+        <div class="legal-section" id="s16">
+          <h2>16. Enforcement &amp; Discretion</h2>
+          <p>FateDate reserves the right to take action at its discretion to protect users and platform integrity.</p>
+          <p>Serious or repeated violations may result in permanent removal without notice.</p>
+        </div>
+
+        <div class="legal-section" id="s17">
+          <h2>17. Updates to These Guidelines</h2>
+          <p>These guidelines may be updated to reflect safety improvements, legal requirements, or platform changes.</p>
+          <p>Continued use of FateDate constitutes acceptance of any updates.</p>
+        </div>
+
+        <div class="legal-section" id="our-standard">
+          <h2>Our Standard</h2>
+          <p>FateDate is for people who show up, act honestly, respect boundaries, and date with intention.</p>
+          <p>Users who do not engage in good faith may lose access to the platform.</p>
+        </div>
+
+        <div class="legal-contact">
+          <p>Questions about these guidelines?</p>
+          <a href="mailto:hello@fatedate.co.uk">hello@fatedate.co.uk</a>
+        </div>
+
+      </div><!-- end legal-content -->
+    </div><!-- end legal-grid -->
+  </div><!-- end safety-container -->
+</div><!-- end legal-layout -->
+
+
+<!-- ══ COMING SOON ══ -->
+<section id="coming-section">
+  <div class="container venues-container">
+    <div class="section-header">
+      <div class="section-eyebrow-pill">coming soon</div>
+      <h2 class="section-title">We're coming to your city soon</h2>
+      <p>FateDate is launching in select cities in 2026.</p>
+      <p>Sign up for early access to be notified when we launch near you. Early users will help shape the experience as we expand.</p>
+      <div class="download-icons">
+        <div class="dowload-icon appstore"><img src="assets/appstore.svg"/></div>
+        <div class="dowload-icon playstore"><img src="assets/playstore.svg"/></div>
+      </div>
+      <a href="#"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo"><img src="assets/logo.svg" alt="FateDate" /></a>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">Facebook</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email">hello@fatedate.co.uk</a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+          <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Sticky nav active state on scroll */
+(function() {
+  var sections = document.querySelectorAll('.legal-section');
+  var navLinks = document.querySelectorAll('.legal-nav-list a');
+  if (!sections.length || !navLinks.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(function(s) { obs.observe(s); });
+})();
+</script>
+
+</body>
+</html>

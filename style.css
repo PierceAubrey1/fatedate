@@ -1441,6 +1441,8 @@ body.nav-open #site-header {
 }
 
 
+.ribbon-top {top:-50px !important; opacity: 0.3; z-index: 0 !important;}
+
 #venues-section {padding:0 20px; margin-bottom: 40px;}
 .venues-container {background:var(--black); border-radius: 25px; padding: 60px 40px; color:var(--white);}
 .venues-container .section-header {max-width: 800px; margin:auto;}
@@ -1613,7 +1615,7 @@ body.nav-open #site-header {
   .hero-video-container { height: calc(100svh - 10px); border-radius: 14px 14px 0 0; }
   .hero-content { padding: 0 16px 36px; }
   .cta-container { flex-direction: column; align-items: center; gap: 10px; }
-  .cta { padding: 12px 28px; font-size: 0.88rem; width: 100%; max-width: 280px; text-align: center; }
+  .cta { padding: 12px 28px; font-size: 0.88rem; width: 100%; max-width: 280px; text-align: center; position: relative; z-index: 4;}
 
   /* Hero chips: hide on very small screens to avoid clutter */
   .hero-chips { display: none; }
@@ -2298,6 +2300,8 @@ body::before {
   letter-spacing: 0.04em;
   padding: 14px 36px;
   border-radius: 50px;
+  position: relative;
+  z-index: 4;
 }
 .cta-gradient {
   box-shadow: 0 8px 32px rgba(123,46,253,0.45), 0 1px 0 rgba(255,255,255,0.15) inset;
@@ -2749,6 +2753,13 @@ body::before {
 .image3 {background-image:url(assets/date2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
 .image4 {background-image:url(assets/date1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
 .image5 {background-image:url(assets/date1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image6 {background-image:url(assets/date6.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image7 {background-image:url(assets/date7.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image8 {background-image:url(assets/date8.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image9 {background-image:url(assets/date9.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image10 {background-image:url(assets/date10.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image11 {background-image:url(assets/date11.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
+.image12 {background-image:url(assets/date12.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;}
 
 .person-image1 {background-image:url(assets/person-image1.png); background-size: cover; background-position: center;}
 .person-image2 {background-image:url(assets/person-image2.png); background-size: cover; background-position: center;}

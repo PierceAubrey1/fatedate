@@ -1,0 +1,70 @@
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="fatedate" class="nav-logo">
+      <img src="assets/logo.svg"/>
+    </a>
+
+    <ul class="nav-links">
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="press">Press</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+
+<!-- Full-screen mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>

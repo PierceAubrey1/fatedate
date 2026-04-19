@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <script src="js/scripts2.js" defer></script>
+  <title>Dating Tips & Safety Advice — FateDate</title>
+  <style>
+
+    .tips-hero {
+      position: relative;
+      padding: 160px 0 80px;
+      background: #0d0d12;
+    }
+    .tips-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 0%, rgba(123,46,253,0.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 85% 70%, rgba(2,160,174,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .tips-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .tips-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+    }
+    .tips-hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: tFadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .tips-hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .tips-hero-eyebrow span {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .tips-hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 0;
+      opacity: 0;
+      animation: tFadeUp 0.9s 0.35s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .tips-hero-sub {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      max-width: 44ch;
+      opacity: 0;
+      animation: tFadeUp 0.9s 0.5s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes tFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Tab switcher ── */
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      padding: 48px 0 0;
+      background: #0d0d12;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tabsection {margin-top: 40px;}
+    .tab-btn {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .tab-btn:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.18); }
+    .tab-btn.active {
+      color: var(--light);
+      background: rgba(123,46,253,0.15);
+      border-color: rgba(123,46,253,0.35);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Shared section styles ── */
+    .about-section { padding: 100px 0; position: relative; }
+   /* .about-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 50%, transparent);
+    }*/
+    .about-section-dark { background: #09091a; }
+    .about-section .section-header { margin-bottom: 64px; }
+
+    /* ── Tip / advice cards ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .tip-card {
+      padding: 40px 36px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .tip-card:hover {
+      border-color: rgba(201,184,255,0.15);
+      transform: translateY(-4px);
+    }
+    .tip-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.25), transparent);
+      opacity: 0.6;
+    }
+    .tip-card-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -0.04em;
+    }
+    .tip-card h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .tip-card p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1em;
+    }
+    .tip-card p:last-child { margin-bottom: 0; }
+    .tip-card ul {
+      list-style: none;
+      padding: 0; margin: 0 0 1em;
+    }
+    .tip-card ul li {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: var(--font-p);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      padding: 7px 0 7px 18px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .tip-card ul li:last-child { border-bottom: none; }
+    .tip-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 5px; height: 5px;
+      border-top: 1.5px solid rgba(123,46,253,0.65);
+      border-right: 1.5px solid rgba(123,46,253,0.65);
+      transform: rotate(45deg);
+    }
+    /* Wide card spans both columns */
+    .tip-card-wide { grid-column: span 2; }
+
+    /* ── Closing CTA ── */
+    .tips-cta-banner {
+      background: var(--darkerbg);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .tips-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(123,46,253,0.1) 0%, rgba(2,160,174,0.06) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .tips-cta-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.15) 50%, transparent);
+    }
+    .tips-cta-banner h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .tips-cta-banner p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 2;
+      color: rgba(255,255,255,0.48);
+      max-width: 46ch;
+      margin: 0 auto 2.4rem;
+      position: relative;
+    }
+
+    .section-header p { color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 768px) {
+      .tips-hero { padding: 140px 0 60px; }
+      .tips-hero-inner { grid-template-columns: 1fr; gap: 20px; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .tip-card-wide { grid-column: span 1; }
+      .about-section { padding: 72px 0; }
+      .tab-nav { padding: 32px 16px 0; flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .tips-hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+      .about-section { padding: 56px 0; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="fatedate" class="nav-logo"><img src="assets/logo.svg"/></a>
+    <ul class="nav-links">
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="press">Press</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="tips-hero">
+  <div class="container">
+    <div class="tips-hero-inner">
+      <div>
+        <div class="tips-hero-eyebrow"><span>Dating tips &amp; safety advice</span></div>
+        <h1>Date better.<br>Stay safe.</h1>
+      </div>
+      <div>
+        <p class="tips-hero-sub">FateDate is built around structured real-world dating, with safety considered at every stage.</p>
+        <p class="tips-hero-sub">These tips and guidelines are here to help you get the most out of your experience and make informed, confident decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TAB NAV ══ -->
+<div class="tab-nav" id="tab-nav">
+  <button class="tab-btn active" data-tab="tips">Dating tips</button>
+  <button class="tab-btn" data-tab="safety">Safety advice</button>
+</div>
+
+
+<!-- ══════════════════════════════════
+     TAB 1 — DATING TIPS
+══════════════════════════════════ -->
+<div class="tab-panel active" id="tab-tips">
+
+  <!-- Intro -->
+  <section class="tabsection">
+    <div class="safety-container">
+      <div class="section-header fd-reveal fd-fade-up">
+        <div class="section-eyebrow-pill">Dating tips</div>
+        <h2 class="section-title">A more intentional way to date</h2>
+        <p>FateDate is designed to help you move from connection to real-world dating with clarity and intention. These tips are here to help you get the most out of your experience and build better, more meaningful connections.</p>
+      </div>
+
+      <div class="tips-grid">
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">01</div>
+          <h3>Don't rush to match</h3>
+          <p>Matching isn't the goal — it's just one step in the process.</p>
+          <p>Take time to meet, experience different connections, and understand what feels right for you.</p>
+          <p>Real compatibility is built over time, not decided instantly.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">02</div>
+          <h3>Focus on real chemistry</h3>
+          <p>You can't fully understand a connection through messages alone.</p>
+          <p>Meeting in person allows you to experience tone, energy, and presence — the things that actually matter when deciding if someone is right for you.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">03</div>
+          <h3>Be present on your dates</h3>
+          <p>A great date isn't about being perfect — it's about being real.</p>
+          <ul>
+            <li>Be yourself</li>
+            <li>Stay engaged in the conversation</li>
+            <li>Listen as much as you talk</li>
+            <li>Keep an open mind</li>
+          </ul>
+          <p>Authenticity creates better outcomes than trying to impress.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">04</div>
+          <h3>Set clear expectations</h3>
+          <p>Clarity removes awkwardness. Before your date, use DateDiary to agree:</p>
+          <ul>
+            <li>Time and location</li>
+            <li>Venue</li>
+            <li>Payment preferences</li>
+          </ul>
+          <p>This helps both people feel more comfortable and aligned from the start.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">05</div>
+          <h3>Take your time</h3>
+          <p>There's no pressure to rush decisions.</p>
+          <p>Some connections take longer to build, and that's part of the process.</p>
+          <p>Give yourself space to explore and see where things naturally go.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">06</div>
+          <h3>Recognise healthy vs unhealthy behaviour</h3>
+          <p>Good connections feel:</p>
+          <ul>
+            <li>Respectful</li>
+            <li>Balanced</li>
+            <li>Comfortable</li>
+          </ul>
+          <p>Be mindful of pressure to move too fast, overly intense behaviour early on, or anything that ignores your boundaries. If something feels off, trust your instinct.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">07</div>
+          <h3>It's okay if it's not a match</h3>
+          <p>Not every date will lead to something more — and that's normal.</p>
+          <p>FateDate is designed to help you explore connections and learn what works for you.</p>
+          <p>Every experience helps you move closer to the right one.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">08</div>
+          <h3>Stay open to different outcomes</h3>
+          <p>Not every connection needs to be romantic. You can:</p>
+          <ul>
+            <li>Match</li>
+            <li>Stay connected as friends</li>
+            <li>Or move on</li>
+          </ul>
+          <p>The goal is to create genuine, positive interactions — whatever form they take.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips closing CTA -->
+  <section class="tips-cta-banner">
+    <div id="fate-ribbon-full">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="113" viewBox="0 0 1240 113" fill="none">
+        <path d="M-119 109.617C-108.949 103.665 -103.536 96.7733 -63.3303 94.4184C-12.6078 91.4476 83.3559 76.2486 73.5243 6.07588C72.8161 1.02109 65.7924 0.436273 61.9264 2.94283C45.6894 8.26847 7.02995 50.4089 46.4626 68.5788C58.7004 74.2177 99.8127 101.159 153.936 90.1946C200.665 80.7281 225.224 19.9226 300.069 25.1856C365.275 33.4351 649.705 49.845 761.663 90.1946C901.611 140.632 1026.79 139.692 1141.99 109.617C1257.2 79.5433 1454.36 3.25646 1684 33.0174" stroke="white" stroke-width="3"/>
+      </svg>
+    </div>
+    <div class="safety-container">
+
+      <h2>A better way to date</h2>
+      <p>FateDate gives you the structure to move beyond endless messaging and into real experiences. Take your time. Stay intentional. Let things unfold naturally.</p>
+      <a href="sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </section>
+
+</div><!-- end tab-tips -->
+
+
+<!-- ══════════════════════════════════
+     TAB 2 — SAFETY ADVICE
+══════════════════════════════════ -->
+<div class="tab-panel" id="tab-safety">
+
+  <!-- Intro -->
+  <section class="tabsection">
+    <div class="safety-container">
+      <div class="section-header fd-reveal fd-fade-up">
+        <div class="section-eyebrow-pill">Safety advice</div>
+        <h2 class="section-title">Designed to help you date with confidence.</h2>
+        <p>FateDate is built around structured real-world dating, with safety considered at every stage. Alongside our in-app features, these guidelines are here to help you make informed, confident decisions.</p>
+      </div>
+
+      <div class="tips-grid">
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">01</div>
+          <h3>Protect your personal information</h3>
+          <p>Getting to know someone takes time — and not everything needs to be shared straight away.</p>
+          <ul>
+            <li>Avoid sharing your home address, workplace, or daily routines</li>
+            <li>Be cautious about giving out your phone number or social media too early</li>
+            <li>Never share financial details or send money</li>
+          </ul>
+          <p>Use your FateDate ID and in-app features to communicate safely.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">02</div>
+          <h3>Meeting in person</h3>
+          <p>For first dates, always prioritise safe, public environments.</p>
+          <ul>
+            <li>Meet at vetted, public venues</li>
+            <li>Avoid being picked up from home</li>
+            <li>Do not share your home address</li>
+            <li>Let someone you trust know where you are going</li>
+          </ul>
+          <p>Only leave a venue together if both people clearly agree.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">03</div>
+          <h3>Alcohol &amp; awareness</h3>
+          <p>A drink can help ease nerves, but staying in control is important.</p>
+          <ul>
+            <li>Know your limits</li>
+            <li>Don't feel pressured to drink</li>
+            <li>Keep your drink with you at all times</li>
+            <li>Stop drinking anything that seems unusual</li>
+          </ul>
+          <p>If you feel unwell or unsafe, seek help from venue staff immediately.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">04</div>
+          <h3>Drugs &amp; boundaries</h3>
+          <p>Substances can affect judgement and decision-making.</p>
+          <ul>
+            <li>Never feel pressured to take anything</li>
+            <li>Be cautious of anyone encouraging risky behaviour</li>
+            <li>If something feels off, remove yourself from the situation</li>
+          </ul>
+          <p>Your safety always comes first.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">05</div>
+          <h3>If a date isn't going as planned</h3>
+          <p>Not every date will feel right — and you're always in control.</p>
+          <p>You can end a date at any time using the <strong style="color:rgba(255,255,255,0.75);">End Date Now</strong> feature. No explanation is required. Your decision should always be respected. You can leave safely and confidently.</p>
+          <p>If the other person ends the date, respect their decision and move on.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">06</div>
+          <h3>Handling unwanted behaviour</h3>
+          <p>If someone ignores your boundaries, makes you feel uncomfortable, or pressures you:</p>
+          <ul>
+            <li>Disengage</li>
+            <li>Block</li>
+            <li>Report</li>
+          </ul>
+          <p>"No" is always a complete answer.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-1">
+          <div class="tip-card-num">07</div>
+          <h3>When to report someone</h3>
+          <p>Report users who:</p>
+          <ul>
+            <li>Harass or threaten</li>
+            <li>Attempt to scam or request money</li>
+            <li>Misrepresent themselves</li>
+            <li>Try to bypass safety features</li>
+            <li>Make you feel unsafe</li>
+          </ul>
+          <p>Reports are taken seriously and reviewed promptly.</p>
+        </div>
+
+        <div class="tip-card fd-reveal fd-scale-up fd-delay-2">
+          <div class="tip-card-num">08</div>
+          <h3>Out &amp; About Mode safety</h3>
+          <p>Out &amp; About Mode is designed with privacy in mind.</p>
+          <ul>
+            <li>Exact locations are never shared</li>
+            <li>Encounters are delayed and not shown in real time</li>
+            <li>Users cannot track movements</li>
+          </ul>
+          <p>This ensures real-world discovery remains safe and controlled.</p>
+        </div>
+
+        <div class="tip-card tip-card-wide fd-reveal fd-scale-up">
+          <div class="tip-card-num">09</div>
+          <h3>Understanding your rights</h3>
+          <p>If you have concerns about someone's background, you can use UK safeguarding tools:</p>
+          <ul>
+            <li>Clare's Law — request information about a partner's history of domestic abuse</li>
+            <li>Sarah's Law — check if someone has a history of offences against children</li>
+          </ul>
+          <p>These services are provided by UK police and operate independently of FateDate. If you are ever in immediate danger, call 999.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety closing CTA -->
+  <section class="tips-cta-banner">
+    <div class="safety-container">
+      <h2>A shared responsibility.</h2>
+      <p>FateDate provides tools, structure, and safeguards to support safer dating. Your awareness and decisions also play an important role. Trust your instincts, take your time, and prioritise your safety at every stage.</p>
+      <a href="sign-up.html"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </section>
+
+</div><!-- end tab-safety -->
+
+
+<!-- ══ COMING SOON ══ -->
+<section id="coming-section">
+  <div class="container venues-container">
+    <div class="section-header">
+      <div class="section-eyebrow-pill">coming soon</div>
+      <h2 class="section-title">We're coming to your city soon</h2>
+      <p>FateDate is launching in select cities in 2026.</p>
+      <p>Sign up for early access to be notified when we launch near you. Early users will help shape the experience as we expand.</p>
+      <div class="download-icons">
+        <div class="dowload-icon appstore"><img src="assets/appstore.svg"/></div>
+        <div class="dowload-icon playstore"><img src="assets/playstore.svg"/></div>
+      </div>
+      <a href="#"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo"><img src="assets/logo.svg" alt="FateDate" /></a>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">Facebook</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email">hello@fatedate.co.uk</a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+          <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+/* Tab switcher */
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var tab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    /* Re-trigger scroll reveal for newly visible panel */
+    document.querySelectorAll('#tab-' + tab + ' .fd-reveal').forEach(function(el) {
+      el.classList.add('fd-visible');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

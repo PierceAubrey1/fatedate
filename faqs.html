@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/enb0aud.css">
+  <script src="js/scripts2.js" defer></script>
+  <title>FAQs — FateDate</title>
+  <style>
+
+    /* ── Hero ── */
+    .faq-hero {
+      position: relative;
+      padding: 160px 0 80px;
+      background: #0d0d12;
+    }
+    .faq-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(123,46,253,0.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 15% 80%, rgba(2,160,174,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .faq-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07) 50%, transparent);
+    }
+    .faq-hero-inner { text-align: center; }
+    .faq-hero h1 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fFadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .faq-hero p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      max-width: 48ch;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fFadeUp 0.9s 0.35s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes fFadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Category filter pills ── */
+    .faq-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+    .faq-filter-btn {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 10px 22px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .faq-filter-btn:hover { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.18); }
+    .faq-filter-btn.active {
+      color: var(--light);
+      background: rgba(123,46,253,0.15);
+      border-color: rgba(123,46,253,0.35);
+    }
+
+    /* ── Category heading ── */
+    .faq-category {
+      padding: 80px 0;
+      position: relative;
+    }
+    .faq-category::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 50%, transparent);
+    }
+    .about-hero-eyebrow {justify-content: center !important;}
+    .faq-category-dark { background: #09091a; }
+    .faq-category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+    }
+    .faq-category-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(123,46,253,0.1);
+      border: 1px solid rgba(123,46,253,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .faq-category-title {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2vw, 1.9rem);
+      letter-spacing: -0.02em;
+      color: var(--light);
+      line-height: 1.1;
+    }
+
+    /* ── FAQ accordion (from venues) ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 0;
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-q::-webkit-details-marker { display: none; }
+    .faq-q-text {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      letter-spacing: -0.01em;
+      color: var(--light);
+      line-height: 1.2;
+    }
+    .faq-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4);
+      transition: transform 0.3s cubic-bezier(.22,1,.36,1), border-color 0.3s ease, color 0.3s ease;
+    }
+    details[open] .faq-icon {
+      transform: rotate(45deg);
+      border-color: rgba(2,160,174,0.3);
+      color: #02A0AE;
+    }
+    .faq-a {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.45);
+      padding-top: 16px;
+      max-width: 72ch;
+    }
+
+    /* ── Closing CTA ── */
+    .faq-cta {
+      background: #080e14;
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(123,46,253,0.1) 0%, rgba(2,160,174,0.05) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .faq-cta::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,184,255,0.12) 50%, transparent);
+    }
+    .faq-cta h2 {
+      font-family: "dm-serif-display", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .faq-cta p {
+      font-family: 'Grift', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 2;
+      color: rgba(255,255,255,0.45);
+      max-width: 44ch;
+      margin: 0 auto 2.4rem;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .faq-hero { padding: 140px 0 56px; }
+      .faq-category { padding: 56px 0; }
+    }
+    @media (max-width: 480px) {
+      .faq-hero { padding: 120px 0 48px; }
+      #site-header { top: 8px; width: calc(100% - 16px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<header id="site-header">
+  <nav class="nav-inner">
+    <a href="fatedate" class="nav-logo"><img src="assets/logo.svg"/></a>
+    <ul class="nav-links">
+      <li class="nav-item-dropdown">
+        <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+          About
+          <svg class="nav-dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <div class="nav-dropdown" role="menu">
+          <a href="about" role="menuitem">
+            <span class="nav-dropdown-title">About FateDate</span>
+            <span class="nav-dropdown-sub">Our story, mission and values</span>
+          </a>
+          <a href="how-fatedate-works" role="menuitem">
+            <span class="nav-dropdown-title">How it works</span>
+            <span class="nav-dropdown-sub">The full dating journey explained</span>
+          </a>
+          <a href="safety-how-we-minimise-risks" role="menuitem">
+            <span class="nav-dropdown-title">How we minimise the risks</span>
+            <span class="nav-dropdown-sub">Safety by design, not by chance</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="venues">Venues</a></li>
+      <li><a href="press">Press</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <a href="sign-up.html" class="nav-cta">Get early access</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-bg"></div>
+  <div class="nav-overlay-inner">
+    <ul class="nav-overlay-links">
+      <li class="nav-overlay-item-dropdown">
+        <button class="nav-overlay-dropdown-trigger" aria-expanded="false">
+          <span>About</span>
+          <svg class="nav-overlay-chevron" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 3 5 7 8 3"/></svg>
+        </button>
+        <ul class="nav-overlay-sub" aria-hidden="true">
+          <li><a href="about"><span>About FateDate</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="how-fatedate-works"><span>How it works</span><span class="link-arrow">↗</span></a></li>
+          <li><a href="safety-how-we-minimise-risks"><span>How we minimise the risks</span><span class="link-arrow">↗</span></a></li>
+        </ul>
+      </li>
+      <li><a href="venues"><span>Venues</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="press"><span>Press</span><span class="link-arrow">↗</span></a></li>
+      <li><a href="contact"><span>Contact</span><span class="link-arrow">↗</span></a></li>
+    </ul>
+    <div class="nav-overlay-footer">
+      <span class="nav-overlay-tagline">Connect. Date. Match.</span>
+      <a href="sign-up" class="nav-overlay-cta">Get early access</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="faq-hero">
+  <div class="safety-container">
+    <div class="faq-hero-inner fd-reveal fd-fade-up">
+      <div class="about-hero-eyebrow"><span>FAQ's</span></div>
+      <h1>Questions we<br>hear a lot.</h1>
+      <p>Everything you need to know about how FateDate works, how to stay safe, and what to expect.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CAT 1 — THE PLATFORM ══ -->
+<section class="faq-category" data-category="platform">
+  <div class="safety-container">
+    <div class="faq-category-header fd-reveal fd-fade-up">
+      
+
+      <div class="perk-icon">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+      <span class="faq-category-title">The platform</span>
+    </div>
+    <div class="faq-list fd-reveal fd-fade-up">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is FateDate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">FateDate is a structured dating platform that moves away from endless swiping and messaging. Users connect through structured interaction modes, get to know each other in a guided way, plan real-world dates through DateDiary, and decide together after meeting whether to continue. The focus is real connection → real meeting → real decision.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Do users just chat like a normal dating app?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">No. Messaging exists, but it is not the main experience. Users are encouraged to connect through structured modes, move toward planning real-world dates, and use DateDiary to organise meetings. The system is designed around intentional progression, not endless conversation.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What makes FateDate different?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">FateDate focuses on structured connection rather than endless swiping. It uses guided interaction modes, encourages real-world progression, uses DateDiary to remove planning friction, and gives users full control over privacy and pace. Connection should lead somewhere real — not stay stuck online.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Do I have to meet in person?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Yes — FateDate is designed around real-world dating. However, before meeting users can chat in-app, use connection modes, have optional voice or video calls, and plan through DateDiary. Real-world meeting is the intended outcome.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CAT 2 — CONNECTING ══ -->
+<section class="faq-category faq-category-dark" data-category="connecting">
+  <div class="safety-container">
+    <div class="faq-category-header fd-reveal fd-fade-up">
+      
+
+        <div class="perk-icon">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+
+
+      <span class="faq-category-title">How people connect</span>
+    </div>
+    <div class="faq-list fd-reveal fd-fade-up">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How do I connect with other users?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">FateDate offers multiple structured ways to connect — FateThread, FatePull, HiddenFate, BlindFate, and Out & About Mode. Each one is designed to move you toward a real-world meeting rather than keeping you stuck in a messaging loop.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is FateThread?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">FateThread is a progressive reveal experience where users gradually learn more about each other over time. Profiles and photos may unlock progressively as connection builds, encouraging genuine interest before appearance becomes the focus.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is HiddenFate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">HiddenFate connects two users into a private conversation. They have 48 hours to chat and must plan a real-world date using DateDiary within that window. If no date is planned, the chat expires. It is designed to encourage fast, intentional progression from chat to date.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is BlindFate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">BlindFate is a fully structured blind date experience where FateDate selects both users and assigns a partnered venue. Users meet directly without prior chat. It is designed to remove pressure, overthinking, and expectation from dating.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is Out &amp; About Mode?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Out & About Mode is a real-world discovery feature that allows users to see people they may have crossed paths with in real life. Exact locations are never shown, there is no real-time tracking, and encounters are delayed and updated periodically. Privacy is fully protected.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CAT 3 — DATES ══ -->
+<section class="faq-category" data-category="dates">
+  <div class="safety-container">
+    <div class="faq-category-header fd-reveal fd-fade-up">
+      
+
+      <div class="perk-icon">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+
+
+      <span class="faq-category-title">Dating &amp; DateDiary</span>
+    </div>
+    <div class="faq-list fd-reveal fd-fade-up">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is DateDiary?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">DateDiary is FateDate's structured date planning system. Users can propose or accept date plans, choose from partnered venues, set date time and expectations, agree on payment approach, optionally arrange a call before meeting, and finalise all logistics in one place. It removes friction and makes planning a date simple, safe, and structured.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What happens after a date?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">After meeting in person, both users independently decide whether to match, stay friends, or end the connection. If both users match, the connection unlocks new experiences and features, and access to more curated dates and venues may open.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Can I stay friends instead of matching?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Yes. After a date, users can choose a romantic match, stay friends, or end the connection. Every outcome is valid and handled cleanly within the app.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What happens if someone doesn't show up?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">If a user does not attend a date, it can be reported as a no-show. Trust Levels may be affected and repeated behaviour may result in feature restrictions or account action.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CAT 4 — SAFETY ══ -->
+<section class="faq-category faq-category-dark" data-category="safety">
+  <div class="safety-container">
+    <div class="faq-category-header fd-reveal fd-fade-up">
+     
+
+
+       <div class="perk-icon">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+
+      <span class="faq-category-title">Safety &amp; trust</span>
+    </div>
+    <div class="faq-list fd-reveal fd-fade-up">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">How does FateDate improve safety in real-world dating?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">FateDate improves safety through structural design — ID verification for all users, timestamped live photo verification, trusted partner venues, structured DateDiary planning, a Trust Levels system, the End Date Now safety feature, and active reporting and moderation systems.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What is End Date Now?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">End Date Now allows any user to end a date immediately, leave safely and discreetly, and without explanation or conflict. It is designed to ensure users always feel in control.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">What are Trust Levels?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Trust Levels reflect user behaviour over time. They are influenced by attending scheduled dates, positive interactions, reports or violations, and consistency of platform engagement. Trust Levels may affect visibility, feature access, and matching opportunities.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CAT 5 — PRIVACY ══ -->
+<section class="faq-category" data-category="privacy">
+  <div class="safety-container">
+    <div class="faq-category-header fd-reveal fd-fade-up">
+    
+
+
+      <div class="perk-icon">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+
+      <span class="faq-category-title">Privacy &amp; identity</span>
+    </div>
+    <div class="faq-list fd-reveal fd-fade-up">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Is my identity visible to everyone?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">No. FateDate uses privacy-by-design profiles. Your real name can remain private publicly, you control what is shown before connection, and full identity becomes visible only after appropriate interaction stages or mutual connection.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Can I stay private on FateDate?</span>
+          <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></span>
+        </summary>
+        <p class="faq-a">Yes. Users can keep their real identity private publicly, use FateDate ID instead of personal contact details, and control what is shared and when. You choose when to reveal personal information.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CLOSING CTA ══ -->
+<section class="faq-cta">
+  <div class="safety-container">
+    <h2>Still got questions?</h2>
+    <p>Get in touch and we'll get back to you as soon as possible.</p>
+    <a href="mailto:hello@fatedate.co.uk" class="cta cta-gradient gradient">hello@fatedate.co.uk</a>
+  </div>
+</section>
+
+
+<!-- ══ COMING SOON ══ -->
+<section id="coming-section">
+  <div class="container venues-container">
+    <div class="section-header">
+      <div class="section-eyebrow-pill">coming soon</div>
+      <h2 class="section-title">We're coming to your city soon</h2>
+      <p>FateDate is launching in select cities in 2026.</p>
+      <p>Sign up for early access to be notified when we launch near you. Early users will help shape the experience as we expand.</p>
+      <div class="download-icons">
+        <div class="dowload-icon appstore"><img src="assets/appstore.svg"/></div>
+        <div class="dowload-icon playstore"><img src="assets/playstore.svg"/></div>
+      </div>
+      <a href="#"><div class="cta cta-gradient gradient">Get early access</div></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="fatedate" class="footer-logo"><img src="assets/logo.svg" alt="FateDate" /></a>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <a href="about">About</a>
+          <a href="venues">Venues</a>
+          <a href="invest">Invest</a>
+          <a href="press">Press</a>
+          <a href="sign-up">Get early access</a>
+        </div>
+        <div class="footer-col">
+          <a href="https://www.tiktok.com/@fatedateapp?_t=8VJpOkbXWUv&_r=1">TikTok</a>
+          <a href="https://www.facebook.com/FateDateAPP">Facebook</a>
+          <a href="https://www.instagram.com/fatedateapp/">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <a href="mailto:hello@fatedate.co.uk" class="footer-email">hello@fatedate.co.uk</a>
+          <a href="terms">Terms &amp; conditions</a>
+          <a href="privacy">Privacy policy</a>
+          <a href="safety">Safety tips</a>
+          <a href="dating-laws">Dating laws</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright &copy; 2026 Fate Date. All rights reserved.</p>
+      <div class="footer-ribbon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="611" height="98" viewBox="0 0 611 98" fill="none">
+          <path d="M0.893555 81.1215C6.8029 76.7382 9.98486 71.6626 33.6223 69.9284C63.4425 67.7406 119.86 56.5476 114.08 4.86997C113.664 1.14745 109.535 0.71677 107.262 2.56268C97.716 6.48466 74.9877 37.5183 98.1705 50.8992C105.365 55.0519 129.536 74.8925 161.355 66.8179C188.827 59.8464 203.266 15.0672 247.268 18.943C285.603 25.0182 452.822 37.1031 518.643 66.8179C600.92 103.961 674.513 103.269 742.243 81.1215C809.973 58.9739 925.888 2.79365 1060.89 24.7106" stroke="white" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
